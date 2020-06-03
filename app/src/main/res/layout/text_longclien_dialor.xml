@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_tishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="23dp"
+        android:text="微  信  号"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_conton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:text="addaada"
+
+        />
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.5dp"-->
+<!--        android:background="#D9D9D9"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        />-->
+    <TextView
+        android:id="@+id/tv_queding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击复制"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:textColor="#E13B38"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
+        />
+</LinearLayout>

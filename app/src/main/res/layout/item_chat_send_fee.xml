@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.chat.adapter.LawyerChatRoomAdapter">
+
+
+    <TextView
+            android:id="@+id/tv_chat_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:textColor="#c0c0c0"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="2020-12-12 23:23:59"
+            tools:visibility="visible" />
+
+
+    <LinearLayout
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+        <RelativeLayout
+                android:layout_width="220dp"
+                android:layout_height="98dp"
+                android:layout_marginEnd="6dp"
+                android:background="@mipmap/bg_wait_pay_right"
+                android:maxWidth="255dp">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="70dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="律师收取咨询费"
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:id="@+id/tv_chat_item_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.9"
+                            android:textColor="#E1504E"
+                            android:textSize="15sp" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="元"
+                            android:textColor="#333333" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_chat_item_pay_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="7dp"
+                    android:text="待支付"
+                    android:textColor="#ff44a2f7"
+                    android:textSize="13sp" />
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/iv_chat_item_payed"
+                android:src="@mipmap/icon_payed_right"
+                android:layout_alignParentStart="true"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+
+        </RelativeLayout>
+
+        <!--        <TextView-->
+        <!--                android:id="@+id/tv_chat_item_content"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="6dp"-->
+        <!--                android:background="@drawable/ease_chatto_bg_normal"-->
+        <!--                android:gravity="center_vertical|start"-->
+        <!--                android:lineSpacingExtra="2dp"-->
+        <!--                android:maxWidth="255dp"-->
+        <!--                android:minHeight="38dp"-->
+        <!--                android:paddingStart="10dp"-->
+        <!--                android:paddingEnd="20dp"-->
+        <!--                android:textColor="#333333"-->
+        <!--                android:textSize="16sp"-->
+        <!--                tools:text="法国外籍军dddddddddddddddddddddddddddddd团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团" />-->
+
+        <ImageView
+                android:id="@+id/iv_chat_item_avatar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@null"
+                tools:src="@mipmap/logo" />
+    </LinearLayout>
+
+</LinearLayout>

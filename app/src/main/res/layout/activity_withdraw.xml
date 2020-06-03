@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.withdraw.act.WithdrawActivity">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tl_withdraw_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#4C98EE"
+            android:minHeight="?android:attr/actionBarSize"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@null"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title=""
+            app:titleMargin="0dp">
+
+        <TextView
+                android:id="@+id/tv_withdraw_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="法国外籍军团" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F2F2F2"
+            android:scrollbars="none">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingTop="24dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="24dp">
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_withdraw_type"
+                            android:textColor="#ff333333"
+                            android:textSize="13sp" />
+
+                    <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent" />
+
+                    <TextView
+                            android:id="@+id/tv_withdraw_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_ali_pay_filling"
+                            android:drawablePadding="10dp"
+                            android:gravity="end"
+                            android:textColor="#ff1296db"
+                            android:textSize="14sp"
+                            tools:text="支付宝(1275hgt789@163.com)" />
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height=".5dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="#F2F2F2" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingTop="24dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="15dp"
+                        android:text="@string/txt_withdrawal_amount"
+                        android:textColor="#FF333333"
+                        android:textSize="13sp" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="20dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/money_symbol"
+                            android:textColor="#ff333333"
+                            android:textSize="30sp" />
+
+                    <EditText
+                            android:id="@+id/et_withdraw_money"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@android:color/transparent"
+                            android:cursorVisible="false"
+                            android:hint="@string/hint_withdraw_money_mini"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            android:textColorHint="#ffb0aeae"
+                            android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height=".5dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="#F2F2F2" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="10dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="可提现金额"
+                            android:textColor="#FF696969"
+                            android:textSize="12sp" />
+
+                    <TextView
+                            android:id="@+id/tv_withdraw_max"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FF9000"
+                            android:textSize="12sp"
+                            tools:text="¥300" />
+
+                    <TextView
+                            android:id="@+id/tv_withdraw_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/txt_all_withdraw"
+                            android:textColor="#ff4c98ee"
+                            android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_withdraw_notice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="#ff787878"
+                    android:lineSpacingExtra="8dp"
+                    android:textSize="12sp"
+                    tools:text="1.近3日内赚取的金额不可提现\n2.提现到账时间预计5-7个工作日\n3.提现时自动扣除50%平台手续费" />
+
+            <!--            <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="16dp"-->
+            <!--                    android:layout_marginTop="10dp"-->
+            <!--                    android:layout_marginEnd="16dp"-->
+            <!--                    android:text="2.提现到账时间预计5-7个工作日"-->
+            <!--                    android:textColor="#ff787878"-->
+            <!--                    android:textSize="12sp" />-->
+
+            <!--            <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="16dp"-->
+            <!--                    android:layout_marginTop="10dp"-->
+            <!--                    android:layout_marginEnd="16dp"-->
+            <!--                    android:text="3.提现时自动扣除50%平台手续费"-->
+            <!--                    android:textColor="#ff787878"-->
+            <!--                    android:textSize="12sp" />-->
+
+            <TextView
+                    android:id="@+id/tv_withdraw_commit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/selector_btn_withdraw"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:text="@string/txt_withdraw"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="点击“提现”，即表示你同意"
+                    android:textColor="#ff787878"
+                    android:textSize="12sp" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:text="《云台提现协议》"
+                    android:textColor="#4C98EE"
+                    android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

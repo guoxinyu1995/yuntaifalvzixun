@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    >
+    <include layout="@layout/incled_title_bai_center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="77dp"
+            android:src="@drawable/gywm_tubiao" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="云台法务"
+            android:textColor="#333333"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="#333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginRight="20dp"
+            android:lineSpacingExtra="10dp"
+            android:text="       一个案件从咨询到收集证据，到立案、开庭、结案过程，有
+婚姻、借贷、劳动、交通等实用精选法律课堂，有音频，有文字，
+数千份律师精修合同，满足您的需求，保障公司权益。"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="客服热线 :   010-57157966"
+        android:layout_marginBottom="10dp"
+        android:textSize="13sp"
+        android:textColor="#e13b38"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/tv_yhxy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="《用户服务协议》"
+            android:textColor="#e13b38"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="和"
+            android:textColor="#333333"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_yisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="《隐私协议》"
+            android:textColor="#e13b38"
+            android:textSize="12sp" />
+    </LinearLayout>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="北京云台法律咨询服务有限公司所有"
+    android:textSize="10sp"
+    android:textColor="#666666"
+    android:layout_gravity="center_horizontal"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+        android:layout_marginBottom="32dp"
+        android:text="京ICP备19031236号"
+        android:textSize="10sp"
+        android:textColor="#666666"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".ui.LvShiMainActivity">
+
+    <FrameLayout
+        android:id="@+id/fram_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:background="#ffffff" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rl_main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_beijing"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom_wenti"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/rl_main_bottom_message">
+
+            <ImageView
+                android:id="@+id/iv_main_bottom_wenti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lvshi_main_bottom_wenti" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_wenti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_main_bottom_wenti"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="问题"
+                android:textColor="@color/textColor_66"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom_message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@+id/rl_main_bottom_wenti"
+            app:layout_constraintRight_toLeftOf="@+id/rl_main_bottom_hetong">
+
+            <ImageView
+                android:id="@+id/iv_main_bottom_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/main_bottom_message" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_main_bottom_message"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="消息"
+                android:textColor="@color/textColor_66"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom_wode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/rl_main_bottom_hetong"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_main_bottom_wode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/main_bottom_wode" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_wode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_main_bottom_wode"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="我的"
+                android:textColor="@color/textColor_66"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_bottom_hetong"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/rl_main_bottom_message"
+            app:layout_constraintRight_toLeftOf="@id/rl_main_bottom_wode">
+
+            <ImageView
+                android:id="@+id/iv_main_bottom_hetong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lvshi_main_bottom_hetong" />
+
+            <TextView
+                android:id="@+id/tv_main_bottom_hetong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_main_bottom_hetong"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:text="合同"
+                android:textColor="@color/textColor_66"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

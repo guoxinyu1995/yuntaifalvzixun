@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_snackbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/v1"
+        android:orientation="vertical">
+
+        <include layout="@layout/incled_title_bai_center" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_zjqd_xq"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/btn_send_email"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/btn_add_qsz_shape"
+        android:text="发送邮箱"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+</RelativeLayout>

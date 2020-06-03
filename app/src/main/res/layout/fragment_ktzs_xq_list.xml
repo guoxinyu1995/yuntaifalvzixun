@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--开庭助手详情列表-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:id="@+id/snackbar_ll"
+    >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_ktzs_xq_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:background="#ffffff"
+        />
+</LinearLayout>

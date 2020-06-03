@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#00000000"
+    android:gravity="center"
+    android:orientation="vertical">
+    <ProgressBar
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progressbar"
+        />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_gif"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+   <!-- android:indeterminateTint="@color/primaryColor"
+    android:indeterminateTintMode="src_atop"
+    tools:targetApi="lollipop"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/loading"
+        android:textColor="#008cd6" />
+</LinearLayout>

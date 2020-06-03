@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_marginBottom="15dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_zixun_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="26dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/tv_zixun_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/iv_zixun_icon"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/iv_zixun_icon"
+                android:text="云台888"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_zixun_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_zixun_icon"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@+id/iv_zixun_icon"
+                android:text="6ixoshi"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_zhifuleixing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_zixun_name"
+                android:layout_alignBottom="@+id/tv_zixun_name"
+                android:layout_alignParentRight="true"
+                android:text="悬赏咨询"
+                android:textColor="#E13B38"
+                android:textSize="12sp"
+                android:layout_marginRight="16dp"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_zixun_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:maxEms="50"
+            android:maxLines="2"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#666666"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#F2F2F2" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="16dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_zixun_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="婚姻家庭"
+                android:textColor="#E13B38"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_zixun_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/pinglun_num"
+                android:drawablePadding="7dp"
+                android:gravity="center"
+                android:text="已回复（16）"
+                android:textColor="#44A2F7"
+                android:textSize="13sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

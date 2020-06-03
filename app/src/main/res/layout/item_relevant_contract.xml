@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="23dp"
+    android:paddingRight="18dp"
+    android:paddingBottom="18dp"
+    android:paddingTop="17dp"
+    >
+
+    <ImageView
+        android:id="@+id/contract_icon"
+        android:layout_width="33dp"
+        android:layout_height="34dp"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/contract_icon"
+        android:layout_alignTop="@id/contract_icon"
+        android:ellipsize="end"
+        android:maxEms="15"
+        android:maxLines="1"
+        android:text="title"
+        android:textColor="#1D1D1D"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/text_title"
+        android:layout_alignBottom="@id/contract_icon"
+        android:text="已有人购买"
+        android:textColor="#7A7A7A"
+        android:textSize="10sp"
+        />
+    <TextView
+        android:id="@+id/text_fu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/text_count"
+        android:layout_toLeftOf="@+id/text_price"
+        android:text="¥"
+        android:textColor="#EB100D"
+        android:textSize="14sp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/text_fu"
+        android:layout_alignParentRight="true"
+        android:text="1234"
+        android:textColor="#EB100D"
+        android:textSize="16sp"
+        android:visibility="gone"
+        />
+</RelativeLayout>

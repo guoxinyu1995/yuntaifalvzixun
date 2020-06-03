@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2"
+        android:orientation="vertical"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.bind.act.BindAliActivity">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tl_bind_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#4C98EE"
+            android:minHeight="?android:attr/actionBarSize"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@null"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title=""
+            app:titleMargin="0dp">
+
+        <TextView
+                android:id="@+id/tv_bind_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="法国外籍军团" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/txt_tip_bind_ali"
+            android:textColor="#FF5E5E5E"
+            android:textSize="12sp" />
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="23dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="23dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_name"
+                android:textColor="#FF3E3E3E"
+                android:textSize="14sp" />
+
+        <EditText
+                android:id="@+id/et_bind_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_input_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="#ff797979"
+                android:textSize="12sp" />
+
+        <ImageView
+                android:id="@+id/iv_bind_tip_name"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/icon_input_end"
+                android:visibility="gone"
+                tools:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop=".5dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="23dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="23dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_account"
+                android:textColor="#FF3E3E3E"
+                android:textSize="14sp" />
+
+        <EditText
+                android:id="@+id/et_bind_account"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/hint_input_ali_account"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="#ff797979"
+                android:textSize="12sp" />
+
+        <ImageView
+                android:id="@+id/iv_bind_tip_account"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@null"
+                android:src="@mipmap/icon_input_end"
+                android:visibility="gone"
+                tools:visibility="visible" />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tv_bind_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_btn_withdraw"
+            android:gravity="center"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:text="@string/txt_next"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+</LinearLayout>

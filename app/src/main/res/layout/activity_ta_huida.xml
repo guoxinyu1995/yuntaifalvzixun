@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<include
+    layout="@layout/incld_title_center"
+    />
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edit_seatch"
+        android:paddingTop="10dp"
+        >
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rl_huida"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:background="#f2f2f2"
+        android:layout_marginTop="16dp"
+        />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

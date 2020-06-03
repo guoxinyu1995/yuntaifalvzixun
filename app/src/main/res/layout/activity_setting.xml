@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+<include
+    layout="@layout/incled_title_bai_center"
+    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_gywm"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_gywm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="#484848"
+                android:textSize="14sp"
+                android:text="关于我们"
+                />
+
+            <ImageView
+                android:id="@+id/iv_rg1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:padding="10dp"
+                android:src="@drawable/icon_rg_jianjiaohao"
+                app:layout_constraintBottom_toBottomOf="@id/tv_gywm"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_gywm" />
+
+            <TextView
+                android:id="@+id/tv_banben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="11dp"
+                android:text="版本1.2"
+                android:textColor="#484848"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_gywm"
+                app:layout_constraintRight_toLeftOf="@id/iv_rg1"
+                app:layout_constraintTop_toTopOf="@id/tv_gywm" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f2f2f2"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_yhfwxy"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_yhfwxy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="#484848"
+                android:textSize="14sp"
+                android:text="用户服务协议"
+                />
+            <ImageView
+                android:id="@+id/iv_rg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:padding="10dp"
+                android:src="@drawable/icon_rg_jianjiaohao"
+                app:layout_constraintBottom_toBottomOf="@id/tv_yhfwxy"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_yhfwxy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f2f2f2"
+            />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_ysxy"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_ysxy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="#484848"
+                android:textSize="14sp"
+                android:text="隐私协议"
+                />
+            <ImageView
+                android:id="@+id/iv_rg3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:padding="10dp"
+                android:src="@drawable/icon_rg_jianjiaohao"
+                app:layout_constraintBottom_toBottomOf="@id/tv_ysxy"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_ysxy" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_tuichu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:layout_marginTop="5dp"
+        android:text="退出登录"
+        android:textSize="14sp"
+        android:textColor="#484848"
+        />
+</LinearLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        tools:background="#F2F2F2"
+        tools:context="com.ytfu.yuntaifawu.ui.chatroom.header.ChatRoomCardHeaderController">
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="3dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="20dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                        android:id="@+id/iv_lawyer_card_avatar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:contentDescription="@null"
+                        android:src="@mipmap/logo" />
+
+                <TextView
+                        android:id="@+id/tv_lawyer_card_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="10dp"
+                        android:maxLines="1"
+                        android:textColor="#ff333333"
+                        android:textSize="24sp"
+                        tools:text="侯律师" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/youxiu"
+                        android:drawablePadding="10dp"
+                        android:text="优选律师"
+                        android:textColor="#E13B38"
+                        android:textSize="12sp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:drawableStart="@drawable/wangpai"
+                        android:drawablePadding="10dp"
+                        android:text="王牌律师"
+                        android:textColor="#FFE13B38"
+                        android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_lawyer_card_scopes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp"
+                    tools:text="婚姻家庭、交通事故、劳动争议、债权债务、民事纠纷" />
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/tv_lawyer_card_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/jingyan"
+                        android:drawablePadding="5dp"
+                        android:textColor="#666666"
+                        android:textSize="12sp"
+                        tools:text="资深律师" />
+
+                <TextView
+                        android:id="@+id/tv_lawyer_card_education"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:drawableStart="@drawable/xueli"
+                        android:drawablePadding="5dp"
+                        android:textColor="#666666"
+                        android:textSize="12sp"
+                        tools:text="本科" />
+
+                <TextView
+                        android:id="@+id/tv_lawyer_card_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:drawableStart="@drawable/nianling"
+                        android:drawablePadding="5dp"
+                        android:textColor="#666666"
+                        android:textSize="12sp"
+                        tools:text="38岁" />
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_lawyer_card_summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textColor="#ff666666"
+                    android:textSize="12sp"
+                    tools:text="自执业以来，承办几百诉讼和非诉讼案件，特别在婚姻..." />
+
+
+
+
+            <LinearLayout
+                    android:id="@+id/ll_lawyer_card_cases_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height=".5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#D9D9D9" />
+
+                <LinearLayout
+                        android:id="@+id/ll_lawyer_card_cases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                <TextView
+                        android:id="@+id/tv_lawyer_card_case"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/anli"
+                        android:drawablePadding="10dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:textColor="#666666"
+                        android:textSize="12sp"
+                        tools:text="2015年4月1日原告张某与被告某房地产开发..." />
+
+                <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="17dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="#cccccc" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/anli"
+                        android:drawablePadding="10dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:lines="1"
+                        android:textColor="#666666"
+                        android:textSize="12sp"
+                        tools:text="2015年4月1日原告张某与被告某房地产开发..." />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

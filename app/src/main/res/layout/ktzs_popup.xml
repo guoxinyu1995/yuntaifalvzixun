@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="325dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="37dp"
+    android:layout_marginRight="37dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="选择起诉状"
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        />
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recycle_popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:scrollbars="none"
+    android:overScrollMode="never"
+    android:paddingBottom="20dp"
+    />
+    <Button
+        android:id="@+id/btn_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_shape"
+        android:text="确定"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:padding="5dp"
+        android:layout_marginBottom="27dp"
+        />
+</LinearLayout>

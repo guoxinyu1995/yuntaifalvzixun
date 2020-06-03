@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/incld_title_center" />
+
+    <LinearLayout
+            android:id="@+id/ll_lvshi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/tv_weixin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/iconfontweixin"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="律师微信号"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_sue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/icon_sue"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="起诉状"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_pingjia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/pingjia"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="评价Ta"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_tousu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/tousu"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="要投诉"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ll_fwh"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+        <TextView
+                android:id="@+id/tv_hetong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/fwh_hetongku"
+                android:drawablePadding="1dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="合同库"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_qsz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/fwh_qisuzhuang"
+                android:drawablePadding="1dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="免费写诉状"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_kaiting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/fwh_kaitingzhushou"
+                android:drawablePadding="1dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="开庭助手"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+
+        <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#f5f5f5" />
+
+        <TextView
+                android:id="@+id/tv_guwen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/fwh_falvguwen"
+                android:drawablePadding="1dp"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="法律顾问"
+                android:textColor="#ff44a2f7"
+                android:textSize="11sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_lvshi_duan"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_zixun"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/chat_zixun_icon"
+            android:drawablePadding="1dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="他的咨询"
+            android:textColor="#727272"
+            android:textSize="11sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#f5f5f5" />
+
+        <TextView
+            android:id="@+id/tv_hongbao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/chat_hongbao_icon"
+            android:drawablePadding="1dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="收服务费"
+            android:textColor="#727272"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <FrameLayout
+            android:id="@+id/fl_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f2f2f2" />
+</LinearLayout>

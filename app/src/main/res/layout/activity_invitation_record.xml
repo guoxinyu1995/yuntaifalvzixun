@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--邀请记录-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/il_title"
+        layout="@layout/incled_title_bai_center" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_invitation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/il_title"
+        android:layout_above="@+id/btn_fenxiang"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        />
+    <Button
+        android:id="@+id/btn_fenxiang"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#4C98EE"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="66dp"
+        android:text="立即分享"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        />
+</LinearLayout>

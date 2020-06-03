@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingBottom="14dp"
+    android:paddingTop="19dp"
+    android:paddingRight="26dp"
+    >
+
+    <ImageView
+        android:id="@+id/header_icon"
+        android:layout_width="45dp"
+        android:layout_height="45dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/header_icon"
+        android:layout_alignBottom="@id/header_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/header_icon"
+        android:gravity="center"
+        android:text="name"
+        android:textColor="#3D3D3D"
+        android:textSize="13sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/header_icon"
+        android:layout_alignBottom="@id/header_icon"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:textColor="#AAAAAA"
+        android:textSize="11sp"
+        android:text="已邀请"
+        />
+</RelativeLayout>

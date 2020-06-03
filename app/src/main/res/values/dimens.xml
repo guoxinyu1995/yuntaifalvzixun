@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Toolbar高度 -->
+    <dimen name="toolbar_height">44dp</dimen>
+    <dimen name="toolbar_height_has_spit_line">44.5dp</dimen>
+    <!-- 首页底部选项卡高度 -->
+    <dimen name="layout_main_bottom_height">50dp</dimen>
+    <!--详情页等底部按钮高度-->
+
+    <!--楼盘类型 tag padding-->
+    <dimen name="home_tag_top">2dp</dimen>
+    <dimen name="home_tag_bottom">2dp</dimen>
+    <dimen name="home_tag_left">5dp</dimen>
+    <dimen name="home_tag_right">5dp</dimen>
+
+    <!-- 页面通用左右边距 -->
+    <dimen name="normal_margin_left">20dp</dimen>
+    <dimen name="normal_margin_right">20dp</dimen>
+
+    <!--客户右上角弹出菜单三角所属矩形的宽高-->
+    <dimen name="pop_client_menu_triangle_up_height">16dp</dimen>
+
+    <!--客户信息条目标题-内容间距-->
+    <dimen name="client_info_title_content_margin">36dp</dimen>
+
+    <!--楼盘详情轮播图高度-->
+    <dimen name="detail_view_pager_height">160dp</dimen>
+    <!--四个字标题宽度（购买时间：）-->
+    <dimen name="label_width_four">75dp</dimen>
+
+    <!--页面底部按钮高度-->
+    <dimen name="bottom_button_height">44dp</dimen>
+
+    <!-- 新房筛选弹出PopupWindow高度 -->
+    <!--新房筛选弹框列表高度-->
+    <dimen name="pop_filter_item_height">47dp</dimen>
+    <!--新房筛选弹框底部按钮高度-->
+    <dimen name="pop_filter_bottom_height">49dp</dimen>
+</resources>

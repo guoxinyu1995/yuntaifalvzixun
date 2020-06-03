@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/incled_title_bai_commit_center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="20dp"
+            android:gravity="top"
+            android:hint="你的个人简介越详细，越能够让人了解你哦～"
+            android:textColor="#484848"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="12dp"
+            android:text="0/500"
+            android:textColor="#484848"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/ll_resume_root_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_look_look_how_to_play"
+                android:textColor="#ff222222"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/tv_resume_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@mipmap/icon_refresh"
+                android:drawablePadding="5dp"
+                android:text="@string/txt_change_a_batch"
+                android:textColor="#ff777777"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@android:color/white"
+            android:scrollbars="none">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_resume_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:textColor="#ff777777"
+                        android:textSize="12sp"
+                        tools:text="北京市专职律师，多年的律师执业生涯，凭着深厚的法学功底，精益求精的态度，“受人之托、忠人之事”、“ 委托人的利益无小事”的理念，赢得了广大客户的信赖、认同和好评。曹律师现在办理房地产法律事务、合同纠纷、婚姻继承、交通事故、人身损害赔偿等案件中积累了丰富的办案经验和娴熟的法律技能，尽全力的为委托人争取了合法权益。擅长领域：房地产买卖、继承纠纷、婚姻继承、合同纠纷、交通事故、人身损害赔偿、公司法务、股权转让等业务。曹律师竭诚为您提供高效、优质的法律服务！选 择 曹 律 师，让您 放 心！" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height=".5dp"
+                        android:background="#F2F2F2" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:textColor="#ff777777"
+                        android:textSize="12sp"
+                        tools:text="北京市专职律师，多年的律师执业生涯，凭着深厚的法学功底，精益求精的态度，“受人之托、忠人之事”、“ 委托人的利益无小事”的理念，赢得了广大客户的信赖、认同和好评。曹律师现在办理房地产法律事务、合同纠纷、婚姻继承、交通事故、人身损害赔偿等案件中积累了丰富的办案经验和娴熟的法律技能，尽全力的为委托人争取了合法权益。擅长领域：房地产买卖、继承纠纷、婚姻继承、合同纠纷、交通事故、人身损害赔偿、公司法务、股权转让等业务。曹律师竭诚为您提供高效、优质的法律服务！选 择 曹 律 师，让您 放 心！" />
+                </LinearLayout>
+
+
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

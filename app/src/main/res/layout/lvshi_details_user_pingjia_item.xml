@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="15dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_pingjia"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tv_pingjia_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_pingjia"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@+id/iv_pingjia"
+            android:text="name"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_pingjia_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_pingjia"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="9dp"
+            android:layout_toRightOf="@+id/iv_pingjia"
+            android:text="name"
+            android:textColor="#B9B9B9"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_pingjia_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="ashfafaajfajaj"
+        android:textColor="#666666"
+        android:textSize="13sp" />
+</LinearLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/incld_title_center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="悬赏金额"
+            android:textColor="#3B3B3B"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_xs_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="5元"
+            android:textColor="#EF6A6A"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="选择支付方式"
+        android:textColor="#666666"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_marginTop="15dp"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/ll_pay_weichat"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/v1"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/pay_weixin" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:text="微信支付"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_buy_weichat_select"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:src="@drawable/zjqd_check_xuanzhong" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_pay_zhifubao"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/v2"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/zhifubao" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:text="支付宝支付"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_buy_zhifubao_select"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:src="@drawable/zjqd_check_weixuanzhong" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_xuangshang_fabu"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="悬赏发布"
+        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/textview_fabu_shape"
+        android:gravity="center"
+        android:layout_marginLeft="37dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginTop="40dp"
+        />
+</LinearLayout>

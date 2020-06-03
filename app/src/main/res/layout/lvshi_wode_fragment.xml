@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    tools:context="com.ytfu.yuntaifawu.ui.lvshiwode.fragment.LvShiWodeFragment">
+    <!--    律师我的界面布局实现-->
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_personal_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_lawyer_personal_top"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="27dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="bottom"
+                        android:orientation="horizontal"
+                        tools:ignore="UselessParent">
+
+                        <ImageView
+                            android:id="@+id/iv_personal_avatar"
+                            android:layout_width="66dp"
+                            android:layout_height="66dp"
+                            android:contentDescription="@null"
+                            android:scaleType="centerCrop"
+                            tools:src="@mipmap/logo" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_personal_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:textColor="#ffffffff"
+                                android:textSize="20sp"
+                                tools:text="法国外籍军团" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:drawableStart="@mipmap/icon_auth"
+                                android:drawablePadding="4.5dp"
+                                android:gravity="center"
+                                android:text="@string/txt_certified_lawyer"
+                                android:textColor="#ffd32d26"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_white_to_gray"
+                        android:gravity="center"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:id="@+id/tv_main_zixun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_my_inquiry"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/txt_my_inquiry"
+                            android:textColor="#FF666666"
+                            android:textSize="11sp"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@mipmap/line" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_white_to_gray"
+                        android:gravity="center"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:id="@+id/tv_main_ht"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@mipmap/icon_my_contract"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/txt_my_contract"
+                            android:textColor="#FF666666"
+                            android:textSize="11sp"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_personal_wallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/selector_white_to_gray"
+                    android:drawableStart="@mipmap/icon_wallet"
+                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="22dp"
+                    android:paddingBottom="24dp"
+                    android:text="@string/txt_wallet"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lvshi_xuzhi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop=".5dp"
+                    android:background="@drawable/selector_white_to_gray"
+                    android:drawableStart="@mipmap/icon_wallet"
+                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="22dp"
+                    android:paddingBottom="24dp"
+                    android:text="@string/txt_lawyer_information"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_personal_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/selector_white_to_gray"
+                    android:drawableStart="@mipmap/icon_lawyer_setting"
+                    android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                    android:drawablePadding="15dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="22dp"
+                    android:paddingBottom="24dp"
+                    android:text="@string/setting"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tl_personal_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:minHeight="?android:attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@null"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title=""
+        app:titleMargin="0dp">
+
+        <TextView
+            android:id="@+id/tv_personal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="法国外籍军团" />
+    </androidx.appcompat.widget.Toolbar>
+</RelativeLayout>

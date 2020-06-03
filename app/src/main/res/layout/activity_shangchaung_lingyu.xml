@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include layout="@layout/incled_title_bai_commit_center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF6BC"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:paddingLeft="20dp"
+        android:text="擅长领域最少选一个"
+        android:textColor="#E54B4B"
+        android:textSize="12sp" />
+<!--    <com.zhy.view.flowlayout.TagFlowLayout-->
+<!--        android:id="@+id/id_flowlayout"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="20dp"-->
+<!--        app:max_select="-1"/>-->
+    <com.ytfu.yuntaifawu.ui.custom.XCFlowLayoutTv
+        android:id="@+id/flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

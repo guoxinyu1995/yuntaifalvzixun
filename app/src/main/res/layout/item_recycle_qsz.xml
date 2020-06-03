@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_qsz"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingBottom="5dp">
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/suzhuang_item_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_qsz"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+           />
+
+        <TextView
+            android:id="@+id/tv_qsz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/iv_qsz"
+            android:text="" />
+    </LinearLayout>
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_qsz"-->
+    <!--        android:layout_width="20dp"-->
+    <!--        android:layout_height="19dp"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_qsz"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_toRightOf="@id/iv_qsz"-->
+    <!--        android:text=""-->
+    <!--        android:textSize="13sp"-->
+    <!--        android:textColor="#484848"-->
+    <!--        android:layout_marginLeft="13.5dp"-->
+    <!--        />-->
+    <!--    <ImageView-->
+    <!--        android:layout_width="5dp"-->
+    <!--        android:layout_height="10dp"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:src="@drawable/gengduo"-->
+    <!--        />-->
+</RelativeLayout>

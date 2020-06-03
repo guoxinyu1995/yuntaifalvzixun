@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><!--我的收藏-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/incld_title_center"
+        />
+    <EditText
+        android:id="@+id/et_collect_seatch"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/edit_shap1"
+        android:drawableLeft="@drawable/sousuo"
+        android:drawablePadding="10dp"
+        android:hint="搜索"
+        android:padding="10dp"
+        android:textColor="#B9B9B9"
+        android:visibility="gone"
+        android:textSize="12sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rl_collection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_relevant_contract"
+        />
+
+</LinearLayout>

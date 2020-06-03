@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingTop="10dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="10dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp"
+            android:paddingRight="14dp"
+            android:paddingLeft="14dp"
+            android:paddingBottom="15dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单号:"
+                android:textColor="#4F4F4F"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/ty_type_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_order_id"
+                android:layout_alignBottom="@id/tv_order_id"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="音频"
+                android:textColor="#EB6C66"
+                android:textSize="11sp" />
+
+            <View
+                android:id="@+id/view_lin"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/tv_order_id"
+                android:layout_marginTop="14dp"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_lin"
+                android:layout_alignLeft="@id/tv_order_id"
+                android:layout_marginTop="14dp"
+                android:maxEms="15"
+                android:maxLines="1"
+                android:text="title"
+                android:textColor="#3C3C3C"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_title"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="12dp"
+                android:text="shijian"
+                android:textColor="#989898"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:background="@drawable/text_shape"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

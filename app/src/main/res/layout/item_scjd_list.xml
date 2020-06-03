@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><!--开庭助手详情list 备注下载-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_scjd_list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="2dp"
+    android:paddingTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="18dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_scjd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_scjd_list_text"
+        android:layout_alignBottom="@id/tv_scjd_list_text"
+        android:layout_centerVertical="true"
+        android:src="@drawable/yuandian_black" />
+
+    <TextView
+        android:id="@+id/tv_scjd_list_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_ktzs"
+        android:text="text"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv_scjd_list_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ktzs_download"
+        />
+
+    <TextView
+        android:id="@+id/scjd_xq_list_bz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_scjd_list_text"
+        android:layout_alignLeft="@id/tv_scjd_list_text"
+        android:text="biezhu"
+        android:textColor="#E13B38"
+        android:textSize="9sp" />
+</RelativeLayout>

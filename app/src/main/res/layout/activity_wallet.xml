@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F2F2"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.wallet.act.WalletActivity">
+    <!--    我的钱包-->
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
+                android:background="@mipmap/bg_wallet_top">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="39dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:ignore="UselessParent">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_balance_account"
+                        android:textColor="@android:color/white"
+                        android:textSize="13sp" />
+
+                <TextView
+                        android:id="@+id/tv_wallet_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:textColor="#ffffffff"
+                        android:textSize="35sp"
+                        tools:text="300.00" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/tv_wallet_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableStart="@mipmap/icon_change_details"
+                android:drawableEnd="@drawable/icon_rg_jianjiaohao"
+                android:drawablePadding="15dp"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingTop="23dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="23dp"
+                android:text="@string/txt_change_details"
+                android:textColor="#ff484848"
+                android:textSize="14sp" />
+
+        <LinearLayout
+                android:id="@+id/ll_wallet_alipay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop=".5dp"
+                android:background="@drawable/selector_white_to_gray"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="23dp"
+                android:paddingEnd="22dp"
+                android:paddingBottom="23dp">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@mipmap/icon_alipay"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/txt_alipay"
+                    android:textColor="#ff484848"
+                    android:textSize="14sp" />
+
+            <TextView
+                    android:id="@+id/tv_wallet_account"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:gravity="center_vertical"
+                    android:textColor="#4C98EE"
+                    android:textSize="14sp"
+                    tools:text="(291700351@live.cn)" />
+
+            <TextView
+                    android:id="@+id/tv_wallet_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/txt_unbind"
+                    android:textColor="#fff52626"
+                    android:textSize="12sp" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/icon_rg_jianjiaohao" />
+
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_wallet_withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_btn_withdraw"
+                android:gravity="center"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:text="@string/txt_withdraw"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tl_wallet_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:minHeight="?android:attr/actionBarSize"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@null"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title=""
+            app:titleMargin="0dp">
+
+        <TextView
+                android:id="@+id/tv_wallet_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="法国外籍军团" />
+    </androidx.appcompat.widget.Toolbar>
+
+</RelativeLayout>

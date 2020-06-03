@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f2f2f2"
+        android:orientation="vertical">
+
+        <include layout="@layout/incled_title_bai_center" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:background="#ffffff"
+            android:paddingBottom="25dp">
+
+            <ImageView
+                android:id="@+id/iv_jindu_hesder"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logo"
+                android:scaleType="fitXY"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_jindu_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="name"
+                android:textColor="#333333"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_jindu_hesder"
+                app:layout_constraintLeft_toRightOf="@+id/iv_jindu_hesder"
+                app:layout_constraintTop_toTopOf="@+id/iv_jindu_hesder" />
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="#67C6A3"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_ziliao"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_ziliao" />
+
+            <ImageView
+                android:id="@+id/iv_ziliao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/shenghe"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_ziliao"
+                app:layout_constraintRight_toRightOf="@+id/tv_ziliao"
+                app:layout_constraintTop_toBottomOf="@+id/iv_jindu_hesder" />
+
+
+            <ImageView
+                android:id="@+id/iv_zash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/shenghe"
+
+                app:layout_constraintLeft_toLeftOf="@+id/tv_shenhe"
+                app:layout_constraintRight_toRightOf="@+id/tv_shenhe"
+                app:layout_constraintTop_toBottomOf="@+id/iv_jindu_hesder" />
+
+            <ImageView
+                android:id="@+id/iv_zhuangtai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/shenghe_zhong"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_type"
+                app:layout_constraintRight_toRightOf="@+id/tv_type"
+                app:layout_constraintTop_toBottomOf="@+id/iv_jindu_hesder" />
+
+            <TextView
+                android:id="@+id/tv_ziliao"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="12dp"
+                android:text="资料提交"
+                android:textColor="#67C6A3"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ziliao" />
+
+            <TextView
+                android:id="@+id/tv_shenhe"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:text="正在审核"
+                android:textColor="#67C6A3"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_ziliao"
+                app:layout_constraintRight_toLeftOf="@+id/tv_type"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ziliao" />
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="3dp"
+                android:text="审核未通过"
+                android:textColor="#67C6A3"
+                android:textSize="13sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_ziliao" />
+
+            <TextView
+                android:id="@+id/tv_yuanyin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="19dp"
+                android:text="原因：您所提供的免冠照需是正面照或半身照。"
+                android:textColor="#434343"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ziliao" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_tishi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="38dp"
+            android:text=""
+            android:textColor="#F05858"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_dianji"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/btn_commit_shape"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="305dp"
+    android:layout_height="268dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="声明"
+        android:textColor="#44A2F7"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_audio_tishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:lineSpacingMultiplier="1.5"
+        android:text=""
+        android:textSize="15sp" />
+
+
+    <Button
+        android:id="@+id/btn_zhidao"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn_audio_zhidao"
+        android:text="我知道了"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+</LinearLayout>

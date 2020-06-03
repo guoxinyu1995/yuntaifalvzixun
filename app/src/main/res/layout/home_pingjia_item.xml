@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="20dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_home_pingjia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tv_home_pj_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_home_pingjia"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/iv_home_pingjia"
+            android:text="name"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_home_pj_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_home_pingjia"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@+id/iv_home_pingjia"
+            android:text="time"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_home_pingjia_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="neirong"
+        android:textColor="#666666"
+        android:textSize="13sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_pingjia_gei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评价给"
+            android:textColor="#666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_pj_gei_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_pingjia_gei"
+            android:text="马保"
+            android:textColor="#44A3F7"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_zixun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/home_pingjia_item_textview_shape"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:text="点击咨询"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><!--开庭助手内容-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingBottom="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp"
+    >
+
+<TextView
+    android:id="@+id/tv_qsz_yuangao"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textColor="#303030"
+    android:text="原告:"
+    android:textSize="12sp"
+    />
+<ImageView
+    android:id="@+id/qsz_iv_delete"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/tv_qsz_yuangao"
+    android:layout_alignParentRight="true"
+    android:background="@drawable/icon_delete"
+    android:padding="6dp"
+    />
+    <TextView
+        android:id="@+id/tv_qsz_beigao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_qsz_yuangao"
+        android:layout_marginTop="12dp"
+        android:textColor="#303030"
+        android:text="被告:"
+        android:textSize="13sp"
+        />
+    <LinearLayout
+        android:id="@+id/ll_ktzs_xiangqing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_qsz_beigao"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:layout_marginTop="11.5dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_gravity="center_vertical"
+            android:textSize="11sp"
+            android:text="查看详情"
+            android:textColor="#e13b38"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gengduo_red"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2.5dp"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

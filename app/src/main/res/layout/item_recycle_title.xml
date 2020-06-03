@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/linear_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="25dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/title_item_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/home_icon_guwen" />
+
+        <TextView
+            android:id="@+id/text_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/title_item_icon"
+            android:layout_alignBottom="@+id/title_item_icon"
+            android:layout_marginLeft="11dp"
+            android:layout_toRightOf="@id/title_item_icon"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#373737"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/title_item_icon"
+            android:layout_alignBottom="@+id/title_item_icon"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="更多"
+            android:textColor="#44A2F7"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_title"
+        android:overScrollMode="never"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:scrollbars="none" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recycle_two"
+        android:overScrollMode="never"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:scrollbars="none" />
+</RelativeLayout>

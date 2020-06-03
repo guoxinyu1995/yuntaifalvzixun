@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+<include
+    android:id="@+id/il_title"
+     layout="@layout/incled_title_bai_center"
+    />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_select_qsz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/il_title"
+            android:layout_above="@+id/v1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:layout_weight="1"
+            />
+    <View
+        android:id="@+id/v1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+    <Button
+        android:id="@+id/btn_add_ktzs"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:text="确         定"
+        android:padding="15dp"
+        android:background="@drawable/btn_add_qsz_shape"
+        />
+</RelativeLayout>

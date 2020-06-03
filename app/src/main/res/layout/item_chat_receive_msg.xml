@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        tools:context="com.ytfu.yuntaifawu.ui.lawyer.chat.adapter.LawyerChatRoomAdapter">
+
+    <TextView
+            android:id="@+id/tv_chat_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:textColor="#c0c0c0"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="2020-12-12 23:23:59"
+            tools:visibility="visible" />
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+        <ImageView
+                android:id="@+id/iv_chat_item_avatar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="@null"
+                tools:src="@mipmap/logo" />
+
+        <TextView
+                android:id="@+id/tv_chat_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ease_chatfrom_bg_normal"
+                android:gravity="center_vertical|start"
+                android:lineSpacingExtra="2dp"
+                android:maxWidth="255dp"
+                android:minHeight="38dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tools:text="法国外籍军dddddddddddddddddddddddddddddd团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团\n法国外籍军团" />
+
+    </LinearLayout>
+
+</LinearLayout>

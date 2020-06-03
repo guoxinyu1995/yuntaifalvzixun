@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><!--我的合同库-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    android:id="@+id/snackbar_ll"
+    >
+    <include layout="@layout/incled_title_bai_center" />
+    <LinearLayout
+        android:id="@+id/ll_null"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_collect_seatch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/edit_shap"
+            android:drawableLeft="@drawable/sousuo"
+            android:drawablePadding="10dp"
+            android:hint="搜索合同"
+            android:padding="10dp"
+            android:textColor="#B9B9B9"
+            android:textSize="12sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_collect_library"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:background="#ffffff"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
