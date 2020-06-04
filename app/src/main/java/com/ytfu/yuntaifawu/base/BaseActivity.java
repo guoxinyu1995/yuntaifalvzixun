@@ -488,6 +488,7 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
         }
         return bundle.getBoolean(key, defaultValue);
     }
+
     protected int getBundleInt(@Nullable String key, int defaultValue) {
         Bundle bundle = getIntent().getExtras();
         if (null == bundle) {
@@ -495,7 +496,8 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
         }
         return bundle.getInt(key, defaultValue);
     }
-    protected int getBundleInt(Intent intent,@Nullable String key, int defaultValue) {
+
+    protected int getBundleInt(Intent intent, @Nullable String key, int defaultValue) {
         Bundle bundle = intent.getExtras();
         if (null == bundle) {
             return defaultValue;

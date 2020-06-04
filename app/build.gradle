@@ -5,18 +5,18 @@ apply plugin: 'cn.leo.plugin.magic' //java 用这个
 //apply from: 'tinker-support.gradle'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
     defaultConfig {
-        applicationId "com.ytfu.yuntaifawu"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 9
-        versionName "1.4.2"
+        applicationId APPLICATION_ID
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
         flavorDimensions "versionCode"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters "armeabi-v7a", "armeabi", "x86", "mips"
+            abiFilters "armeabi-v7a", "armeabi", "x86"
         }
         resConfigs "zh"
     }
@@ -28,17 +28,26 @@ android {
         }
     }
     signingConfigs {
+        def localStoreFile = file(rootDir.getAbsolutePath() +
+                File.separator +
+                "key" +
+                File.separator +
+                "ytswkeystore.jks")
         release {
-            storeFile file('../key/ytswkeystore.jks')
+            storeFile localStoreFile
             storePassword 'yuntaifawu2019'
             keyAlias 'ytfw'
             keyPassword 'yuntaifawu2019'
+            setV1SigningEnabled(true)
+            setV2SigningEnabled(true)
         }
         debug {
-            storeFile file('../key/ytswkeystore.jks')
+            storeFile localStoreFile
             storePassword 'yuntaifawu2019'
             keyAlias 'ytfw'
             keyPassword 'yuntaifawu2019'
+            setV1SigningEnabled(true)
+            setV2SigningEnabled(true)
         }
     }
     lintOptions {
@@ -48,23 +57,29 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false //true开启混淆配置，false关闭
-            shrinkResources false //移除无用的资源文件
-            zipAlignEnabled false //压缩资源
+            minifyEnabled true //true开启混淆配置，false关闭
+            shrinkResources true //移除无用的资源文件
+            zipAlignEnabled true
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "String", "BASIC_URL", '"https://yuntaifawu.com/"'
+
         }
         debug {
             signingConfig signingConfigs.debug
-            minifyEnabled false  //true开启混淆配置，false关闭
-            shrinkResources false //移除无用的资源文件
-            zipAlignEnabled false
+            minifyEnabled true
+            shrinkResources true //移除无用的资源文件
+            zipAlignEnabled true
             debuggable true
             jniDebuggable true
             renderscriptDebuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "String", "BASIC_URL", '"https://yuntaifawu.com/"'
+
         }
     }
     compileOptions {
@@ -86,6 +101,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":mvp-annotation")
+    implementation project(":mvp-compiler")
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'

@@ -1,2 +1,4 @@
+include ':mvp-compiler'
+include ':mvp-annotation'
 include ':app', ':easeui', ':hmspush'
 rootProject.name='yuntaifawu'

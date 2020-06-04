@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.lee.annotation.InjectPresenter;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMClientListener;
 import com.hyphenate.EMMessageListener;
@@ -78,6 +79,7 @@ import model.UiConfig;
 import model.UpdateConfig;
 import update.UpdateAppUtils;
 
+@InjectPresenter(clazz = MainActivity.class)
 public class MainActivity extends BaseActivity implements View.OnClickListener, EMMessageListener {
 
     //    private LinearLayout home;
@@ -151,7 +153,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         super.onNewIntent(intent);
         int position = intent.getIntExtra("frid", -1);
         if (position != -1) {
-            position = getBundleInt(intent,KEY_CURRENT_POSITION, 0);
+            position = getBundleInt(intent, KEY_CURRENT_POSITION, 0);
             changeTagStatus(position);
         }
     }

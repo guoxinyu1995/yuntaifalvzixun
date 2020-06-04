@@ -9,13 +9,11 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDisposeConverter;
-import com.uber.autodispose.ObservableSubscribeProxy;
+import com.ytfu.yuntaifawu.BuildConfig;
 import com.ytfu.yuntaifawu.app.App;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.helper.BaseRxObserver;
-import com.ytfu.yuntaifawu.ui.lawyer.chat.bean.HistoryChatResponse;
 import com.ytfu.yuntaifawu.utils.JsonUtil;
-import com.ytfu.yuntaifawu.utils.SpUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,11 +21,9 @@ import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableConverter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
-import okhttp3.Dns;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -44,8 +40,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HttpUtil {
     private static HttpUtil instance;
-    private final String BASE_URL = "https://yuntaifawu.com/api/";
-    private final String BASE_URL2 = "https://yuntaifawu.com/";
+    private final String BASE_URL2 = BuildConfig.BASIC_URL;
+    private final String BASE_URL = BASE_URL2 + "api/";
     private String version;
     //    private final String BASE_URL_HTTP = "http://yuntaifawu.com/api/";
 

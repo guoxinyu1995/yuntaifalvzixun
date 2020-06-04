@@ -111,6 +111,14 @@ public class LvShiMainActivity extends BaseActivity {
         starter.putExtras(bundle);
         context.startActivity(starter);
     }
+    public static void startWithNewTask(Context context, int position) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(KEY_CURRENT_POSITION, position);
+        Intent starter = new Intent(context, LvShiMainActivity.class);
+        starter.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        starter.putExtras(bundle);
+        context.startActivity(starter);
+    }
 
 
     @Override

@@ -16,3 +16,4 @@
 *.swp
 *.tmp
 ajcore.*.txt
+/.git

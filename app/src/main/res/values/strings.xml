@@ -56,5 +56,6 @@
     <string name="hint_have_read">已读</string>
     <string name="txt_change_a_batch">换一批</string>
     <string name="txt_look_look_how_to_play">看看别人怎么写</string>
+    <string name="txt_send_message">发送</string>
 
 </resources>

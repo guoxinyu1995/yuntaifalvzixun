@@ -101,16 +101,6 @@
 # 实体类
 -keep class com.ytfu.yuntaifawu.ui.**.bean.** { *; }
 -keep class com.ytfu.yuntaifawu.domain.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.falvguwen.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.home.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.kaitingzhushou.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.login.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.mine.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.qisuzhuang.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.register.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.pay.bean.** { *; }
-#-keep class com.ytfu.yuntaifawu.ui.mseeage.bean.** { *; }
--keep class com.ytfu.yuntaifawu.apis.** { *; }
 
 # 保留本地native方法不被混淆
 -keepclasseswithmembernames class * {

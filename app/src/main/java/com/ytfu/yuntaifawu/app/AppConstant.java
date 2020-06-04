@@ -1,5 +1,7 @@
 package com.ytfu.yuntaifawu.app;
 
+import com.ytfu.yuntaifawu.BuildConfig;
+
 /**
  * @作者 gxy
  * @创建时间 2019/11/9
@@ -10,7 +12,7 @@ public class AppConstant {
      * 日志开关
      */
 //    public static boolean DEBUG = false;
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = BuildConfig.IS_DEBUG;
     /**
      * 友盟
      */

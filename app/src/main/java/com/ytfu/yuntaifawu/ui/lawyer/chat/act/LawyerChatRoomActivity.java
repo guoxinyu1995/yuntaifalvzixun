@@ -367,7 +367,9 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
 
     @Override
     public void onSendFeeSuccess(String toUserId, String fromUserId, HistoryChatItemBean itemBean) {
-
+//        String content = "收取服务费" + itemBean.getExt().getPrice() + "元";
+//        String consultId = getBundleString(KEY_CONSULT_ID, "");
+//        mPresenter.lawyerSyncMessageToService(consultId, toUserId, fromUserId, content);
     }
 
     @Override

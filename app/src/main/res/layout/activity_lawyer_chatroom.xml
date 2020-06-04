@@ -100,7 +100,7 @@
             android:paddingTop="4dp"
             android:paddingEnd="12dp"
             android:paddingBottom="4dp"
-            android:text="@string/button_send"
+            android:text="@string/txt_send_message"
             android:textColor="@android:color/white" />
 
     </LinearLayout>

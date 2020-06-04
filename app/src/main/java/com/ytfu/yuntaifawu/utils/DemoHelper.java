@@ -1345,7 +1345,7 @@ public class DemoHelper {
         if ("1".equals(type)) {
             MainActivity.start(appContext, 0);
         }else{
-            LvShiMainActivity.start(appContext, 0);
+            LvShiMainActivity.startWithNewTask(appContext, 0);
         }
 //        Intent intent = new Intent(appContext, MainActivity.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
