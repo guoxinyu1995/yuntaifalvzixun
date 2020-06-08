@@ -141,9 +141,8 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
     protected void initData() {
         mPresenter.setZiXunNav();
     }
-
+    //初始化点击选择问题类型的变量
     private int t = 0;
-
     @OnClick({R.id.tv_wenti_type, R.id.iv_xuanshang, R.id.tv_fabu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -154,9 +153,14 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
                 break;
             case R.id.iv_xuanshang:
                 if (t != 0) {
+                    if(i==-1){
+                        showToast("请选择问题类型");
+                        return;
+                    }
                     if (!TextUtils.isEmpty(edWenti.getText().toString())) {
                         String edStr = edWenti.getText().toString();
-                        String tvStr = tvWentiType.getText().toString();
+//                        String tvStr = tvWentiType.getText().toString();
+                        String tvStr = mOptionsItems.get(i);
                         Intent intent = new Intent(getActivity(), XuanShangPayActivity.class);
                         intent.putExtra("edStr", edStr);
                         intent.putExtra("tvStr", tvStr);
@@ -171,7 +175,11 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
             case R.id.tv_fabu:
                 if (t != 0) {
                     if (!TextUtils.isEmpty(edWenti.getText().toString())) {
-                        showFaBuDialog();
+                        if (i != -1) {
+                            showFaBuDialog();
+                        } else {
+                            showToast("请选择问题类型");
+                        }
                     } else {
                         showToast("输入不能为空");
                     }
@@ -210,7 +218,8 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
                 showWaitingDialog("发布中。。。", true);
                 String uid = SpUtil.getString(AppConstant.UID, "");
                 String edStr = edWenti.getText().toString();
-                String tvStr = tvWentiType.getText().toString();
+//                String tvStr = tvWentiType.getText().toString();
+                String tvStr = mOptionsItems.get(i);
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("consult_type", tvStr);
@@ -223,7 +232,8 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
             @Override
             public void onClick(View v) {
                 String edStr = edWenti.getText().toString();
-                String tvStr = tvWentiType.getText().toString();
+//                String tvStr = tvWentiType.getText().toString();
+                String tvStr = mOptionsItems.get(i);
                 Intent intent = new Intent(getActivity(), XuanShangPayActivity.class);
                 intent.putExtra("edStr", edStr);
                 intent.putExtra("tvStr", tvStr);
@@ -235,6 +245,7 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
 
     //展示底部选择器
     private int i;
+
     private void showDialog() {
         //1、使用Dialog、设置style
         Dialog dialog = new Dialog(getContext(), R.style.DialogTheme);
@@ -273,6 +284,8 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
             public void onClick(View v) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
+                    tvWentiType.setText("请选择问题类型");
+                    i = -1;
                     lighton();
                 }
             }
@@ -384,6 +397,7 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
                 ToastUtil.showCenterToast(mIanFeiFaBuBean.getMsg());
                 //跳转到我的咨询
                 startActivity(new Intent(getActivity(), ActivityMineZiXun.class));
+                i = -1;
             } else {
                 ToastUtil.showCenterToast(mIanFeiFaBuBean.getMsg());
             }

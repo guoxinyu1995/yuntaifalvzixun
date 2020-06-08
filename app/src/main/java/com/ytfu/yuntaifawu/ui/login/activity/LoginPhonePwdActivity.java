@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
+import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
@@ -167,16 +168,27 @@ public class LoginPhonePwdActivity extends BaseActivity<INumPwdView, NumPwdPrese
             String shenfen = pwdBean.getShenfen();
             switch (status){
                 case 1:
-                    LoginHelper.getInstance().loginSuccess(uid,"123456");
-                    SpUtil.putString(AppConstant.UID,uid);
-                    SpUtil.putString(AppConstant.SHENFEN,shenfen);
-                    if (shenfen.equals("1")) {
-                        startActivity(new Intent(LoginPhonePwdActivity.this, MainActivity.class));
-                        finish();
-                    } else if (shenfen.equals("2")) {
-                        startActivity(new Intent(LoginPhonePwdActivity.this, LvShiMainActivity.class));
-                        finish();
-                    }
+                    LoginHelper.OnEMLoginCallback callback = new LoginHelper.OnEMLoginCallback() {
+                        @Override
+                        public void onSuccess() {
+                            SpUtil.putString(AppConstant.UID, uid);
+                            SpUtil.putString(AppConstant.SHENFEN, shenfen);
+                            if (shenfen.equals("1")) {
+                                startActivity(new Intent(LoginPhonePwdActivity.this, MainActivity.class));
+                                finish();
+                            } else if (shenfen.equals("2")) {
+                                startActivity(new Intent(LoginPhonePwdActivity.this, LvShiMainActivity.class));
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onFail(int code, String msg) {
+                            Logger.e("2233code ---> " + code+ ",,, msg ---> " + msg);
+                        }
+
+                    };
+                    LoginHelper.getInstance().loginSuccess(uid, "123456",callback);
                     break;
                 case 2:
                     ToastUtil.showCenterToast("账号或者密码错误");

@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDisposeConverter;
-import com.ytfu.yuntaifawu.BuildConfig;
 import com.ytfu.yuntaifawu.app.App;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.helper.BaseRxObserver;
@@ -19,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
-
+import com.ytfu.yuntaifawu.BuildConfig;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

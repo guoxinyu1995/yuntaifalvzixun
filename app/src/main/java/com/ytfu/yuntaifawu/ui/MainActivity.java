@@ -234,7 +234,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         public void run() {
                             HashMap<String, String> map = new HashMap<>();
                             map.put("username", uid);
-                            getHuanxinLogin(map);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getHuanxinLogin(map);
+                                }
+                            });
                         }
                     }).start();
                 }

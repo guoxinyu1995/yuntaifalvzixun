@@ -29,6 +29,7 @@ public class PrivacyGuaranteeAgreementActivity extends BaseActivity {
     ImageView ivFanhui;
     @BindView(R.id.tv_top_title)
     TextView tvTopTitle;
+    private String url = "http://yuntaifawu.com/portal/index/yinsibaozhang";
 
     @Override
     protected int provideContentViewId() {
@@ -57,7 +58,7 @@ public class PrivacyGuaranteeAgreementActivity extends BaseActivity {
         tvTopTitle.setText("隐私保障协议");
         webView.setHorizontalScrollBarEnabled(false);//水平不显示
         webView.setVerticalScrollBarEnabled(false); //垂直不显示
-        webView.loadUrl("http://www.yuntaifawu.com/index/yinsi");
+        webView.loadUrl(url);
     }
 
     @Override

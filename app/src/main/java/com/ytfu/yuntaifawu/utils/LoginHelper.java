@@ -51,11 +51,45 @@ public class LoginHelper {
 
                 @Override
                 public void onProgress(int i, String s) {
+                    Log.d("main", s);
+                }
+            });
+        }
+    }
+
+    public interface OnEMLoginCallback {
+        void onSuccess();
+
+        void onFail(int code, String msg);
+    }
+    //判断环信是否登录
+    public void loginSuccess(String uid, String pwd, OnEMLoginCallback callback) {
+        if (!TextUtils.isEmpty(uid) && !TextUtils.isEmpty(pwd)) {
+            EMClient.getInstance().login(uid, pwd, new EMCallBack() {
+                @Override
+                public void onSuccess() {
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
+                    Log.d("main", "登录聊天服务器成功！");
+                    callback.onSuccess();
+                }
+
+                @Override
+                public void onError(int i, String s) {
+                    callback.onFail(i,s);
+                    Logger.e("22code ---> " + i + ",,, msg ---> " + s);
+                    Log.d("main", "登录聊天服务器失败！");
+                }
+
+                @Override
+                public void onProgress(int i, String s) {
 
                 }
             });
         }
     }
+
 //    public <T extends BaseActivity> void loginSuccess(T activity, LoginBean bean) {
 //        if (null != activity) {
 //            SpUtil.putString(AppConstant.TOKEN, bean.getToken());

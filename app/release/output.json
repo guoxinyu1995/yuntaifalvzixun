@@ -1,1 +1,20 @@
-[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":9,"versionName":"1.4.2","enabled":true,"outputFile":"yuntaifalvzixun_v1.4.2_9.apk","fullName":"release","baseName":"release"},"path":"yuntaifalvzixun_v1.4.2_9.apk","properties":{}}]
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.ytfu.yuntaifawu",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 10,
+      "versionName": "10",
+      "enabled": true,
+      "outputFile": "yuntaifalvzixun_v1.5.0_10.apk"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -143,6 +144,12 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        MainActivity.start(this, 0);
+        super.onBackPressed();
     }
 
     @Override
@@ -375,16 +382,26 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
             String shenfen = codeLoginBean.getShenfen();
             switch (status) {
                 case 1:
-                    LoginHelper.getInstance().loginSuccess(uid, "123456");
-                    SpUtil.putString(AppConstant.UID, uid);
-                    SpUtil.putString(AppConstant.SHENFEN, shenfen);
-                    if (shenfen.equals("1")) {
-                        startActivity(new Intent(LoginCodeActivity.this, MainActivity.class));
-                        finish();
-                    } else if (shenfen.equals("2")) {
-                        startActivity(new Intent(LoginCodeActivity.this, LvShiMainActivity.class));
-                        finish();
-                    }
+                    LoginHelper.OnEMLoginCallback callback = new LoginHelper.OnEMLoginCallback() {
+                        @Override
+                        public void onSuccess() {
+                            SpUtil.putString(AppConstant.UID, uid);
+                            SpUtil.putString(AppConstant.SHENFEN, shenfen);
+                            if (shenfen.equals("1")) {
+                                startActivity(new Intent(LoginCodeActivity.this, MainActivity.class));
+                                finish();
+                            } else if (shenfen.equals("2")) {
+                                startActivity(new Intent(LoginCodeActivity.this, LvShiMainActivity.class));
+                                finish();
+                            }
+                        }
+                        @Override
+                        public void onFail(int code, String msg) {
+                            Logger.e("2233code ---> " + code+ ",,, msg ---> " + msg);
+                        }
+
+                    };
+                    LoginHelper.getInstance().loginSuccess(uid, "123456",callback);
                     break;
                 case 2:
                     ToastUtil.showCenterToast(codeLoginBean.getMsg());
@@ -407,16 +424,35 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
             String shenfen = wxLoginBean.getShenfen();
             switch (status) {
                 case 1:
-                    SpUtil.putString(AppConstant.UID, uid);
-                    SpUtil.putString(AppConstant.SHENFEN, shenfen);
-                    LoginHelper.getInstance().loginSuccess(uid, "123456");
-                    if (shenfen.equals("1")) {
-                        startActivity(new Intent(LoginCodeActivity.this, MainActivity.class));
-                        finish();
-                    } else if (shenfen.equals("2")) {
-                        startActivity(new Intent(LoginCodeActivity.this, LvShiMainActivity.class));
-                        finish();
-                    }
+                    LoginHelper.OnEMLoginCallback callback = new LoginHelper.OnEMLoginCallback() {
+                        @Override
+                        public void onSuccess() {
+                            SpUtil.putString(AppConstant.UID, uid);
+                            SpUtil.putString(AppConstant.SHENFEN, shenfen);
+                            if (shenfen.equals("1")) {
+                                startActivity(new Intent(LoginCodeActivity.this, MainActivity.class));
+                                finish();
+                            } else if (shenfen.equals("2")) {
+                                startActivity(new Intent(LoginCodeActivity.this, LvShiMainActivity.class));
+                                finish();
+                            }
+                        }
+                        @Override
+                        public void onFail(int code, String msg) {
+                            Logger.e("2233code ---> " + code+ ",,, msg ---> " + msg);
+                        }
+
+                    };
+                    LoginHelper.getInstance().loginSuccess(uid, "123456",callback);
+//                    SpUtil.putString(AppConstant.UID, uid);
+//                    SpUtil.putString(AppConstant.SHENFEN, shenfen);
+//                    if (shenfen.equals("1")) {
+//                        startActivity(new Intent(LoginCodeActivity.this, MainActivity.class));
+//                        finish();
+//                    } else if (shenfen.equals("2")) {
+//                        startActivity(new Intent(LoginCodeActivity.this, LvShiMainActivity.class));
+//                        finish();
+//                    }
                     break;
                 case 0:
                     ToastUtil.showCenterToast("登录失败");

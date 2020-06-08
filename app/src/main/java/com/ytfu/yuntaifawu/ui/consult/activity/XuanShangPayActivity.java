@@ -124,7 +124,7 @@ public class XuanShangPayActivity extends BaseActivity<IXuanShangPayView, XuanSh
                     map.put("uid", uid);
                     map.put("type", String.valueOf(14));
                     map.put("xitong", String.valueOf(1));
-                    map.put("price", String.valueOf(0.01));
+                    map.put("price", String.valueOf(5));
                     map.put("consult_type", tvStr);
                     map.put("consult_content", edStr);
                     mPresenter.getXuanShangWatch(map);
@@ -135,7 +135,7 @@ public class XuanShangPayActivity extends BaseActivity<IXuanShangPayView, XuanSh
                     map.put("uid", uid);
                     map.put("type", String.valueOf(14));
                     map.put("xitong", String.valueOf(1));
-                    map.put("price", String.valueOf(0.01));
+                    map.put("price", String.valueOf(5));
                     map.put("consult_type", tvStr);
                     map.put("consult_content", edStr);
                     mPresenter.getXuanShangAli(map);

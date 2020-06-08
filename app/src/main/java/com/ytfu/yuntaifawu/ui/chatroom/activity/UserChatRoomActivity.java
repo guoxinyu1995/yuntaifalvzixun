@@ -229,6 +229,10 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                         clickPayItem = clickItem;
                         break;
                     case R.id.iv_chat_item_avatar:
+                        boolean bundleBoolean = getBundleBoolean(KEY_IS_CUSTOMER_SERVICE, true);
+                        if (bundleBoolean) {
+                            return;
+                        }
                         String shengfen = SpUtil.getString(AppConstant.SHENFEN, "1");
 //                        if ("1".equals(shengfen)) {
                         HistoryChatItemMultiItem multiItem = UserChatRoomActivity.this.adapter.getData().get(position);

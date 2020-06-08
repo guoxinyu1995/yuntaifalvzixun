@@ -395,8 +395,22 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
     @Override
     public void onTextReceived(List<HistoryChatItemMultiItem> list) {
         Logger.e("接收到消息");
-        adapter.addData(list);
-        rv_room_content.scrollToPosition(adapter.getData().size() - 1);
+        List<HistoryChatItemMultiItem> data = new ArrayList<>();
+        for (HistoryChatItemMultiItem item : list) {
+            String from = item.getChatItem().getFrom();
+            Logger.e("From user id : " + from + ", Current to user id = " + getBundleString(KEY_TO_USER_ID, ""));
+            String toUserId = getBundleString(KEY_TO_USER_ID, "");
+            if (from.equals(toUserId)) {
+                data.add(item);
+            }
+        }
+        runOnUiThread(() -> {
+            adapter.addData(data);
+            rv_room_content.scrollToPosition(adapter.getData().size());
+        });
+//        Logger.e("接收到消息");
+//        adapter.addData(list);
+//        rv_room_content.scrollToPosition(adapter.getData().size() - 1);
     }
 
     @Override
