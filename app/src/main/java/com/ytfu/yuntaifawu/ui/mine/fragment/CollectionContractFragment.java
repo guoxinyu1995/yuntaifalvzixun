@@ -52,7 +52,7 @@ public class CollectionContractFragment extends BaseFragment<ICollectionView, Co
                 map.put("uid",uid);
                 map.put("type",String.valueOf(2));
                 map.put("keyword",keyword);
-                mPresenter.collectionAudio(map);
+                getPresenter().collectionAudio(map);
                 break;
         }
     }
@@ -64,7 +64,7 @@ public class CollectionContractFragment extends BaseFragment<ICollectionView, Co
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(2));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class CollectionContractFragment extends BaseFragment<ICollectionView, Co
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(2));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class CollectionContractFragment extends BaseFragment<ICollectionView, Co
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(2));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override

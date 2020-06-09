@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fl_toolbar_container" type="id" />
+    <item name="fl_base_content" type="id" />
+    <item name="tv_toolbar_title" type="id" />
+</resources>

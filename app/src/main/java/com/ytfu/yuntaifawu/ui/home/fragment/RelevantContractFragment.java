@@ -68,7 +68,7 @@ public class RelevantContractFragment extends BaseFragment<IAudioDetailsView, Au
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class RelevantContractFragment extends BaseFragment<IAudioDetailsView, Au
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id",id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override

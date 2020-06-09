@@ -68,12 +68,12 @@ public class DataFragment extends BaseFragment<INavListView, NavListPresenter> i
 
     private void setData() {
         page = 1;
-        mPresenter.getNavList(song_id, page, message);
+        getPresenter().getNavList(song_id, page, message);
     }
 
     private void setDatas() {
         page++;
-        mPresenter.getNavList(song_id, page, message);
+        getPresenter().getNavList(song_id, page, message);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class DataFragment extends BaseFragment<INavListView, NavListPresenter> i
             case AppConstant.EVENT_BUS_DATAFRAGMENT:
                 message = eventMessage.getMessage();
                 page = 1;
-                mPresenter.getNavList(song_id, page, message);
+                getPresenter().getNavList(song_id, page, message);
                 break;
             default:
                 break;

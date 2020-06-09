@@ -122,7 +122,7 @@ public class ActivityLvShiJIanjie extends BaseActivity<PersonalProfileView, Pers
             }
         });
 
-        mPresenter.getResumeTemplate();
+        getPresenter().getResumeTemplate();
     }
 
     @Override
@@ -162,10 +162,10 @@ public class ActivityLvShiJIanjie extends BaseActivity<PersonalProfileView, Pers
         findViewById(R.id.tv_resume_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.getRandomTemplate(list, 2);
+                getPresenter().getRandomTemplate(list, 2);
             }
         });
-        mPresenter.getRandomTemplate(list, 2);
+        getPresenter().getRandomTemplate(list, 2);
     }
 
     @Override

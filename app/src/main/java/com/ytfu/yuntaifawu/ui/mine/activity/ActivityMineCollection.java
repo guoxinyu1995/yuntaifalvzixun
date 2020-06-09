@@ -94,7 +94,7 @@ public class ActivityMineCollection extends BaseActivity<ICollectionView, Collec
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("type", String.valueOf(2));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
 

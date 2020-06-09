@@ -115,14 +115,14 @@ public class EaseConversationListActivity extends BaseActivity<IConversationView
 
     @Override
     protected void initData() {
-        //        mPresenter.getConversationList();
+        //        getPresenter()().getConversationList();
 
 //        String uid = SpUtil.getString(AppConstant.UID, "");
-//        mPresenter.getLawyerChatList(uid);
+//        getPresenter().getLawyerChatList(uid);
 
         //        HashMap<String, String> map = new HashMap<>();
         //        map.put("from", uid);
-        //        mPresenter.getFirstMessage(map);
+        //        getPresenter().getFirstMessage(map);
         EMClient.getInstance().chatManager().loadAllConversations();
         //设置用户信息名字，头像等
         EaseUI.getInstance().setUserProfileProvider(new EaseUI.EaseUserProfileProvider() {

@@ -139,7 +139,7 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
 
     @Override
     protected void initData() {
-        mPresenter.setZiXunNav();
+        getPresenter().setZiXunNav();
     }
     //初始化点击选择问题类型的变量
     private int t = 0;
@@ -224,7 +224,7 @@ public class ConsultFragment extends BaseFragment<IZiXunNavView, ZiXunNavPresent
                 map.put("uid", uid);
                 map.put("consult_type", tvStr);
                 map.put("consult_content", edStr);
-                mPresenter.getMianFeiFabu(map);
+                getPresenter().getMianFeiFabu(map);
                 dialog.dismiss();
             }
         });

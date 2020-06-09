@@ -105,16 +105,16 @@ public class HomeFragment extends BaseFragment<IRecommendView, RecommendPresente
     protected void initData() {
         titleAdaper = new RecommendTitleAdaper(getContext());
         recycle_title.setAdapter(titleAdaper);
-        mPresenter.getRecommendList();
-        mPresenter.getBannerList();
+        getPresenter().getRecommendList();
+        getPresenter().getBannerList();
     }
 
     @Override
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.getRecommendList();
-        mPresenter.getBannerList();
+        getPresenter().getRecommendList();
+        getPresenter().getBannerList();
     }
 
     @Override

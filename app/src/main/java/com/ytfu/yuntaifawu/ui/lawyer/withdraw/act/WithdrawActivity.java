@@ -184,7 +184,7 @@ public class WithdrawActivity extends BaseActivity<WithdrawView, WithdrawPresent
                 }
                 //进行提现操作
                 String uid = SpUtil.getString(AppConstant.UID, "");
-                mPresenter.withdraw(uid, String.valueOf(money));
+                getPresenter().withdraw(uid, String.valueOf(money));
 
             }
         });

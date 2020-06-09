@@ -108,7 +108,7 @@ public class ActivityContractDataLiist extends BaseActivity<IContractDataListVie
         map.put("id", id);
         map.put("page", String.valueOf(page));
         map.put("keyword", "");
-        mPresenter.getDataList(map);
+        getPresenter().getDataList(map);
     }
 
     private void setDatas() {
@@ -117,7 +117,7 @@ public class ActivityContractDataLiist extends BaseActivity<IContractDataListVie
         map.put("id", id);
         map.put("page", String.valueOf(page));
         map.put("keyword", "");
-        mPresenter.getDataList(map);
+        getPresenter().getDataList(map);
     }
 
     @Override

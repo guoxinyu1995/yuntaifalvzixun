@@ -3,14 +3,12 @@ package com.ytfu.yuntaifawu.base;
 
 import androidx.lifecycle.LifecycleOwner;
 
+import com.github.lee.mvp.base.BasicPresenter;
+import com.github.lee.mvp.base.BasicView;
 import com.uber.autodispose.AutoDisposeConverter;
-import com.ytfu.yuntaifawu.apis.ChatService;
 import com.ytfu.yuntaifawu.apis.HttpUtil;
 import com.ytfu.yuntaifawu.helper.BaseRxObserver;
 import com.ytfu.yuntaifawu.helper.RxLifecycleUtil;
-
-import java.lang.ref.Reference;
-import java.lang.ref.WeakReference;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,21 +19,13 @@ import io.reactivex.schedulers.Schedulers;
  * desc BasePresenter
  */
 
-public abstract class BasePresenter<V> {
+public abstract class BasePresenter<V extends BasicView> extends BasicPresenter<V> {
 
-    private WeakReference<V> mViewRef;
     private LifecycleOwner mOwner;
 
-    public void attachView(V view) {
-        mViewRef = new WeakReference<V>(view);
-    }
 
     public void attachLifecycle(LifecycleOwner owner) {
         mOwner = owner;
-    }
-
-    protected V getView() {
-        return mViewRef.get();
     }
 
     protected LifecycleOwner getLifecycle() {
@@ -46,16 +36,6 @@ public abstract class BasePresenter<V> {
         return RxLifecycleUtil.bindLifecycle(getLifecycle());
     }
 
-    public boolean isViewAttached() {
-        return mViewRef != null && mViewRef.get() != null;
-    }
-
-    public void detachView() {
-        if (mViewRef != null) {
-            mViewRef.clear();
-            mViewRef = null;
-        }
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     //

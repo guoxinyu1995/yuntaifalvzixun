@@ -57,7 +57,7 @@ public class FragmentLegalAdviserList extends BaseFragment<ILegalAdviserListView
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",id);
-        mPresenter.getFlgwLieBiao(map);
+        getPresenter().getFlgwLieBiao(map);
 //        }
 
     }
@@ -69,7 +69,7 @@ public class FragmentLegalAdviserList extends BaseFragment<ILegalAdviserListView
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",id);
-        mPresenter.getFlgwLieBiao(map);
+        getPresenter().getFlgwLieBiao(map);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class FragmentLegalAdviserList extends BaseFragment<ILegalAdviserListView
     protected void initData() {
         rlAdaper = new LegalAdviserRlAdaper(getContext());
         recycleFlgw.setAdapter(rlAdaper);
-//        mPresenter.getFlgwLieBiao(id);
+//        getPresenter().getFlgwLieBiao(id);
     }
 
     @Override

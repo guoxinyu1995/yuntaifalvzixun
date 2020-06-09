@@ -66,7 +66,7 @@ public class ContractSimilarFragment extends BaseFragment<IContractDetailsView, 
         HashMap<String,String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id",id);
-        mPresenter.getContractDetails(map);
+        getPresenter().getContractDetails(map);
     }
 
     @Override

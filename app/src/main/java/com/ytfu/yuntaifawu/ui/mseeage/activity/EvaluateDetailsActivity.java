@@ -91,7 +91,7 @@ public class EvaluateDetailsActivity extends BaseActivity<IEvaluateDetailsView, 
         HashMap<String, String> map = new HashMap<>();
         map.put("lid", lid);
         map.put("pingjia_id", id);
-        mPresenter.getEvaluateDetalis(map);
+        getPresenter().getEvaluateDetalis(map);
     }
 
 

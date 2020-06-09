@@ -7,11 +7,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.module.LoadMoreModule;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.ui.TimeBar;
 import com.google.android.exoplayer2.util.Util;
@@ -19,16 +22,17 @@ import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.ui.home.activity.ActivityAudioDetails;
 import com.ytfu.yuntaifawu.ui.mine.audio.AudioController;
 import com.ytfu.yuntaifawu.ui.mine.bean.MyLibraryBean;
-import com.ytfu.yuntaifawu.utils.ToastUtil;
 
 import java.util.List;
 
-public class MyAudioLibraryAdaper1 extends BaseQuickAdapter<MyLibraryBean.ListBean, BaseViewHolder>
-        implements AudioController.AudioControlListener, BaseQuickAdapter.OnItemChildClickListener {
+public class MyAudioLibraryAdaper1
+        extends BaseQuickAdapter<MyLibraryBean.ListBean, BaseViewHolder>
+        implements AudioController.AudioControlListener, OnItemChildClickListener, LoadMoreModule {
     private AudioController mAudioControl;
     private boolean playNClickIsSame;
-private Context mContext;
-    public MyAudioLibraryAdaper1(Context context,AudioController controller, @Nullable List<MyLibraryBean.ListBean> data) {
+    private Context mContext;
+
+    public MyAudioLibraryAdaper1(Context context, AudioController controller, @Nullable List<MyLibraryBean.ListBean> data) {
         super(R.layout.item_my_audio_library, data);
         this.mContext = context;
         mAudioControl = controller;
@@ -54,8 +58,9 @@ private Context mContext;
             iv_play.setVisibility(View.VISIBLE);
             iv_pause.setVisibility(View.INVISIBLE);
         }
-        helper.addOnClickListener(R.id.iv_play);
-        helper.addOnClickListener(R.id.iv_pause);
+
+//        helper.addOnClickListener(R.id.iv_play);
+//        helper.addOnClickListener(R.id.iv_pause);
 
         tv_start_date.setText("00:00");
         tv_end_date.setText("00:00");
@@ -73,7 +78,7 @@ private Context mContext;
             @Override
             public void onScrubMove(TimeBar timeBar, long position) {
                 if (tv_start_date != null) {
-                    if (mAudioControl.getPosition() == mData.indexOf(item)) {
+                    if (mAudioControl.getPosition() == getData().indexOf(item)) {
                         tv_start_date.setText(Util.getStringForTime(mAudioControl.getFormatBuilder(),
                                 mAudioControl.getFormatter(), position));
                     } else {
@@ -85,7 +90,7 @@ private Context mContext;
             @Override
             public void onScrubStop(TimeBar timeBar, long position, boolean canceled) {
                 if (mAudioControl != null) {
-                    if (mAudioControl.getPosition() == mData.indexOf(item)) {
+                    if (mAudioControl.getPosition() == getData().indexOf(item)) {
                         mAudioControl.seekToTimeBarPosition(position);
                     } else {
                         timeBar.setPosition(0);
@@ -98,7 +103,7 @@ private Context mContext;
             public void onClick(View v) {
 //                ToastUtil.showToast(item.getYid());
                 Intent intent = new Intent(mContext, ActivityAudioDetails.class);
-                intent.putExtra("id",item.getYid());
+                intent.putExtra("id", item.getYid());
                 mContext.startActivity(intent);
                 if (playNClickIsSame) {
                     mAudioControl.onPause();
@@ -108,12 +113,12 @@ private Context mContext;
     }
 
     @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+    public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
         playNClickIsSame = playNClickIsSame(mAudioControl.getPosition(), position);
         switch (view.getId()) {
             case R.id.iv_play:
                 initStatus(mAudioControl.getPosition(), position);
-                mAudioControl.onPrepare(mData.get(position).getUrl());
+                mAudioControl.onPrepare(getData().get(position).getUrl());
                 mAudioControl.onStart(position);
                 break;
             case R.id.iv_pause:
@@ -125,45 +130,45 @@ private Context mContext;
     }
 
     private void initStatus(int position, int position1) {
-        MyLibraryBean.ListBean listBean = mData.get(position);
+        MyLibraryBean.ListBean listBean = getData().get(position);
         listBean.setPlayStatus(false);
         listBean.setStartTime("00:00");
         if (position >= ((LinearLayoutManager) getRecyclerView().getLayoutManager())
                 .findFirstVisibleItemPosition()
                 && position <= ((LinearLayoutManager) getRecyclerView().getLayoutManager())
                 .findLastVisibleItemPosition()) {
-            if (getViewByPosition(getRecyclerView(), position,
+            if (getViewByPosition(position,
                     R.id.exo_progress) != null) {
-                DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(getRecyclerView(),
+                DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(
                         position,
                         R.id.exo_progress);
                 timeBar.setPosition(0);
                 timeBar.setBufferedPosition(0);
             }
-            if (getViewByPosition(getRecyclerView(), position,
+            if (getViewByPosition(position,
                     R.id.tv_start_date) != null) {
-                TextView startTime = (TextView) getViewByPosition(getRecyclerView(), position,
+                TextView startTime = (TextView) getViewByPosition(position,
                         R.id.tv_start_date);
                 startTime.setText(listBean.getStartTime());
             }
-            if (getViewByPosition(getRecyclerView(), position, R.id.iv_play) != null) {
-                ImageView oldplay = (ImageView) getViewByPosition(getRecyclerView(), position,
+            if (getViewByPosition(position, R.id.iv_play) != null) {
+                ImageView oldplay = (ImageView) getViewByPosition(position,
                         R.id.iv_play);
                 oldplay.setVisibility(View.VISIBLE);
             }
-            if (getViewByPosition(getRecyclerView(), position,
+            if (getViewByPosition(position,
                     R.id.iv_pause) != null) {
-                ImageView oldpause = (ImageView) getViewByPosition(getRecyclerView(), position,
+                ImageView oldpause = (ImageView) getViewByPosition(position,
                         R.id.iv_pause);
                 oldpause.setVisibility(View.INVISIBLE);
             }
-            if (getViewByPosition(getRecyclerView(), position1, R.id.iv_play) != null) {
-                ImageView newplay = (ImageView) getViewByPosition(getRecyclerView(), position1,
+            if (getViewByPosition(position1, R.id.iv_play) != null) {
+                ImageView newplay = (ImageView) getViewByPosition(position1,
                         R.id.iv_play);
                 newplay.setVisibility(View.INVISIBLE);
             }
-            if (getViewByPosition(getRecyclerView(), position1, R.id.iv_pause) != null) {
-                ImageView onewpause = (ImageView) getViewByPosition(getRecyclerView(), position1,
+            if (getViewByPosition(position1, R.id.iv_pause) != null) {
+                ImageView onewpause = (ImageView) getViewByPosition(position1,
                         R.id.iv_pause);
                 onewpause.setVisibility(View.VISIBLE);
             }
@@ -178,9 +183,9 @@ private Context mContext;
 
     @Override
     public void setCurPositionTime(int position, long curPositionTime) {
-        if (getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position,
                 R.id.exo_progress) != null) {
-            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(getRecyclerView(), position,
+            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(position,
                     R.id.exo_progress);
             timeBar.setPosition(curPositionTime);
         }
@@ -188,8 +193,8 @@ private Context mContext;
 
     @Override
     public void setDurationTime(int position, long durationTime) {
-        if (getViewByPosition(getRecyclerView(), position, R.id.exo_progress) != null) {
-            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position, R.id.exo_progress) != null) {
+            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(position,
                     R.id.exo_progress);
             timeBar.setDuration(durationTime);
         }
@@ -197,9 +202,9 @@ private Context mContext;
 
     @Override
     public void setBufferedPositionTime(int position, long bufferedPosition) {
-        if (getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position,
                 R.id.exo_progress) != null) {
-            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(getRecyclerView(), position,
+            DefaultTimeBar timeBar = (DefaultTimeBar) getViewByPosition(position,
                     R.id.exo_progress);
             timeBar.setBufferedPosition(bufferedPosition);
         }
@@ -207,23 +212,23 @@ private Context mContext;
 
     @Override
     public void setCurTimeString(int position, String curTimeString) {
-        if (getViewByPosition(getRecyclerView(), position, R.id.tv_start_date) != null) {
-            TextView startTime = (TextView) getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position, R.id.tv_start_date) != null) {
+            TextView startTime = (TextView) getViewByPosition(position,
                     R.id.tv_start_date);
             startTime.setText(curTimeString);
         }
-        MyLibraryBean.ListBean listBean = mData.get(position);
+        MyLibraryBean.ListBean listBean = getData().get(position);
         listBean.setStartTime(curTimeString);
     }
 
     @Override
     public void isPlay(int position, boolean isPlay) {
-        MyLibraryBean.ListBean listBean = mData.get(position);
+        MyLibraryBean.ListBean listBean = getData().get(position);
         listBean.setPlayStatus(isPlay);
-        if (getViewByPosition(getRecyclerView(), position, R.id.iv_play) != null
-                && getViewByPosition(getRecyclerView(), position, R.id.iv_pause) != null) {
-            ImageView play = (ImageView) getViewByPosition(getRecyclerView(), position, R.id.iv_play);
-            ImageView pause = (ImageView) getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position, R.id.iv_play) != null
+                && getViewByPosition(position, R.id.iv_pause) != null) {
+            ImageView play = (ImageView) getViewByPosition(position, R.id.iv_play);
+            ImageView pause = (ImageView) getViewByPosition(position,
                     R.id.iv_pause);
             if (isPlay) {
                 if (play != null) {
@@ -247,13 +252,15 @@ private Context mContext;
 
     @Override
     public void setDurationTimeString(int position, String durationTimeString) {
-        if (getViewByPosition(getRecyclerView(), position,
+        if (getViewByPosition(position,
                 R.id.tv_end_date) != null) {
-            TextView endTime = (TextView) getViewByPosition(getRecyclerView(), position,
+            TextView endTime = (TextView) getViewByPosition(position,
                     R.id.tv_end_date);
             endTime.setText(durationTimeString);
         }
-        MyLibraryBean.ListBean listBean = mData.get(position);
+        MyLibraryBean.ListBean listBean = getData().get(position);
         listBean.setEndTime(durationTimeString);
     }
+
+
 }

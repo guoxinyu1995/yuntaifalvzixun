@@ -80,7 +80,7 @@ public class HuiDaDetailsActivity extends BaseActivity<IHuiDaDetailsView, HuiDaD
         HashMap<String, String> map = new HashMap<>();
         map.put("lid", lid);
         map.put("anid", anid);
-        mPresenter.getHuiDaDetails(map);
+        getPresenter().getHuiDaDetails(map);
     }
 
     @OnClick(R.id.iv_fanhui)

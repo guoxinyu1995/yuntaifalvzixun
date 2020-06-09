@@ -183,7 +183,7 @@ public class SetPwdActivity extends BaseActivity<IRegistView, RegistPresenter> i
                                 map.put("pwd", pwd);
                                 map.put("repwd", repwd);
                                 map.put("user_email", etemail);
-                                mPresenter.getRegistNum(map);
+                                getPresenter().getRegistNum(map);
                             } else if (contains == false) {
                                 showToast("邮箱格式不正确");
                             }

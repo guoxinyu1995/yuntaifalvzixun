@@ -104,7 +104,7 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.flgwXQ(map);
+        getPresenter().flgwXQ(map);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.flgwXQ(map);
+        getPresenter().flgwXQ(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.id_lin_start, R.id.btn_biaoge_goumai})
@@ -153,7 +153,7 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
 //                map.put("type", String.valueOf(7));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setFlgwPayWx(map);
+//                getPresenter().setFlgwPayWx(map);
 //                dialog.dismiss();
 //            }
 //
@@ -164,7 +164,7 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
 //                map.put("type", String.valueOf(7));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setFlgwPay(map);
+//                getPresenter().setFlgwPay(map);
 //                dialog.dismiss();
 //            }
 //
@@ -205,14 +205,14 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
                             map.put("type", String.valueOf(7));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setFlgwPayWx(map);
+                            getPresenter().setFlgwPayWx(map);
                         }else if(payType == PAY_TYPE_ALIBABA){
                             HashMap<String, String> map = new HashMap<>();
                             map.put("uid", uid);
                             map.put("type", String.valueOf(7));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setFlgwPay(map);
+                            getPresenter().setFlgwPay(map);
                         }
                         //重置
                         payType = PAY_TYPE_WECHAT;
@@ -234,14 +234,14 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
 //            map.put("id", id);
 //            map.put("type", String.valueOf(1));
 //            map.put("shoucang", String.valueOf(0));
-//            mPresenter.flgwShouCangDel(map);
+//            getPresenter().flgwShouCangDel(map);
 //        } else if (shoucang == 0) {
 //            HashMap<String, String> map = new HashMap<>();
 //            map.put("uid", uid);
 //            map.put("id", id);
 //            map.put("type", String.valueOf(1));
 //            map.put("shoucang", String.valueOf(1));
-//            mPresenter.flgwShouCang(map);
+//            getPresenter().flgwShouCang(map);
 //        }
     }
 

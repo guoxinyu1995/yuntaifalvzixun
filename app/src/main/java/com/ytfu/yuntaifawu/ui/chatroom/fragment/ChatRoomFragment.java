@@ -2,7 +2,6 @@ package com.ytfu.yuntaifawu.ui.chatroom.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseFragment;
@@ -33,12 +32,11 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static com.ytfu.yuntaifawu.ui.mseeage.bean.HistoryRecordResponseBean.*;
-
 /**
  * //发送逻辑处理,  首先见文本数据提交到自己服务器,服务器响应成功之后,在使用环信IM发送数据给对方
  */
-public class ChatRoomFragment extends BaseFragment<IChatMessageView, ChatMessagePresenter> implements IChatMessageView {
+public class ChatRoomFragment extends BaseFragment<IChatMessageView, ChatMessagePresenter>
+        implements IChatMessageView {
 
     @BindView(R.id.rv_room_content)
     RecyclerView rv_room_content;
@@ -90,7 +88,7 @@ public class ChatRoomFragment extends BaseFragment<IChatMessageView, ChatMessage
         rv_room_content.setAdapter(adapter);
 
 
-        adapter.setUpFetchEnable(true);
+        adapter.getUpFetchModule().setUpFetching(true);
         List<String> data = new ArrayList<>();
         ArrayList<HistoryRecordResponseBean.DataBean> list = getArguments().getParcelableArrayList("KEY");
         for (HistoryRecordResponseBean.DataBean item : list) {
@@ -103,7 +101,7 @@ public class ChatRoomFragment extends BaseFragment<IChatMessageView, ChatMessage
         // rv_room_content.smoothScrollToPosition(list.size() - 1);
         hideLoading();
         //adapter.setNewData(list);
-        adapter.setUpFetchEnable(false);
+        adapter.getUpFetchModule().setUpFetchEnable(false);
 
 
         et_room_input.setImeOptions(EditorInfo.IME_ACTION_SEND);
@@ -137,7 +135,7 @@ public class ChatRoomFragment extends BaseFragment<IChatMessageView, ChatMessage
                     String uid = SpUtil.getString(AppConstant.UID, "");
                     String lsid = lawyerItem.getConversationId();
                     int type = 1;
-                    mPresenter.syncMessageToService(uid, lsid, msg, type);
+                    getPresenter().syncMessageToService(uid, lsid, msg, type);
 
                     return true;
                 }

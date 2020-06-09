@@ -98,7 +98,7 @@ public class ActivityShangChangLingYu extends BaseActivity<IShanchanglingyuView,
 
     @Override
     protected void initData() {
-        mPresenter.getShangChangLingYu();
+        getPresenter().getShangChangLingYu();
 //        idFlowlayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
 //            @Override
 //            public boolean onTagClick(View view, int position, FlowLayout parent) {

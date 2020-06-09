@@ -126,7 +126,7 @@ public class LvShiWodeFragment extends BaseFragment<LawyerPersonalView, LawyerPe
             public void onRefresh() {
                 //请求数据
                 String uid = SpUtil.getString(AppConstant.UID, "");
-                mPresenter.requestPersonal(uid);
+                getPresenter().requestPersonal(uid);
             }
         });
         srl_personal_refresh.setColorSchemeColors(
@@ -138,7 +138,7 @@ public class LvShiWodeFragment extends BaseFragment<LawyerPersonalView, LawyerPe
         srl_personal_refresh.setRefreshing(true);
         //请求数据
        String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.requestPersonal(uid);
+        getPresenter().requestPersonal(uid);
     }
 
     @Override
@@ -146,7 +146,7 @@ public class LvShiWodeFragment extends BaseFragment<LawyerPersonalView, LawyerPe
         super.onMyReload(v);
         //请求数据
         String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.requestPersonal(uid);
+        getPresenter().requestPersonal(uid);
     }
 
     //===Desc:=================================================================

@@ -89,7 +89,7 @@ public class ActivityPurchaseRecord extends BaseActivity<IPurchassRecordView, Pu
         recyclePurchase.setAdapter(recordAdaper);
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.purchaseRecord(map);
+        getPresenter().purchaseRecord(map);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class ActivityPurchaseRecord extends BaseActivity<IPurchassRecordView, Pu
         showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.purchaseRecord(map);
+        getPresenter().purchaseRecord(map);
     }
 
     @Override

@@ -127,7 +127,7 @@ public class AudioListActivity extends BaseActivity<INavListView, NavListPresent
             @Override
             public void afterTextChanged(Editable s) {
                 keyword = editSeatch.getText().toString().trim();
-                mPresenter.getNavList(id, page, keyword);
+                getPresenter().getNavList(id, page, keyword);
 //                setData();
             }
         });
@@ -148,7 +148,7 @@ public class AudioListActivity extends BaseActivity<INavListView, NavListPresent
 
     @Override
     protected void initData() {
-        mPresenter.getNavTopImage(id);
+        getPresenter().getNavTopImage(id);
         dataAdaper = new DataAdaper(this);
         recyeleView.setAdapter(dataAdaper);
         setData();
@@ -171,12 +171,12 @@ public class AudioListActivity extends BaseActivity<INavListView, NavListPresent
 
     private void setDatas() {
         page++;
-        mPresenter.getNavList(id, page, keyword);
+        getPresenter().getNavList(id, page, keyword);
     }
 
     private void setData() {
         page = 1;
-        mPresenter.getNavList(id, page, keyword);
+        getPresenter().getNavList(id, page, keyword);
     }
     //
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.utils.DemoHelper;
 import com.ytfu.yuntaifawu.utils.PreferenceManager;
 
@@ -139,6 +140,7 @@ public class UserProfileManager {
 		return avatarUrl;
 	}
 
+
 	public void asyncGetCurrentUserInfo() {
 		ParseManager.getInstance().asyncGetCurrentUserInfo(new EMValueCallBack<EaseUser>() {
 
@@ -152,7 +154,30 @@ public class UserProfileManager {
 
 			@Override
 			public void onError(int error, String errorMsg) {
+				Logger.e("code ---> "+error+",,, msg ---> "+errorMsg);
 
+			}
+		});
+
+	}
+
+	public void asyncGetCurrentUserInfo(EMValueCallBack<EaseUser> callBack) {
+		ParseManager.getInstance().asyncGetCurrentUserInfo(new EMValueCallBack<EaseUser>() {
+
+			@Override
+			public void onSuccess(EaseUser value) {
+				if (value != null) {
+					setCurrentUserNick(value.getNickname());
+					setCurrentUserAvatar(value.getAvatar());
+				}
+				callBack.onSuccess(value);
+
+			}
+
+			@Override
+			public void onError(int error, String errorMsg) {
+				Logger.e("code ---> " + error + ",,, msg ---> " + errorMsg);
+				callBack.onError(error, errorMsg);
 			}
 		});
 

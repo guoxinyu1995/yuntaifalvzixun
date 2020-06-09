@@ -29,7 +29,6 @@ import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.App;
 import com.ytfu.yuntaifawu.base.BaseFragment;
 import com.ytfu.yuntaifawu.ui.MainActivity;
-import com.ytfu.yuntaifawu.ui.chat.fragment.ChatListFragment;
 import com.ytfu.yuntaifawu.ui.falvguwen.activity.ActivityLegalAdviser;
 import com.ytfu.yuntaifawu.ui.home.activity.ActivityContractList;
 import com.ytfu.yuntaifawu.ui.home.adaper.HomeLvShiAdaper;
@@ -161,12 +160,12 @@ public class HomeFragment1 extends BaseFragment<IRecommendView, RecommendPresent
                 toLogin();
             }
         });
-//        mPresenter.getRecommendList();
+//        getPresenter().getRecommendList();
         //首页推荐律师
-        mPresenter.getHomeLvShi();
+        getPresenter().getHomeLvShi();
         //首页用户评价
         setData();
-        mPresenter.getBannerList();
+        getPresenter().getBannerList();
         mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
@@ -184,7 +183,7 @@ public class HomeFragment1 extends BaseFragment<IRecommendView, RecommendPresent
                         @Override
                         public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                             setData();
-                            mPresenter.getHomeLvShi();
+                            getPresenter().getHomeLvShi();
                             refreshLayout.finishRefresh();
                         }
                     });
@@ -196,7 +195,7 @@ public class HomeFragment1 extends BaseFragment<IRecommendView, RecommendPresent
                         @Override
                         public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                             setDatas();
-                            mPresenter.getHomeLvShi();
+                            getPresenter().getHomeLvShi();
                             refreshLayout.finishLoadMore();      //加载完成
 //                refreshLayout.finishLoadMoreWithNoMoreData();
                         }
@@ -210,20 +209,20 @@ public class HomeFragment1 extends BaseFragment<IRecommendView, RecommendPresent
 
     private void setDatas() {
         page++;
-        mPresenter.getHomePingJia(page);
+        getPresenter().getHomePingJia(page);
     }
 
     private void setData() {
         page = 1;
-        mPresenter.getHomePingJia(page);
+        getPresenter().getHomePingJia(page);
     }
 
     @Override
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-//        mPresenter.getRecommendList();
-        mPresenter.getBannerList();
+//        getPresenter().getRecommendList();
+        getPresenter().getBannerList();
     }
 
     @Override

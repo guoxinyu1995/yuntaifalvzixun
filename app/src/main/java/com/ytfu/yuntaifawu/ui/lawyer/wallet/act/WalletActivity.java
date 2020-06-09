@@ -10,14 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.core.BasePopupView;
-import com.lxj.xpopup.interfaces.OnCancelListener;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
-import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
-import com.ytfu.yuntaifawu.base.BasePresenter;
 import com.ytfu.yuntaifawu.ui.lawyer.bind.act.BindAliActivity;
 import com.ytfu.yuntaifawu.ui.lawyer.transaction.act.TransactionActivity;
 import com.ytfu.yuntaifawu.ui.lawyer.wallet.bean.WalletResponseBean;
@@ -30,7 +25,6 @@ import com.ytfu.yuntaifawu.utils.SpUtil;
 import com.ytfu.yuntaifawu.utils.ToastUtil;
 
 import butterknife.BindView;
-import qiu.niorgai.StatusBarCompat;
 
 /**
  * 我的钱包界面
@@ -82,7 +76,7 @@ public class WalletActivity extends BaseActivity<WalletView, WalletPresenter> im
     @Override
     public void init() {
         super.init();
-        Eyes.setStatusBarColor(this,CommonUtil.getColor(R.color.transparent_4c));
+        Eyes.setStatusBarColor(this, CommonUtil.getColor(R.color.transparent_4c));
     }
 
     @Override
@@ -96,7 +90,7 @@ public class WalletActivity extends BaseActivity<WalletView, WalletPresenter> im
 
         //获取个人账户信息
         String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getWalletInfo(uid);
+        getPresenter().getWalletInfo(uid);
     }
 
     @Override
@@ -105,7 +99,7 @@ public class WalletActivity extends BaseActivity<WalletView, WalletPresenter> im
         if (requestCode == CODE_BIND_ALI) {
             if (resultCode == RESULT_OK) {
                 String uid = SpUtil.getString(AppConstant.UID, "");
-                mPresenter.getWalletInfo(uid);
+                getPresenter().getWalletInfo(uid);
             }
         }
     }
@@ -118,7 +112,7 @@ public class WalletActivity extends BaseActivity<WalletView, WalletPresenter> im
         ToastUtil.showToast("解绑成功");
         //重新加载
         String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getWalletInfo(uid);
+        getPresenter().getWalletInfo(uid);
     }
 
     @Override
@@ -176,7 +170,7 @@ public class WalletActivity extends BaseActivity<WalletView, WalletPresenter> im
                                 new XPopup.Builder(WalletActivity.this)
                                         .asConfirm("确认解绑吗?",
                                                 "解除后将不可恢复，如需启用，可选择重新添加支付宝",
-                                                () -> mPresenter.unbindAliPay(SpUtil.getString(AppConstant.UID, "")))
+                                                () -> getPresenter().unbindAliPay(SpUtil.getString(AppConstant.UID, "")))
                                         .show();
                             } else {
                                 //进入绑定界面

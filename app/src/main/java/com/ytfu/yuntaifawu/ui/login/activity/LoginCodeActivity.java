@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
+import com.hyphenate.EMValueCallBack;
+import com.hyphenate.easeui.domain.EaseUser;
+import com.orhanobut.logger.Logger;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -218,7 +221,7 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
 //                showToast(wxCode);
                 HashMap<String, String> map = new HashMap<>();
                 map.put("code", wxCode);
-                mPresenter.getWxLogin(map);
+                getPresenter().getWxLogin(map);
                 break;
             default:
                 break;
@@ -260,7 +263,7 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
                         map.put("mobile", mobile);
                         map.put("code", code);
                         map.put("xt", String.valueOf(1));
-                        mPresenter.getLoginCode(map);
+                        getPresenter().getLoginCode(map);
 //                        }
                     } else {
                         ToastUtil.showToast("验证码输入错误");
@@ -319,7 +322,7 @@ public class LoginCodeActivity extends BaseActivity<ICodeView, CodePresent> impl
 //                    countDownTimer.start();
                     HashMap<String, String> map = new HashMap<>();
                     map.put("mobile", pho);
-                    mPresenter.getSendCode(map);
+                    getPresenter().getSendCode(map);
 //                    initTimer();
 //                    ToastUtil.showToast("手机号格式正确");
                 } else {

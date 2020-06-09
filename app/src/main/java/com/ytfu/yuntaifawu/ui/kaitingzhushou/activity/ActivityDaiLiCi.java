@@ -132,7 +132,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("zhushouid", id);
-        mPresenter.setDlc(map);
+        getPresenter().setDlc(map);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("zhushouid", id);
-        mPresenter.setDlc(map);
+        getPresenter().setDlc(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.btn_dailici_buy, R.id.btn_dailici_fasong})
@@ -157,7 +157,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhushouid", id);
-                mPresenter.setDlcSendEmail(map);
+                getPresenter().setDlcSendEmail(map);
                 break;
             default:
                 break;
@@ -181,7 +181,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
 //                buyMap.put("type", String.valueOf(8));
 //                buyMap.put("id", id);
 //                buyMap.put("xitong", String.valueOf(1));
-//                mPresenter.setDlcPayWx(buyMap);
+//                getPresenter().setDlcPayWx(buyMap);
 //                dialog.dismiss();
 //            }
 //            @Override
@@ -191,7 +191,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
 //                buyMap.put("type", String.valueOf(8));
 //                buyMap.put("id", id);
 //                buyMap.put("xitong", String.valueOf(1));
-//                mPresenter.setDlcPay(buyMap);
+//                getPresenter().setDlcPay(buyMap);
 //                dialog.dismiss();
 //            }
 //
@@ -232,14 +232,14 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
                             buyMap.put("type", String.valueOf(8));
                             buyMap.put("id", id);
                             buyMap.put("xitong", String.valueOf(1));
-                            mPresenter.setDlcPayWx(buyMap);
+                            getPresenter().setDlcPayWx(buyMap);
                         } else if (payType == PAY_TYPE_ALIBABA) {
                             HashMap<String, String> buyMap = new HashMap<>();
                             buyMap.put("uid", uid);
                             buyMap.put("type", String.valueOf(8));
                             buyMap.put("id", id);
                             buyMap.put("xitong", String.valueOf(1));
-                            mPresenter.setDlcPay(buyMap);
+                            getPresenter().setDlcPay(buyMap);
                         }
                         //重置
                         payType = PAY_TYPE_WECHAT;
@@ -376,7 +376,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setDlcBdEmail(map);
+                        getPresenter().setDlcBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);
@@ -424,7 +424,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhushouid", id);
-                mPresenter.setDlc(map);
+                getPresenter().setDlc(map);
                 break;
             default:
                 break;
@@ -457,7 +457,7 @@ public class ActivityDaiLiCi extends BaseActivity<IDlCiView, DlcPresenter> imple
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhushouid", id);
-                mPresenter.setDlc(map);
+                getPresenter().setDlc(map);
                 btnDailiciBuy.setVisibility(View.GONE);
 //                llBufen.setVisibility(View.GONE);
                 ivWeifufei.setVisibility(View.GONE);

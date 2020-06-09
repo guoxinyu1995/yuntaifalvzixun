@@ -118,7 +118,7 @@ public class ActivityMyContractLibrary extends BaseActivity<IMyLibraryView, MyLi
                 map.put("f_type", String.valueOf(2));
                 map.put("type", String.valueOf(1));
                 map.put("keyword", keyword);
-                mPresenter.myLibrary(map);
+                getPresenter().myLibrary(map);
             }
         });
     }
@@ -131,7 +131,7 @@ public class ActivityMyContractLibrary extends BaseActivity<IMyLibraryView, MyLi
         map.put("uid", uid);
         map.put("f_type", String.valueOf(2));
         map.put("type", String.valueOf(1));
-        mPresenter.myLibrary(map);
+        getPresenter().myLibrary(map);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class ActivityMyContractLibrary extends BaseActivity<IMyLibraryView, MyLi
         map.put("uid", uid);
         map.put("f_type", String.valueOf(2));
         map.put("type", String.valueOf(1));
-        mPresenter.myLibrary(map);
+        getPresenter().myLibrary(map);
         libraryAdaper.setLibraryClickListener(new MyCollectionLibraryAdaper.CollectionLibraryClickListener() {
             @Override
             public void libraryItemClickListener(String url) {
@@ -153,7 +153,7 @@ public class ActivityMyContractLibrary extends BaseActivity<IMyLibraryView, MyLi
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid", uid);
                     map.put("url", url);
-                    mPresenter.setSendEmail(map);
+                    getPresenter().setSendEmail(map);
                 }
             }
         });
@@ -241,7 +241,7 @@ public class ActivityMyContractLibrary extends BaseActivity<IMyLibraryView, MyLi
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setLibraryBdEmail(map);
+                        getPresenter().setLibraryBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

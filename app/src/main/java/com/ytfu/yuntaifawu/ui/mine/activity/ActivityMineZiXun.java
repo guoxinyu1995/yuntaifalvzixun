@@ -126,13 +126,13 @@ public class ActivityMineZiXun extends BaseActivity<IMineZiXunView, MineZiXunPre
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("page", String.valueOf(page));
-            mPresenter.getMineZiXunList(map);
+            getPresenter().getMineZiXunList(map);
         }else{
             page = 1;
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", id);
             map.put("page", String.valueOf(page));
-            mPresenter.getMineZiXunList(map);
+            getPresenter().getMineZiXunList(map);
         }
 
     }
@@ -143,13 +143,13 @@ public class ActivityMineZiXun extends BaseActivity<IMineZiXunView, MineZiXunPre
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("page", String.valueOf(page));
-            mPresenter.getMineZiXunList(map);
+            getPresenter().getMineZiXunList(map);
         }else{
             page++;
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", id);
             map.put("page", String.valueOf(page));
-            mPresenter.getMineZiXunList(map);
+            getPresenter().getMineZiXunList(map);
         }
 
     }

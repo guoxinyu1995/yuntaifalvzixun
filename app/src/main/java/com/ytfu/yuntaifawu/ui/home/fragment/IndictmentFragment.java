@@ -51,7 +51,7 @@ public class IndictmentFragment extends BaseFragment<IQszView, QszPresenter> imp
 //    public void onHiddenChanged(boolean hidden) {
 //        super.onHiddenChanged(hidden);
 //        if(!hidden){
-//            mPresenter.getQiSuZhuang();
+//            getPresenter().getQiSuZhuang();
 //        }
 //    }
     public static IndictmentFragment newInstance() {
@@ -79,7 +79,7 @@ public class IndictmentFragment extends BaseFragment<IQszView, QszPresenter> imp
     protected void initData() {
         fenLeiAdaper = new QszFenLeiAdaper(getContext());
         recycleQsz.setAdapter(fenLeiAdaper);
-        mPresenter.getQiSuZhuang();
+        getPresenter().getQiSuZhuang();
     }
 
     @OnClick(R.id.tv_qsz_history)

@@ -101,6 +101,7 @@
 # 实体类
 -keep class com.ytfu.yuntaifawu.ui.**.bean.** { *; }
 -keep class com.ytfu.yuntaifawu.domain.** { *; }
+-keep class * extends com.ytfu.yuntaifawu.base.BasePresenter
 
 # 保留本地native方法不被混淆
 -keepclasseswithmembernames class * {
@@ -288,3 +289,12 @@
 #如果使用了实时音视频功能
 -keep class com.superrtc.** {*;}
 #-dontwarn  com.superrtc.**
+
+-keep class com.hyphenate.** {*;}
+-keep class internal.org.apache.http.entity.mine.** {*;}
+-keep class android.net.** {*;}
+-keep class com.android.internal.http.multipart.** {*;}
+-keep class org.apache.** {*;}
+
+-keep class com.meizu.**{*;}
+-keep class javax.**{*;}

@@ -145,7 +145,7 @@ public class ActivitySetPwd extends BaseActivity<ISetPwdView, SetPwdPresenter> i
                 map.put("uid", uid);
                 map.put("pwd", pwd);
                 map.put("repwd", qrPwd);
-                mPresenter.setPwd(map);
+                getPresenter().setPwd(map);
             } else {
                 tvTishi.setVisibility(View.VISIBLE);
                 tvTishi.setText("密码格式不正确");

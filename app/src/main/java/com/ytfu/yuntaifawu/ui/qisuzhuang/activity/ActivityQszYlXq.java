@@ -161,7 +161,7 @@ public class ActivityQszYlXq extends BaseActivity<IQszYlXqView, QszYlXqPresenter
                             HashMap<String, String> map = new HashMap<>();
                             map.put("uid", uid);
                             map.put("url", url);
-                            mPresenter.setQszYlSendEmail(map);
+                            getPresenter().setQszYlSendEmail(map);
                         }
                     }
                 });
@@ -233,7 +233,7 @@ public class ActivityQszYlXq extends BaseActivity<IQszYlXqView, QszYlXqPresenter
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setQszYlBdEmail(map);
+                        getPresenter().setQszYlBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

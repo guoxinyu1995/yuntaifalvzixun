@@ -2,6 +2,7 @@ package com.ytfu.yuntaifawu.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -10,20 +11,31 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.github.lee.annotation.InjectLayout;
+import com.github.lee.annotation.InjectPresenter;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
+import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.umeng.analytics.MobclickAgent;
 import com.ytfu.yuntaifawu.R;
@@ -51,22 +63,51 @@ import butterknife.Unbinder;
  * @Date 2019/12/6
  * @Des
  */
-public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCompatActivity {
+public class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends AppCompatActivity implements BaseView {
+    protected Context mContext;
+    protected LayoutInflater mInflater;
+    /**
+     * Toolbar是悬浮还是线性
+     */
+    protected boolean toolbarOverlap = false;
 
-    protected P mPresenter;
+    /**
+     * 显示在界面的Toolbar,为null不显示
+     */
+    protected Toolbar mToolbar = null;
+
+    private P mPresenter;
     private CustomDialog mCustomDialog;
     protected LoadService mBaseLoadService;
     private NetworkReceiver mNetworkReceiver;
     private Unbinder mUnbinder;
 
+    /**
+     * MVP标准模式限定,请不要使用之前的mPresenter对象
+     */
+    protected P getPresenter() {
+        if (null == mPresenter) {
+            throw new IllegalStateException(getClass().getSimpleName() + "并不是标准的MVP设计模式,请使用@InjectPresenter(clazz)注解绑定MVP设计模式");
+        }
+        return mPresenter;
+    }
+
     private BasePopupView progressDialog;
 
-    //    private CompleteInfoPop completeInfoPop;
+    private View loadingView;
+    private View successView;
+    private View emptyView;
+    private View errorView;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
+        mInflater = LayoutInflater.from(mContext);
         App.getInstance().addActivity(this);
+
+        onEnterActivity(savedInstanceState);
 
         // Debug模式设置屏幕常亮
         if (AppConstant.DEBUG) {
@@ -76,28 +117,81 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
         mNetworkReceiver = new NetworkReceiver();
         registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        /*Android P刘海屏*/
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            //设置页面延伸到刘海区显示
-            WindowManager.LayoutParams lp = getWindow().getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            getWindow().setAttributes(lp);
-        }*/
-        //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //        ActionBar supportActionBar = getSupportActionBar();
-        //        if(supportActionBar!=null){
-        //            supportActionBar.hide();
-        //        }
         init();
 
-        // 设置布局文件id(由子类实现)，子类也不再需要使用ButterKnife.bind()
-        if (provideContentViewId() != 0) {
-            setContentView(provideContentViewId());
+        if (toolbarOverlap) {
+            //Toolbar悬浮
+            setContentView(R.layout.activity_overlap_toolbar);
         } else {
-            throw new IllegalArgumentException("You must return a right contentView layout resource Id");
+            setContentView(R.layout.activity_linear_toolbar);
+        }
+        InjectLayout injectLayout = getClass().getAnnotation(InjectLayout.class);
+
+        int toolbarLayoutId;
+        int showLayoutId;
+
+        int loadingLayoutId;
+        int emptyLayoutId;
+        int errorLayoutId;
+
+        if (null == injectLayout) {
+            toolbarLayoutId = -1;
+            showLayoutId = -1;
+            loadingLayoutId = -1;
+            emptyLayoutId = -1;
+            errorLayoutId = -1;
+        } else {
+            toolbarLayoutId = injectLayout.toolbarLayoutId();
+            loadingLayoutId = injectLayout.loadingLayoutId();
+            showLayoutId = injectLayout.value();
+            emptyLayoutId = injectLayout.emptyLayoutId();
+            errorLayoutId = injectLayout.errorLayoutId();
+
+        }
+        if (showLayoutId == -1) {
+            Logger.w("新版BaseActivity封装不建议复写 provideContentViewId() 方法, 请使用@InjectLayout(R.layout.xxx)");
+            showLayoutId = provideContentViewId();
         }
 
-        mUnbinder = ButterKnife.bind(this);
+        //设置Toolbar
+        FrameLayout toolbarContainer = findViewById(R.id.fl_toolbar_container);
+        if (toolbarLayoutId == -1) {
+            toolbarContainer.setVisibility(View.GONE);
+        } else {
+            mToolbar = inflateToolbar(toolbarLayoutId);
+        }
+        if (null == mToolbar) {
+            //隐藏
+            toolbarContainer.setVisibility(View.GONE);
+        } else {
+            //显示
+            toolbarContainer.removeAllViews();
+            toolbarContainer.addView(mToolbar);
+            //初始化Toolbar
+            mToolbar.setTitle("");
+            setSupportActionBar(mToolbar);
+            ActionBar supportActionBar = getSupportActionBar();
+            if (null != supportActionBar) {
+                supportActionBar.setDisplayHomeAsUpEnabled(false);
+            }
+            toolbarContainer.setVisibility(View.VISIBLE);
+        }
+
+        //        //注入布局
+        //        if (loadingLayoutId != -1) {
+        //            loadingView = inflateView(loadingLayoutId);
+        //        }
+        //        if (emptyLayoutId != -1) {
+        //            emptyView = inflateView(emptyLayoutId);
+        //        }
+        //        if (errorLayoutId != -1) {
+        //            errorView = inflateView(errorLayoutId);
+        //        }
+        if (showLayoutId != -1) {
+            successView = inflateView(showLayoutId);
+        } else {
+            Logger.w(getClass().getSimpleName() + "没有设置布局显示");
+        }
 
         if (null != provideLoadServiceRootView()) {
             initLoadService(provideLoadServiceRootView());
@@ -110,16 +204,45 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
             });
         }
 
+        //获取InjectPresenter注解,进行P层对象自动注入
+        InjectPresenter injectPresenter = getClass().getAnnotation(InjectPresenter.class);
+        if (null == injectPresenter) {
+            //使用createPresenter
+            Logger.w("新版BaseActivity封装已经不建议复写 createPresenter() 方法,请使用@InjectPresenter(clazz)注解");
+            mPresenter = createPresenter();
+        } else {
+            //反射创建Presenter对象进行自动注入
+            //创建注入
+            try {
+                //noinspection unchecked
+                Class<P> clazz = (Class<P>) injectPresenter.value();
+                mPresenter = clazz.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         //判断是否使用MVP模式
-        mPresenter = createPresenter();
         if (mPresenter != null) {
             //因为之后所有的子类都要实现对应的View接口
             mPresenter.attachView((V) this);
             mPresenter.attachLifecycle(this);
+        } else {
+            Logger.e(getClass().getSimpleName() + "并不是标准MVP设计模式,请使用@InjectPresenter(clazz)注解绑定MVP设计模式");
         }
 
+        //显示加载中的
+        if (null != loadingView) {
+            showLoading();
+        } else {//没有设置加载中的布局，直接设置成功的布局显示
+            hideLoading();
+        }
+
+        //控件注入
+        mUnbinder = ButterKnife.bind(this);
         initView();
+        setViewListener();
         initData();
+
     }
 
     /**
@@ -160,8 +283,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 得到当前界面的布局文件id(由子类实现)
      *
      * @return 布局文件id
+     * @deprecated 请在类上使用@InjectLayout(R.layout.xxx)注解进行自动注入布局
      */
-    protected abstract int provideContentViewId();
+    protected int provideContentViewId() {
+        return -1;
+    }
 
     /**
      * 提供显示加载状态页面的RootView
@@ -193,18 +319,103 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 用于创建Presenter和判断是否使用MVP模式(由子类实现)
      *
      * @return presenter
+     * @deprecated 请使用@InjectPresenter(clazz)注解绑定MVP设计模式
      */
-    protected abstract P createPresenter();
+    protected P createPresenter() {
+        return null;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // 提供子类可以复写的方法
+    ///////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 进入当前界面,在设置布局之前调用,子类复写可以用来判断传递参数时候正确,也可以做数据的初始化操作等
+     */
+    protected void onEnterActivity(@Nullable Bundle savedInstanceState) {
+
+    }
 
     /**
      * initView
      */
-    protected abstract void initView();
+    protected void initView() {
+    }
+
+    /**
+     * 设置控件监听事件操作
+     */
+    protected void setViewListener() {
+
+    }
 
     /**
      * initData
      */
-    protected abstract void initData();
+    protected void initData() {
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //
+    ///////////////////////////////////////////////////////////////////////////
+    protected View inflateView(@LayoutRes int layoutId) {
+        return mInflater.inflate(layoutId, null, false);
+    }
+
+    @Nullable
+    protected Toolbar inflateToolbar(@LayoutRes int layoutId) {
+        View view = inflateView(layoutId);
+        if (view instanceof Toolbar) {
+            return (Toolbar) view;
+        }
+        return null;
+    }
+
+    /**
+     * 设置Toolbar上左边图标和点击事件
+     */
+    protected void setToolbarLeftImage(@DrawableRes int drawableId, @Nullable View.OnClickListener listener) {
+        if (null == mToolbar) {
+            Logger.w("You do not set Toolbar, Please set a valid Toolbar");
+            return;
+        }
+        mToolbar.setNavigationIcon(drawableId);
+        if (null != listener) {
+            mToolbar.setNavigationOnClickListener(listener);
+        }
+    }
+
+    /**
+     * 设置toolbar中的TextView显示文本
+     */
+    protected void setToolbarText(@IdRes int viewId, String title) {
+        if (null == mToolbar) {
+            Logger.w("You do not set Toolbar, Please set a valid Toolbar");
+            return;
+        }
+        TextView tv = mToolbar.findViewById(viewId);
+        tv.setText(title);
+    }
+
+    protected void setToolbarText(@IdRes int viewId, @StringRes int titleId) {
+        if (null == mToolbar) {
+            Logger.w("You do not set Toolbar, Please set a valid Toolbar");
+            return;
+        }
+        TextView tv = mToolbar.findViewById(viewId);
+        tv.setText(titleId);
+    }
+
+    /**
+     * 设置Toolbar中控件的点击事件
+     */
+    protected void setToolbarViewClickListener(@IdRes int viewId, @Nullable View.OnClickListener listener) {
+        if (null == mToolbar) {
+            Logger.w("You do not set Toolbar, Please set a valid Toolbar");
+            return;
+        }
+        mToolbar.findViewById(viewId).setOnClickListener(listener);
+    }
 
     /**
      * 解决4.4设置状态栏颜色之后，布局内容嵌入状态栏位置问题
@@ -280,13 +491,7 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 关闭Activity弹框提示
      */
     public void showRemind(String content) {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setCancelable(true)
-                .setTitle(R.string.title_dialog)
-                .setMessage(content)
-                .setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel())
-                .setPositiveButton(R.string.yes, (dialog, which) -> finish())
-                .create();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).setCancelable(true).setTitle(R.string.title_dialog).setMessage(content).setNegativeButton(R.string.no, (dialog, which) -> dialog.cancel()).setPositiveButton(R.string.yes, (dialog, which) -> finish()).create();
 
         alertDialog.show();
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(CommonUtil.getColor(R.color.primaryColor));
@@ -343,6 +548,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 显示loading
      */
     public void showLoading() {
+        if (null != loadingView) {
+            FrameLayout baseContent = findViewById(R.id.fl_base_content);
+            baseContent.removeAllViews();
+            baseContent.addView(loadingView);
+        }
         mBaseLoadService.showCallback(LoadingCallback.class);
     }
 
@@ -350,6 +560,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 隐藏loading
      */
     public void hideLoading() {
+        if (successView != null) {
+            FrameLayout baseContent = findViewById(R.id.fl_base_content);
+            baseContent.removeAllViews();
+            baseContent.addView(successView);
+        }
         mBaseLoadService.showSuccess();
     }
 
@@ -357,6 +572,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 显示空页面
      */
     public void showEmpty() {
+        if (null != emptyView) {
+            FrameLayout baseContent = findViewById(R.id.fl_base_content);
+            baseContent.removeAllViews();
+            baseContent.addView(emptyView);
+        }
         mBaseLoadService.showCallback(EmptyCallback.class);
     }
 
@@ -364,6 +584,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 显示超时页面
      */
     public void showTimeout() {
+        if (null != errorView) {
+            FrameLayout baseContent = findViewById(R.id.fl_base_content);
+            baseContent.removeAllViews();
+            baseContent.addView(errorView);
+        }
         mBaseLoadService.showCallback(TimeoutCallback.class);
     }
 
@@ -371,15 +596,18 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
      * 显示错误页面
      */
     public void showError() {
+        if (null != errorView) {
+            FrameLayout baseContent = findViewById(R.id.fl_base_content);
+            baseContent.removeAllViews();
+            baseContent.addView(errorView);
+        }
         mBaseLoadService.showCallback(ErrorCallback.class);
     }
 
 
     public void showProgress() {
         if (null == progressDialog) {
-            progressDialog = new XPopup.Builder(this)
-                    .asLoading()
-                    .show();
+            progressDialog = new XPopup.Builder(this).asLoading().show();
         }
     }
 
@@ -388,6 +616,11 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+
+    @Override
+    public void runOnUi(Runnable runnable) {
+        runOnUiThread(runnable);
     }
 
     /**
@@ -503,5 +736,20 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
             return defaultValue;
         }
         return bundle.getInt(key, defaultValue);
+    }
+
+    /**
+     * 更换StatusBar上面文本颜色,只支持黑色和白色
+     */
+    protected void changeStatusBarTextColor(boolean isBlack) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            int visibility;
+            if (isBlack) {
+                visibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                visibility = View.SYSTEM_UI_FLAG_VISIBLE;
+            }
+            getWindow().getDecorView().setSystemUiVisibility(visibility);
+        }
     }
 }

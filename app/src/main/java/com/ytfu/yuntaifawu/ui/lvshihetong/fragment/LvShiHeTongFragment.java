@@ -103,7 +103,6 @@ public class LvShiHeTongFragment extends BaseFragment {
                     public void onErrorImpl(String errorMessage) {
                         Logger.e("getNavTitle" + errorMessage);
                         ToastUtil.showToast("网络开小差了");
-
                     }
                 });
     }

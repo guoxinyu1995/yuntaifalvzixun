@@ -122,7 +122,7 @@ public class UserEvaluateActivity extends BaseActivity<IUserEvaluateView, UserEv
     protected void initData() {
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("lid", lid);
-//        mPresenter.getUserEvaluateClass(map);
+//        getPresenter().getUserEvaluateClass(map);
         getListData();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -149,7 +149,7 @@ public class UserEvaluateActivity extends BaseActivity<IUserEvaluateView, UserEv
             map.put("pingjia", String.valueOf(pingJiId));
         }
         map.put("p", String.valueOf(page));
-        mPresenter.getUserEvaluate(map);
+        getPresenter().getUserEvaluate(map);
     }
 
     private void addListDatas() {
@@ -160,7 +160,7 @@ public class UserEvaluateActivity extends BaseActivity<IUserEvaluateView, UserEv
             map.put("pingjia", String.valueOf(pingJiId));
         }
         map.put("p", String.valueOf(page));
-        mPresenter.getUserEvaluate(map);
+        getPresenter().getUserEvaluate(map);
     }
 
     @OnClick(R.id.iv_fanhui)
@@ -194,7 +194,7 @@ public class UserEvaluateActivity extends BaseActivity<IUserEvaluateView, UserEv
 //                                HashMap<String, String> map = new HashMap<>();
 //                                map.put("lid", lid);
 //                                map.put("pingjia", String.valueOf(pingJiId));
-//                                mPresenter.getUserEvaluate(map);
+//                                getPresenter().getUserEvaluate(map);
                                 getListData();
                             }
                         }
@@ -248,7 +248,7 @@ public class UserEvaluateActivity extends BaseActivity<IUserEvaluateView, UserEv
 //                                HashMap<String, String> map = new HashMap<>();
 //                                map.put("lid", lid);
 //                                map.put("pingjia", id + "");
-//                                mPresenter.getUserEvaluate(map);
+//                                getPresenter().getUserEvaluate(map);
 //                            }
 //                        }
 //                    });

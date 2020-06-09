@@ -1,18 +1,22 @@
-package com.ytfu.yuntaifawu.ui.chat.fragment;
+package com.ytfu.yuntaifawu.ui.chat.fragment;//package com.ytfu.yuntaifawu.ui.chat.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
+import com.github.lee.annotation.InjectLayout;
+import com.github.lee.annotation.InjectPresenter;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
@@ -55,12 +59,13 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 聊天列表
  */
+@InjectPresenter(ChatListPresenter.class)
+@InjectLayout(value = R.layout.fragment_message, toolbarLayoutId = R.layout.layout_toolbar_white)
 public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresenter> implements IChatListView {
-
 
     private RecyclerView recyele_view;
     private SwipeRefreshLayout srl_message_refresh;
-    private TextView tvTitle;
+    //    private TextView tvTitle;
     private LawyerListAdapter adapter;
     private Handler mHandler = new Handler();
 
@@ -69,30 +74,29 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
     }
 
 
-    @Override
-    protected int provideContentViewId() {
-        return R.layout.fragment_message;
-    }
+//    @Override
+//    protected int provideContentViewId() {
+//        return R.layout.fragment_message;
+//    }
 
-    @Override
-    protected ChatListPresenter createPresenter() {
-        return new ChatListPresenter();
-    }
+//    @Override
+//    protected ChatListPresenter createPresenter() {
+//        return new ChatListPresenter();
+//    }
 
     @Override
     protected void initView(View rootView) {
-        mPresenter.registerMessageListener();
+        getPresenter().registerMessageListener();
         recyele_view = rootView.findViewById(R.id.rv_message_content);
-        tvTitle = rootView.findViewById(R.id.tv_toolbar_title);
         srl_message_refresh = rootView.findViewById(R.id.srl_message_refresh);
 
         String type = SpUtil.getString(AppConstant.SHENFEN, "1");
         if (type.equals("2")) {
             rootView.findViewById(R.id.tl_title_toolbar).setBackgroundColor(getResources().getColor(R.color.transparent_4c));
-            tvTitle.setTextColor(Color.WHITE);
+            setToolbarTextColor(R.id.tv_toolbar_title, Color.WHITE);
         } else {
             rootView.findViewById(R.id.tl_title_toolbar).setBackgroundColor(Color.WHITE);
-            tvTitle.setTextColor(Color.parseColor("#434343"));
+            setToolbarTextColor(R.id.tv_toolbar_title, Color.parseColor("#434343"));
         }
     }
 
@@ -104,8 +108,7 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
 
     @Override
     protected void initData() {
-        tvTitle.setText("消息");
-
+        setToolbarText(R.id.tv_toolbar_title, "消息");
         //设置用户信息名字，头像等
         EaseUI.getInstance().setUserProfileProvider(username -> {
             EaseUser easeUser = new EaseUser(username);
@@ -165,15 +168,16 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
 
         recyele_view.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new LawyerListAdapter();
-        adapter.bindToRecyclerView(recyele_view);
+//        adapter.bindToRecyclerView(recyele_view);
         recyele_view.setAdapter(adapter);
-        adapter.setEnableLoadMore(true);
+
+        adapter.getLoadMoreModule().setEnableLoadMore(true);
 
         if (AppConstant.DEBUG) {
             //测试使用 长安删除本地回话
-            adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            adapter.setOnItemLongClickListener(new OnItemLongClickListener() {
                 @Override
-                public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                     LawyerListBean.LawyerItemBean lawyerItemBean = ChatListFragment.this.adapter.getData().get(position);
                     boolean isDel = EmChatManager.getInstance().deleteConversation(lawyerItemBean.getConversationId(), false);
                     if (isDel) {
@@ -184,9 +188,9 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
             });
         }
 
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 LawyerListBean.LawyerItemBean lawyerItemBean = ChatListFragment.this.adapter.getData().get(position);
                 boolean isCustomerService = false;
                 if (lawyerItemBean.getType() == 1) {
@@ -198,24 +202,10 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
 
                 String type = SpUtil.getString(AppConstant.SHENFEN, "1");
                 if ("1".equals(type)) {
-                    UserChatRoomActivity.start(getContext(), isCustomerService,false, toUserId, toUserName, toUserAvatar);
+                    UserChatRoomActivity.start(getContext(), isCustomerService, false, toUserId, toUserName, toUserAvatar);
                 } else {
-                    LawyerChatRoomActivity.start(getContext(),false, toUserId, toUserName, toUserAvatar, "");
+                    LawyerChatRoomActivity.start(getContext(), false, toUserId, toUserName, toUserAvatar, "");
                 }
-                //                getHistoryRecord(lawyerItemBean);
-                //                EMConversation conversation =
-                //                        EmChatManager.getInstance().getConversationById(lawyerItemBean.getConversationId());
-                //                if (null == conversation || conversation.getAllMsgCount() == 0) {
-                //                    getHistoryRecord(lawyerItemBean);
-                //                } else {
-                //                    Intent intent = new Intent(getActivity(), ChatActivity.class);
-                //                    intent.putExtra("name", lawyerItemBean.getNickName());
-                //                    intent.putExtra(AppConstant.EXTRA_USER_ID, lawyerItemBean.getConversationId());
-                //                    Logger.e("$$$$$$$$$$$$$$$$$$$$$$$$$$" + lawyerItemBean.getHeaderImage());
-                //                    intent.putExtra("picurl", lawyerItemBean.getHeaderImage());
-                //                    intent.putExtra("type", String.valueOf(lawyerItemBean.getType()));
-                //                    startActivity(intent);
-                //                }
             }
         });
         if (App.getInstance().getLoginFlag()) {
@@ -225,7 +215,7 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
 
     @Override
     public void onDestroy() {
-        mPresenter.unRegisterMessageListener();
+        getPresenter().unRegisterMessageListener();
         super.onDestroy();
     }
 
@@ -384,7 +374,7 @@ public class ChatListFragment extends BaseFragment<IChatListView, ChatListPresen
     public void reLoadList() {
         mHandler.post(() -> {
             String uid = SpUtil.getString(AppConstant.UID, "");
-            mPresenter.loadLawyerList(uid);
+            getPresenter().loadLawyerList(uid);
         });
     }
 }

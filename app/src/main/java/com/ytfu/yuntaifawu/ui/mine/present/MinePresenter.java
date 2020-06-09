@@ -19,11 +19,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class MinePresenter extends BasePresenter<IMineView> {
-    private Context mContext;
+//    private Context mContext;
 
-    public MinePresenter(Context mContext) {
-        this.mContext = mContext;
-    }
+//    public MinePresenter(Context mContext) {
+//        this.mContext = mContext;
+//    }
 
     public void setMine(HashMap<String, String> map) {
         HttpUtil.getInstance().getApiService().getMine(map)

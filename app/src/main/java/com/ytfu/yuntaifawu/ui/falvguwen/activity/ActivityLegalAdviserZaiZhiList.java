@@ -89,12 +89,12 @@ public class ActivityLegalAdviserZaiZhiList extends BaseActivity<ILegalAdviserCl
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.getFlgwSecond(id);
+        getPresenter().getFlgwSecond(id);
     }
 
     @Override
     protected void initData() {
-        mPresenter.getFlgwSecond(id);
+        getPresenter().getFlgwSecond(id);
     }
 
     @OnClick(R.id.iv_fanhui)

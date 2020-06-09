@@ -65,7 +65,7 @@ public class AudioSimilarFragment extends BaseFragment<IAudioDetailsView, AudioD
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id",id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class AudioSimilarFragment extends BaseFragment<IAudioDetailsView, AudioD
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id",id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override

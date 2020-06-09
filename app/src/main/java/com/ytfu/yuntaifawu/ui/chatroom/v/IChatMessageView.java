@@ -1,6 +1,8 @@
 package com.ytfu.yuntaifawu.ui.chatroom.v;
 
-public interface IChatMessageView {
+import com.ytfu.yuntaifawu.base.BaseView;
+
+public interface IChatMessageView extends BaseView {
 
     /**
      * 同步消息到服务器

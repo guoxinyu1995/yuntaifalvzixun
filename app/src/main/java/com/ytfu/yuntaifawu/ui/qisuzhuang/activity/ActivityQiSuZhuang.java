@@ -75,14 +75,14 @@ public class ActivityQiSuZhuang extends BaseActivity<IQszView, QszPresenter> imp
     @Override
     protected void onMyReload(View v) {
         super.onMyReload(v);
-        mPresenter.getQiSuZhuang();
+        getPresenter().getQiSuZhuang();
     }
 
     @Override
     protected void initData() {
         fenLeiAdaper = new QszFenLeiAdaper(this);
         recycleQsz.setAdapter(fenLeiAdaper);
-        mPresenter.getQiSuZhuang();
+        getPresenter().getQiSuZhuang();
     }
 
 

@@ -78,7 +78,7 @@ public class ActivityLegalAdviserLizhiRuzhiList extends BaseActivity<ILegalAdvis
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",id);
-        mPresenter.getFlgwLieBiao(map);
+        getPresenter().getFlgwLieBiao(map);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ActivityLegalAdviserLizhiRuzhiList extends BaseActivity<ILegalAdvis
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",id);
-        mPresenter.getFlgwLieBiao(map);
+        getPresenter().getFlgwLieBiao(map);
     }
 
     @OnClick(R.id.iv_fanhui)

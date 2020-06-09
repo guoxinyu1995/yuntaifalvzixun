@@ -91,7 +91,7 @@ public class SuccessAnLiActivity extends BaseActivity<ISuccessAnLiView, SuccessA
     protected void initData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("lid", lid);
-        mPresenter.getSuccessAnli(map);
+        getPresenter().getSuccessAnli(map);
     }
 
 
@@ -136,7 +136,7 @@ public class SuccessAnLiActivity extends BaseActivity<ISuccessAnLiView, SuccessA
                                 HashMap<String, String> map = new HashMap<>();
                                 map.put("lid", lid);
                                 map.put("cid", String.valueOf(id));
-                                mPresenter.getSuccessAnli(map);
+                                getPresenter().getSuccessAnli(map);
 
                             }
                         }

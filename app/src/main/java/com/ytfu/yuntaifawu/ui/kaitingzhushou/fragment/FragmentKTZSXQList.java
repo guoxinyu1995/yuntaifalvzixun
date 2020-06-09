@@ -74,7 +74,7 @@ public class FragmentKTZSXQList extends BaseFragment<IKtzsXqListView, KtzsXqList
             HashMap<String, String> map = new HashMap<>();
             map.put("id", id);
             map.put("sid", sid);
-            mPresenter.setKtzsZqList(map);
+            getPresenter().setKtzsZqList(map);
         }
     }
 
@@ -85,7 +85,7 @@ public class FragmentKTZSXQList extends BaseFragment<IKtzsXqListView, KtzsXqList
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
         map.put("sid", sid);
-        mPresenter.setKtzsZqList(map);
+        getPresenter().setKtzsZqList(map);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class FragmentKTZSXQList extends BaseFragment<IKtzsXqListView, KtzsXqList
                     HashMap<String, String> map = new HashMap<>();
                     map.put("url", url);
                     map.put("uid", uid);
-                    mPresenter.setSendEmail(map);
+                    getPresenter().setSendEmail(map);
                 }
             }
         });
@@ -232,7 +232,7 @@ public class FragmentKTZSXQList extends BaseFragment<IKtzsXqListView, KtzsXqList
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setKtzsBdEmail(map);
+                        getPresenter().setKtzsBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

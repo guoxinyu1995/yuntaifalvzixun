@@ -54,7 +54,7 @@ public class ContractListSecondFragment extends BaseFragment<IContractListSecond
     private void setData() {
 //        HashMap<String,String> map = new HashMap<>();
 //        map.put("id",id);
-        mPresenter.secondList(id);
+        getPresenter().secondList(id);
     }
 
     @Override

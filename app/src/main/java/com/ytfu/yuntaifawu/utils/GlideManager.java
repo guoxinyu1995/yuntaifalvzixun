@@ -164,6 +164,7 @@ public class GlideManager {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.icon_seat)
                 .error(R.drawable.icon_seat)
+                .centerInside()
                 .transform(roundedCorners)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .priority(Priority.HIGH);

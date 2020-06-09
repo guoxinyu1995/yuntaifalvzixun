@@ -86,6 +86,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/tv_main_zixun"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -94,7 +95,6 @@
                         tools:ignore="UselessParent">
 
                         <TextView
-                            android:id="@+id/tv_main_zixun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableStart="@mipmap/icon_my_inquiry"
@@ -117,6 +117,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/tv_main_ht"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -125,7 +126,6 @@
                         tools:ignore="UselessParent">
 
                         <TextView
-                            android:id="@+id/tv_main_ht"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawableStart="@mipmap/icon_my_contract"
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop=".5dp"
                     android:background="@drawable/selector_white_to_gray"
-                    android:drawableStart="@mipmap/icon_wallet"
+                    android:drawableStart="@mipmap/icon_horn"
                     android:drawableEnd="@drawable/icon_rg_jianjiaohao"
                     android:drawablePadding="15dp"
                     android:paddingStart="16dp"

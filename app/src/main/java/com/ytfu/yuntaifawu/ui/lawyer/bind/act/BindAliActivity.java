@@ -199,7 +199,7 @@ public class BindAliActivity extends BaseActivity<BindAliView, BindAliPresenter>
                             String uid = SpUtil.getString(AppConstant.UID, "");
                             String account = et_bind_account.getText().toString().trim();
                             String realName = et_bind_name.getText().toString().trim();
-                            mPresenter.bindAliPay(uid, account, realName);
+                            getPresenter().bindAliPay(uid, account, realName);
                         })
                 .hideCancelBtn()
                 .show();

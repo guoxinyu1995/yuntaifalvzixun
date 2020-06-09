@@ -89,7 +89,7 @@ public class OpenFragment extends BaseFragment<IKtzsListView, KtzsListPresenter>
         if(!hidden){
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
-            mPresenter.setKtzsList(map);
+            getPresenter().setKtzsList(map);
         }
     }
     @Override
@@ -111,7 +111,7 @@ public class OpenFragment extends BaseFragment<IKtzsListView, KtzsListPresenter>
         });
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setKtzsList(map);
+        getPresenter().setKtzsList(map);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class OpenFragment extends BaseFragment<IKtzsListView, KtzsListPresenter>
             case AppConstant.KT_SUCCESS:
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
-                mPresenter.setKtzsList(map);
+                getPresenter().setKtzsList(map);
                 break;
             default:
                 break;

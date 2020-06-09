@@ -93,7 +93,7 @@ public class ActivityInvitationRecord extends BaseActivity<IInvitionRecordView, 
         HashMap<String,String> map = new HashMap<>();
         uid = SpUtil.getString(AppConstant.UID, "");
         map.put("uid", uid);
-        mPresenter.invitationRecord(map);
+        getPresenter().invitationRecord(map);
     }
 
     @Override

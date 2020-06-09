@@ -87,14 +87,14 @@ public class ActivityGsjd extends BaseActivity<IGsjdView, GsjdPresenter> impleme
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.setGsjd();
+        getPresenter().setGsjd();
     }
 
     @Override
     protected void initData() {
         titleAdaper = new GsjdTitleAdaper(this);
         recycleGsjdTitle.setAdapter(titleAdaper);
-        mPresenter.setGsjd();
+        getPresenter().setGsjd();
         titleAdaper.setGsjdTitleItemClickListener(new GsjdTitleAdaper.IGsjdTitleClickListener() {
             @Override
             public void onGsjdTitleItemClickListener(int position, String url) {
@@ -106,7 +106,7 @@ public class ActivityGsjd extends BaseActivity<IGsjdView, GsjdPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid", uid);
                     map.put("url", url);
-                    mPresenter.setSendEmail(map);
+                    getPresenter().setSendEmail(map);
                 }
             }
         });
@@ -191,7 +191,7 @@ public class ActivityGsjd extends BaseActivity<IGsjdView, GsjdPresenter> impleme
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setGsjdBdEmail(map);
+                        getPresenter().setGsjdBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

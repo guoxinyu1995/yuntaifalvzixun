@@ -3,13 +3,7 @@ package com.ytfu.yuntaifawu.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Registry;
-import com.bumptech.glide.load.model.GlideUrl;
 import com.hyphenate.easeui.EaseUI;
 import com.hyphenate.push.EMPushHelper;
 import com.hyphenate.push.EMPushType;
@@ -23,7 +17,6 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.ytfu.yuntaifawu.callback.CustomCallback;
@@ -35,24 +28,7 @@ import com.ytfu.yuntaifawu.helper.HMSPushHelper;
 import com.ytfu.yuntaifawu.utils.DemoHelper;
 import com.ytfu.yuntaifawu.utils.SpUtil;
 
-import java.io.InputStream;
-import java.net.Socket;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Arrays;
 import java.util.Stack;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509ExtendedTrustManager;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Protocol;
 
 public class App extends Application {
     private static App mInstance;
@@ -75,14 +51,7 @@ public class App extends Application {
         });
 
         // 加载状态页
-        LoadSir.beginBuilder()
-                .addCallback(new ErrorCallback())
-                .addCallback(new EmptyCallback())
-                .addCallback(new LoadingCallback())
-                .addCallback(new TimeoutCallback())
-                .addCallback(new CustomCallback())
-                .setDefaultCallback(LoadingCallback.class)
-                .commit();
+        LoadSir.beginBuilder().addCallback(new ErrorCallback()).addCallback(new EmptyCallback()).addCallback(new LoadingCallback()).addCallback(new TimeoutCallback()).addCallback(new CustomCallback()).setDefaultCallback(LoadingCallback.class).commit();
 
         /*
          * 友盟 初始化common库
@@ -210,7 +179,7 @@ public class App extends Application {
                 }
             }
         }
-//        android.os.Process.killProcess(android.os.Process.myPid());
-//        System.exit(0);
+        //        android.os.Process.killProcess(android.os.Process.myPid());
+        //        System.exit(0);
     }
 }

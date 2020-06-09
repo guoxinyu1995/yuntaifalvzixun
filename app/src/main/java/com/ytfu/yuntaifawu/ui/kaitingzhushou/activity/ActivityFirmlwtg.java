@@ -93,14 +93,14 @@ public class ActivityFirmlwtg extends BaseActivity<IQylxtgView, QylxtgPresenter>
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.setQylxtg();
+        getPresenter().setQylxtg();
     }
 
     @Override
     protected void initData() {
         qylxtgAdaper = new QylxtgAdaper(this);
         recycleQylwtg.setAdapter(qylxtgAdaper);
-        mPresenter.setQylxtg();
+        getPresenter().setQylxtg();
         qylxtgAdaper.setQylxtgItemClickListener(new QylxtgAdaper.IQylxtgClickListener() {
             @Override
             public void onQylxtgItemClickListener(String url) {
@@ -112,7 +112,7 @@ public class ActivityFirmlwtg extends BaseActivity<IQylxtgView, QylxtgPresenter>
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid", uid);
                     map.put("url", url);
-                    mPresenter.setSendEmail(map);
+                    getPresenter().setSendEmail(map);
                 }
             }
         });
@@ -217,7 +217,7 @@ public class ActivityFirmlwtg extends BaseActivity<IQylxtgView, QylxtgPresenter>
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setBdEmail(map);
+                        getPresenter().setBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

@@ -1,51 +1,30 @@
 package com.ytfu.yuntaifawu.ui.lvshiwenti.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.chat.EMTextMessageBody;
-import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.R;
-import com.ytfu.yuntaifawu.apis.HttpUtil;
-import com.ytfu.yuntaifawu.apis.MessageService;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
-import com.ytfu.yuntaifawu.base.BasePresenter;
-import com.ytfu.yuntaifawu.helper.BaseRxObserver;
-import com.ytfu.yuntaifawu.helper.RxLifecycleUtil;
-import com.ytfu.yuntaifawu.ui.chat.bean.LawyerListBean;
 import com.ytfu.yuntaifawu.ui.lawyer.chat.act.LawyerChatRoomActivity;
 import com.ytfu.yuntaifawu.ui.lvshiwenti.adaper.WenTiXqIconAdaper;
 import com.ytfu.yuntaifawu.ui.lvshiwenti.bean.WenTiXiangQingBean;
 import com.ytfu.yuntaifawu.ui.lvshiwenti.presenter.WenTiXqPresenter;
 import com.ytfu.yuntaifawu.ui.lvshiwenti.view.IWenTiXqView;
-import com.ytfu.yuntaifawu.ui.mseeage.activity.ChatActivity;
-import com.ytfu.yuntaifawu.ui.mseeage.bean.HistoryRecordResponseBean;
 import com.ytfu.yuntaifawu.utils.CommonUtil;
 import com.ytfu.yuntaifawu.utils.Eyes;
 import com.ytfu.yuntaifawu.utils.GlideManager;
 import com.ytfu.yuntaifawu.utils.SpUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * @Auther gxy
@@ -121,7 +100,7 @@ public class WenTiXiangQIngAtivity extends BaseActivity<IWenTiXqView, WenTiXqPre
         rlWentiIcon.setAdapter(wenTiXqIconAdaper);
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
-        mPresenter.getWenTiXq(map);
+        getPresenter().getWenTiXq(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.tv_liji_goutong})
@@ -148,7 +127,19 @@ public class WenTiXiangQIngAtivity extends BaseActivity<IWenTiXqView, WenTiXqPre
             tvWentiXqName.setText(wenTiXiangQingBean.getContent().getUser_login());
             tvWentiXqTime.setText(wenTiXiangQingBean.getContent().getConsult_date());
             tvWentiXqType.setText(wenTiXiangQingBean.getContent().getConsult_type());
-            tvWentiXqPrice.setText("悬赏" + wenTiXiangQingBean.getContent().getReward_price() + "元");
+
+            double price;
+            try {
+                price = Double.parseDouble(wenTiXiangQingBean.getContent().getReward_price());
+            } catch (NumberFormatException e) {
+                price = 0.0;
+            }
+            if (price == 0.0) {
+                tvWentiXqPrice.setVisibility(View.INVISIBLE);
+            } else {
+                tvWentiXqPrice.setVisibility(View.VISIBLE);
+                tvWentiXqPrice.setText("悬赏" + wenTiXiangQingBean.getContent().getReward_price() + "元");
+            }
             tvWentiXqConnect.setText(wenTiXiangQingBean.getContent().getConsult_content());
             tvWentiXqHfNum.setText("律师回复" + "(" + wenTiXiangQingBean.getContent().getCount() + ")");
             tvSum.setText(wenTiXiangQingBean.getContent().getCount() + "");
@@ -187,7 +178,7 @@ public class WenTiXiangQIngAtivity extends BaseActivity<IWenTiXqView, WenTiXqPre
         String toUserName = user_login;
         String toUserAvatar = avatar;
         String consultId = wentiid;
-        LawyerChatRoomActivity.start(WenTiXiangQIngAtivity.this, false, toUserId, toUserName,toUserAvatar, consultId);
+        LawyerChatRoomActivity.start(WenTiXiangQIngAtivity.this, false, toUserId, toUserName, toUserAvatar, consultId);
 
 
         //        HttpUtil.getInstance().getService(MessageService.class)

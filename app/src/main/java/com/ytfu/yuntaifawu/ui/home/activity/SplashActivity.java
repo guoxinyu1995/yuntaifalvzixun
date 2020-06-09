@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.github.lee.annotation.InjectLayout;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.orhanobut.logger.Logger;
@@ -60,6 +61,7 @@ import io.reactivex.schedulers.Schedulers;
  * @Date 2019/11/25
  * @Des 启动页
  */
+@InjectLayout(R.layout.activity_splash)
 public class SplashActivity extends BaseActivity {
     private boolean aBoolean;
     private AlertDialog alertDialog2;
@@ -68,16 +70,6 @@ public class SplashActivity extends BaseActivity {
     //    @BindView(R.id.iv_splash)
     //    ImageView ivSplash;
     private Handler handler;
-
-    @Override
-    protected int provideContentViewId() {
-        return R.layout.activity_splash;
-    }
-
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
 
     @Override
     public void init() {

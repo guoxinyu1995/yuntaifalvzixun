@@ -11,15 +11,16 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.github.lee.annotation.InjectLayout;
+import com.github.lee.annotation.InjectPresenter;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.orhanobut.logger.Logger;
@@ -74,13 +75,15 @@ import butterknife.BindView;
 /**
  * 聊天室
  */
+@InjectPresenter(UserChatRoomPresenter.class)
+@InjectLayout(value = R.layout.activity_chat_room, toolbarLayoutId = R.layout.layout_toolbar_center_title)
 public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserChatRoomPresenter>
         implements UserChatRoomView {
 
-    @BindView(R.id.tl_room_toolbar)
-    Toolbar tl_room_toolbar;
-    @BindView(R.id.tv_room_title)
-    TextView tv_room_title;
+    //    @BindView(R.id.tl_room_toolbar)
+//    Toolbar tl_room_toolbar;
+//    @BindView(R.id.tv_room_title)
+//    TextView tv_room_title;
     @BindView(R.id.ll_room_service_top)
     LinearLayout ll_room_service_top;
     @BindView(R.id.ll_room_lawyer_top)
@@ -148,16 +151,6 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
     //===Desc:=================================================================
 
 
-    @Override
-    protected int provideContentViewId() {
-        return R.layout.activity_chat_room;
-    }
-
-    @Override
-    protected UserChatRoomPresenter createPresenter() {
-        return new UserChatRoomPresenter();
-    }
-
     private HistoryChatItemMultiItem clickPayItem;
 
     @Override
@@ -167,7 +160,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
             EventBus.getDefault().register(this);
         }
 
-        mPresenter.registerMessageListener();
+        getPresenter().registerMessageListener();
 
         EMConversation conversation = EmChatManager.getInstance().getConversationById(getBundleString(KEY_TO_USER_ID, ""));
         if (null != conversation) {
@@ -178,22 +171,24 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
         //初始化Toolbar
         srv_room_refresh.setEnabled(false);
 
-        String toUserName = getBundleString(KEY_TO_USER_NAME, "");
-        tv_room_title.setText(toUserName);
-
-        tl_room_toolbar.setTitle("");
-        setSupportActionBar(tl_room_toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (null != actionBar) {
-            actionBar.setDisplayHomeAsUpEnabled(false);
-        }
-        tl_room_toolbar.setNavigationIcon(R.drawable.fanhui_bai);
-        tl_room_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        setToolbarLeftImage(R.drawable.fanhui_bai, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        String toUserName = getBundleString(KEY_TO_USER_NAME, "");
+        setToolbarText(R.id.tv_global_title, toUserName);
+
+//        tv_room_title.setText(toUserName);
+//
+//        tl_room_toolbar.setTitle("");
+//        setSupportActionBar(tl_room_toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        if (null != actionBar) {
+//            actionBar.setDisplayHomeAsUpEnabled(false);
+//        }
+//
         //===Desc:=================================================================
         String toUserAvatar = getBundleString(KEY_TO_USER_AVATAR, "");
         ConversationBean.MsgBean msgBean = LvShiDao.getInstance(this).selectById(SpUtil.getString(AppConstant.UID, ""));
@@ -204,10 +199,11 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
         }
         String selfAvatar = msgBean.getPicurl();
         adapter = new LawyerChatRoomAdapter(toUserAvatar, selfAvatar);
-        adapter.bindToRecyclerView(rv_room_content);
-        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+//        adapter.bindToRecyclerView(rv_room_content);
+        adapter.addChildClickViewIds(R.id.rl_chat_item_pay,R.id.iv_chat_item_avatar);
+        adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 int id = view.getId();
                 switch (id) {
                     case R.id.rl_chat_item_pay:
@@ -225,7 +221,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                         String feeId = clickItem.getChatItem().getExt().getJiluid();
                         //效验当前订单是否已经支付,请求服务器获取状态
                         String selfId = SpUtil.getString(AppConstant.UID, "");
-                        mPresenter.checkMessagePayed(selfId, toUserId, feeId);
+                        getPresenter().checkMessagePayed(selfId, toUserId, feeId);
                         clickPayItem = clickItem;
                         break;
                     case R.id.iv_chat_item_avatar:
@@ -273,7 +269,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                         }
                         String selfId = SpUtil.getString(AppConstant.UID, "");
                         String toUserId = getBundleString(KEY_TO_USER_ID, "");
-                        mPresenter.sendTextMessage(selfId, toUserId, input);
+                        getPresenter().sendTextMessage(selfId, toUserId, input);
                     }
                 });
 
@@ -317,7 +313,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                     public void onClick(View v) {
                         String selfId = SpUtil.getString(AppConstant.UID, "");
                         String toUserId = getBundleString(KEY_TO_USER_ID, "");
-                        mPresenter.checkPay(codeExchangeWeChat, selfId, toUserId);
+                        getPresenter().checkPay(codeExchangeWeChat, selfId, toUserId);
                     }
                 });
 
@@ -329,7 +325,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                     public void onClick(View v) {
                         String selfId = SpUtil.getString(AppConstant.UID, "");
                         String toUserId = getBundleString(KEY_TO_USER_ID, "");
-                        mPresenter.checkPay(codeAssess, selfId, toUserId);
+                        getPresenter().checkPay(codeAssess, selfId, toUserId);
                     }
                 });
 
@@ -341,7 +337,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                     public void onClick(View v) {
                         String selfId = SpUtil.getString(AppConstant.UID, "");
                         String toUserId = getBundleString(KEY_TO_USER_ID, "");
-                        mPresenter.checkPay(codeComplaint, selfId, toUserId);
+                        getPresenter().checkPay(codeComplaint, selfId, toUserId);
                     }
                 });
 
@@ -372,16 +368,16 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
             ll_room_service_top.setVisibility(View.VISIBLE);
             ll_room_lawyer_top.setVisibility(View.GONE);
             customerHeaderController = new ChatRoomCustomerHeaderController(this);
-            mPresenter.getCustomerServiceMessage();
+            getPresenter().getCustomerServiceMessage();
         } else {
             ll_room_service_top.setVisibility(View.GONE);
             ll_room_lawyer_top.setVisibility(View.VISIBLE);
             cardHeaderController = new ChatRoomCardHeaderController(this);
             //获取律师卡片信息
-            mPresenter.getLawyerCardInfo(toUserId);
+            getPresenter().getLawyerCardInfo(toUserId);
         }
         //获取历史消息
-        mPresenter.getHistoryRecord(toUserId, selfId);
+        getPresenter().getHistoryRecord(toUserId, selfId);
 
         hideLoading();
 
@@ -391,7 +387,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
     @Override
     protected void onDestroy() {
         //反注册
-        mPresenter.unregisterMessageListener();
+        getPresenter().unregisterMessageListener();
         EventBus.getDefault().unregister(this);
         //重置未读消息数量
         EMConversation conversation = EmChatManager.getInstance().getConversationById(getBundleString(KEY_TO_USER_ID, ""));
@@ -459,7 +455,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
 
                 //同步消息到服务器
 //                String consultId = getBundleString(KEY_CONSULT_ID, "");
-                mPresenter.userSyncMessageToService(toUserId, fromUserId, itemBean.getBody().getText());
+                getPresenter().userSyncMessageToService(toUserId, fromUserId, itemBean.getBody().getText());
             }
         });
     }
@@ -524,7 +520,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
         if (null != dialog) {
             dialog.cancel();
         }
-        mPresenter.arouseAlipay(this, sign, new PayHelper.IPayListener() {
+        getPresenter().arouseAlipay(this, sign, new PayHelper.IPayListener() {
             @Override
             public void onSuccess() {
                 //支付成功
@@ -619,7 +615,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
                             });
                 } else if (type == 1) {
                     //已支付  交换
-                    mPresenter.exchangeWeChat(selfId, toUserId);
+                    getPresenter().exchangeWeChat(selfId, toUserId);
                 }
 
                 break;
@@ -716,7 +712,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
     private int payMethod = PAY_TYPE_WECHAT;
 
     private void showPayDialor(String toUserId, String feeId) {
-        View dialogView = getLayoutInflater().inflate(R.layout.pay_view_alert_dialor1, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.pay_view_alert_dialor2, null);
         CheckBox cb_pay_wechat = dialogView.findViewById(R.id.cb_pay_wechat);
         CheckBox cb_pay_ali = dialogView.findViewById(R.id.cb_pay_ali);
         cb_pay_wechat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -785,7 +781,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
      */
     private void wechatPay(String toUserId, String redPackageId) {
         String selfId = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getFeePayOrder(true, selfId, toUserId, redPackageId);
+        getPresenter().getFeePayOrder(true, selfId, toUserId, redPackageId);
     }
 
     /**
@@ -793,7 +789,7 @@ public class UserChatRoomActivity extends BaseActivity<UserChatRoomView, UserCha
      */
     private void aliPay(String toUserId, String redPackageId) {
         String selfId = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getFeePayOrder(false, selfId, toUserId, redPackageId);
+        getPresenter().getFeePayOrder(false, selfId, toUserId, redPackageId);
     }
 
     ///////////////////////////////////////////////////////////////////////////

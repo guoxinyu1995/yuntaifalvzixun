@@ -113,7 +113,7 @@ public class ActivityLegalAdviserDetailsDowLoad extends BaseActivity<ILegalAdvis
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.flgwXQ(map);
+        getPresenter().flgwXQ(map);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class ActivityLegalAdviserDetailsDowLoad extends BaseActivity<ILegalAdvis
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.flgwXQ(map);
+        getPresenter().flgwXQ(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.id_lin_start, R.id.btn_biaoge_xiazai})
@@ -139,7 +139,7 @@ public class ActivityLegalAdviserDetailsDowLoad extends BaseActivity<ILegalAdvis
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("url", doc_url);
-                mPresenter.setSendEmail(map);
+                getPresenter().setSendEmail(map);
                 break;
             default:
                 break;
@@ -251,7 +251,7 @@ public class ActivityLegalAdviserDetailsDowLoad extends BaseActivity<ILegalAdvis
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setFlgwBdEmail(map);
+                        getPresenter().setFlgwBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

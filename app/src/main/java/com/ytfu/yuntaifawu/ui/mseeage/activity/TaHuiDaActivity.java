@@ -112,14 +112,14 @@ public class TaHuiDaActivity extends BaseActivity<ITaDeHuiView, TaHuiDaPresenter
         page = 1;
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("lid", lid);
-        mPresenter.getTaHuiDa(lid,page);
+        getPresenter().getTaHuiDa(lid,page);
     }
 
     private void setDatas() {
         page++;
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("lid", lid);
-        mPresenter.getTaHuiDa(lid,page);
+        getPresenter().getTaHuiDa(lid,page);
     }
 
     @OnClick(R.id.iv_fanhui)

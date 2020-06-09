@@ -102,7 +102,7 @@ public class ActivitySelectIndictment extends BaseActivity<ISelectQszView, Selec
         super.onMyReload(v);
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
-        mPresenter.setSelectZhuShou(map);
+        getPresenter().setSelectZhuShou(map);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class ActivitySelectIndictment extends BaseActivity<ISelectQszView, Selec
         });
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
-        mPresenter.setSelectZhuShou(map);
+        getPresenter().setSelectZhuShou(map);
         zhuShouAdaper.setItemClickListener(new SelectZhuShouAdaper.SelectQszOnItemClickListener() {
             @Override
             public void onItemClickListener(int position, boolean check) {
@@ -219,7 +219,7 @@ private final int TYPE = 1;
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("zhuid", str);
-            mPresenter.setAddZhuShou(map);
+            getPresenter().setAddZhuShou(map);
         }
     }
 }

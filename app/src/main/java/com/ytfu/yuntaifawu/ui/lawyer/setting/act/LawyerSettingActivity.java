@@ -78,7 +78,7 @@ public class LawyerSettingActivity extends BaseActivity<LawyerSettingView, Lawye
     protected void onResume() {
         super.onResume();
         String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getInformation(uid);
+        getPresenter().getInformation(uid);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class LawyerSettingActivity extends BaseActivity<LawyerSettingView, Lawye
 
 
         String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getInformation(uid);
+        getPresenter().getInformation(uid);
 
     }
 

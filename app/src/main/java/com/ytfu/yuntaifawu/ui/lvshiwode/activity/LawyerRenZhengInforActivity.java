@@ -196,24 +196,6 @@ public class LawyerRenZhengInforActivity extends BaseActivity<ILwayerInforView, 
     }
 
     @Override
-    protected void initData() {
-        String uid = SpUtil.getString(AppConstant.UID, "");
-        mPresenter.getLawyerInfor(uid);
-        //学历集合
-        xueliList = new ArrayList<>();
-        xueliList.add("大专");
-        xueliList.add("本科");
-        xueliList.add("硕士");
-        xueliList.add("博士");
-        xueliList.add("博士后");
-        //年龄
-        integerList = new ArrayList<>();
-        for (int j = 18; j < 70; j++) {
-            integerList.add(j);
-        }
-    }
-
-    @Override
     public void init() {
         super.init();
         Eyes.setStatusBarColor(this, CommonUtil.getColor(R.color.transparent_4c));
@@ -235,6 +217,24 @@ public class LawyerRenZhengInforActivity extends BaseActivity<ILwayerInforView, 
         }
         tvTopTitle.setText("律师认证信息");
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void initData() {
+        String uid = SpUtil.getString(AppConstant.UID, "");
+        getPresenter().getLawyerInfor(uid);
+        //学历集合
+        xueliList = new ArrayList<>();
+        xueliList.add("大专");
+        xueliList.add("本科");
+        xueliList.add("硕士");
+        xueliList.add("博士");
+        xueliList.add("博士后");
+        //年龄
+        integerList = new ArrayList<>();
+        for (int j = 18; j < 70; j++) {
+            integerList.add(j);
+        }
     }
 
     //接收event事件
@@ -449,7 +449,7 @@ public class LawyerRenZhengInforActivity extends BaseActivity<ILwayerInforView, 
         if (fileSfzFm != null) {
             map.put(parseImageMapKey("card2", fileSfzFm.getName()), parseImageRequestBody(fileSfzFm));
         }
-        mPresenter.getLawyerUpdate(map);
+        getPresenter().getLawyerUpdate(map);
     }
 
     public static RequestBody parseRequestBody(String value) {

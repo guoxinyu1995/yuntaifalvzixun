@@ -167,7 +167,7 @@ public class ActivityGrzx extends BaseActivity<IGrzxView, GrzxPresenter> impleme
         uid = SpUtil.getString(AppConstant.UID, "");
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setGrzx(map);
+        getPresenter().setGrzx(map);
     }
 
     private void getData() {
@@ -185,7 +185,7 @@ public class ActivityGrzx extends BaseActivity<IGrzxView, GrzxPresenter> impleme
     protected void initData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setGrzx(map);
+        getPresenter().setGrzx(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.cl_header, R.id.cl_bd_sjh, R.id.cl_xg_pwd, R.id.cl_bd_email, R.id.cl_nc, R.id.cl_sr, R.id.cl_jianjie})
@@ -312,7 +312,7 @@ public class ActivityGrzx extends BaseActivity<IGrzxView, GrzxPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid", uid);
                     map.put("birthday", date);
-                    mPresenter.setBirthday(map);
+                    getPresenter().setBirthday(map);
                 }
             }, year, month, day);
             mDatePickerDialog.getDatePicker().setMaxDate(DateUtil.getCurTimeLong());
@@ -404,7 +404,7 @@ public class ActivityGrzx extends BaseActivity<IGrzxView, GrzxPresenter> impleme
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
         RequestBody uidBody = RequestBody.create(MediaType.parse("uid"), uid);
         MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-        mPresenter.upLoadImage(uidBody, multipartBody);
+        getPresenter().upLoadImage(uidBody, multipartBody);
     }
 
     @Override

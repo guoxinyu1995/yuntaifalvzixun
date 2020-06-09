@@ -370,7 +370,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
         Log.e("yin", "-----" + uid + "------" + id);
         if (yq_boolean==false) {
             showAlertDialogTiShi();
@@ -386,7 +386,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override
@@ -621,7 +621,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("id", id);
-                mPresenter.getAudioDetails(map);
+                getPresenter().getAudioDetails(map);
                 break;
             default:
                 break;
@@ -637,7 +637,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("id", id);
-                mPresenter.getAudioDetails(map);
+                getPresenter().getAudioDetails(map);
                 rl_byu_audio_play.setVisibility(View.VISIBLE);
                 lin_goumai.setVisibility(View.GONE);
             }
@@ -746,7 +746,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-//                        mPresenter.setHtBdEmail(map);
+//                        getPresenter().setHtBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);
@@ -778,7 +778,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
 //                map.put("type", String.valueOf(1));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setAudioPayWx(map);
+//                getPresenter().setAudioPayWx(map);
 //                dialog.dismiss();
 //            }
 //
@@ -789,7 +789,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
 //                map.put("type", String.valueOf(1));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setAudioPay(map);
+//                getPresenter().setAudioPay(map);
 //                dialog.dismiss();
 //            }
 //
@@ -830,14 +830,14 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
                             map.put("type", String.valueOf(1));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setAudioPayWx(map);
+                            getPresenter().setAudioPayWx(map);
                         }else if(payType == PAY_TYPE_ALIBABA){
                             HashMap<String, String> map = new HashMap<>();
                             map.put("uid", uid);
                             map.put("type", String.valueOf(1));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setAudioPay(map);
+                            getPresenter().setAudioPay(map);
                         }
                         //重置
                         payType = PAY_TYPE_WECHAT;
@@ -883,7 +883,7 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
         map.put("uid", uid);
         map.put("yid", id);
         map.put("time", strTime);
-        mPresenter.setAudioLisener(map);
+        getPresenter().setAudioLisener(map);
     }
 
     //收藏
@@ -894,14 +894,14 @@ public class ActivityAudioDetails extends BaseActivity<IAudioDetailsView, AudioD
             map.put("id", id);
             map.put("type", String.valueOf(1));
 //            map.put("shoucang", String.valueOf(0));
-            mPresenter.audioShouCangDel(map);
+            getPresenter().audioShouCangDel(map);
         } else if (shoucang == 0) {
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("id", id);
             map.put("type", String.valueOf(1));
 //            map.put("shoucang", String.valueOf(1));
-            mPresenter.audioShouCang(map);
+            getPresenter().audioShouCang(map);
         }
     }
 

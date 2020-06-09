@@ -51,7 +51,7 @@ public class CollectionAudioFragment extends BaseFragment<ICollectionView, Colle
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(1));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CollectionAudioFragment extends BaseFragment<ICollectionView, Colle
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(1));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class CollectionAudioFragment extends BaseFragment<ICollectionView, Colle
                 map.put("uid",uid);
                 map.put("type",String.valueOf(1));
                 map.put("keyword",keyword);
-                mPresenter.collectionAudio(map);
+                getPresenter().collectionAudio(map);
                 break;
         }
     }
@@ -95,7 +95,7 @@ public class CollectionAudioFragment extends BaseFragment<ICollectionView, Colle
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("type",String.valueOf(1));
-        mPresenter.collectionAudio(map);
+        getPresenter().collectionAudio(map);
     }
 
     @Override

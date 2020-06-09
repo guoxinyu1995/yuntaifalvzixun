@@ -1,24 +1,37 @@
 package com.ytfu.yuntaifawu.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.lee.annotation.InjectLayout;
+import com.github.lee.annotation.InjectPresenter;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
+import com.orhanobut.logger.Logger;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
@@ -42,9 +55,15 @@ import io.reactivex.annotations.Nullable;
  * @创建时间 2019/11/9
  * @描述
  */
-public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragment {
+public abstract class BaseFragment<V extends BaseView, P extends BasePresenter<V>>
+        extends Fragment implements BaseView {
+    protected Context mContext;
+    protected LayoutInflater mInflater;
+    protected Handler mHandler;
 
-    protected P mPresenter;
+    protected Toolbar mToolbar;
+
+    private P mPresenter;
     protected LoadService mBaseLoadService;
     private CustomDialog mCustomDialog;
     private Unbinder mUnbinder;
@@ -54,24 +73,43 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getActivity();
+        mInflater = LayoutInflater.from(mContext);
+        mHandler = new Handler();
 
         init();
 
+        //获取InjectPresenter注解,进行P层对象自动注入
+        InjectPresenter injectPresenter = getClass().getAnnotation(InjectPresenter.class);
+        if (null == injectPresenter) {
+            //使用createPresenter
+            Logger.w("新版BaseFragment封装已经不建议复写 createPresenter() 方法,请使用@InjectPresenter(clazz)注解");
+            mPresenter = createPresenter();
+        } else {
+            //反射创建Presenter对象进行自动注入
+            try {
+                //noinspection unchecked
+                Class<P> clazz = (Class<P>) injectPresenter.value();
+                mPresenter = clazz.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         //判断是否使用MVP模式
-        mPresenter = createPresenter();
         if (mPresenter != null) {
             //因为之后所有的子类都要实现对应的View接口
             mPresenter.attachView((V) this);
             mPresenter.attachLifecycle(this);
+        } else {
+            Logger.e(getClass().getSimpleName() + "并不是标准MVP设计模式,请使用@InjectPresenter(clazz)注解绑定MVP设计模式");
         }
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = View.inflate(getContext(), provideContentViewId(), null);
-        mUnbinder = ButterKnife.bind(this, rootView);
-
+        View rootView = View.inflate(mContext, R.layout.fragment_base, null);
         if (null != provideLoadServiceRootView()) {
             initLoadService(provideLoadServiceRootView());
         } else {
@@ -84,7 +122,49 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     @Override
     public void onViewCreated(@NonNull View view, @androidx.annotation.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //自动注入显示的布局
+        InjectLayout injectLayout = getClass().getAnnotation(InjectLayout.class);
+
+        int toolbarLayoutId;
+        int showLayoutId;
+        if (null == injectLayout) {
+            toolbarLayoutId = -1;
+            showLayoutId = -1;
+        } else {
+            toolbarLayoutId = injectLayout.toolbarLayoutId();
+            showLayoutId = injectLayout.value();
+        }
+        //设置toolbar
+        FrameLayout toolbarContainer = view.findViewById(R.id.fl_base_fragment_toolbar_container);
+        if (toolbarLayoutId == -1) {
+            toolbarContainer.setVisibility(View.GONE);
+        } else {
+            mToolbar = inflateToolbar(toolbarLayoutId);
+            mToolbar.setTitle("");
+            toolbarContainer.removeAllViews();
+            toolbarContainer.addView(mToolbar);
+            Activity activity = getActivity();
+            if (activity instanceof BaseActivity) {
+                BaseActivity<?, ?> a = (BaseActivity<?, ?>) activity;
+                a.setSupportActionBar(mToolbar);
+            }
+        }
+        if (showLayoutId == -1) {
+            Logger.w("新版BaseActivity封装不建议复写 provideContentViewId() 方法, 请使用@InjectLayout(R.layout.xxx)");
+            showLayoutId = provideContentViewId();
+        }
+
+        FrameLayout baseContent = view.findViewById(R.id.fl_base_fragment_content);
+        if (showLayoutId != -1) {
+            View rootView = inflateView(showLayoutId);
+            baseContent.removeAllViews();
+            baseContent.addView(rootView);
+
+            mUnbinder = ButterKnife.bind(this, rootView);
+        }
+
         initView(view);
+        setViewListener(view);
         initData();
     }
 
@@ -102,26 +182,123 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
      *
      * @return 布局文件id
      */
-    protected abstract int provideContentViewId();
+    protected int provideContentViewId() {
+        return -1;
+    }
 
     /**
      * 用于创建Presenter和判断是否使用MVP模式(由子类实现)
      *
      * @return presenter
+     * @deprecated 请使用@InjectPresenter(clazz)绑定Presenter
      */
-    protected abstract P createPresenter();
+    protected P createPresenter() {
+        return null;
+    }
 
     /**
      * initView
      *
      * @param rootView 根布局
      */
-    protected abstract void initView(View rootView);
+    protected void initView(View rootView) {
+    }
+
+    protected void setViewListener(View rootView) {
+
+    }
 
     /**
      * initData
      */
-    protected abstract void initData();
+    protected void initData() {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //
+    ///////////////////////////////////////////////////////////////////////////
+
+    protected View inflateView(@LayoutRes int layoutId) {
+        return mInflater.inflate(layoutId, null, false);
+    }
+
+    @Nullable
+    protected Toolbar inflateToolbar(@LayoutRes int layoutId) {
+        View view = inflateView(layoutId);
+        if (view instanceof Toolbar) {
+            return (Toolbar) view;
+        }
+        return null;
+    }
+
+    protected void setToolbar(Toolbar toolbar) {
+        mToolbar = toolbar;
+        mToolbar.setTitle("");
+        FrameLayout toolbarContainer = getView().findViewById(R.id.fl_base_fragment_toolbar_container);
+        toolbarContainer.removeAllViews();
+        toolbarContainer.addView(mToolbar);
+        Activity activity = getActivity();
+        if (activity instanceof BaseActivity) {
+            BaseActivity<?, ?> a = (BaseActivity<?, ?>) activity;
+            a.setSupportActionBar(mToolbar);
+        }
+    }
+
+    protected P getPresenter() {
+        if (null == mPresenter) {
+            throw new IllegalStateException(getClass().getSimpleName() + "不是标准的MVP设计模式实现,请使用@InjectPresenter(clazz)绑定标准的MVP设计模式");
+        }
+        return mPresenter;
+    }
+
+    /**
+     * 设置Toolbar上左边图标和点击事件
+     */
+    protected void setToolbarLeftImage(@DrawableRes int drawableId, @androidx.annotation.Nullable View.OnClickListener listener) {
+        if (null == mToolbar) {
+            return;
+        }
+        mToolbar.setNavigationIcon(drawableId);
+        if (null != listener) {
+            mToolbar.setNavigationOnClickListener(listener);
+        }
+    }
+
+    /**
+     * 设置toolbar中的TextView显示文本
+     */
+    protected void setToolbarText(@IdRes int viewId, String title) {
+        TextView tv = mToolbar.findViewById(viewId);
+        tv.setText(title);
+    }
+
+    protected void setToolbarTextColor(@IdRes int viewId, @ColorInt int color) {
+        TextView tv = mToolbar.findViewById(viewId);
+        tv.setTextColor(color);
+    }
+
+    protected void setToolbarText(@IdRes int viewId, @StringRes int titleId) {
+        TextView tv = mToolbar.findViewById(viewId);
+        tv.setText(titleId);
+    }
+
+    /**
+     * 设置Toolbar中控件的点击事件
+     */
+    protected void setToolbarViewClickListener(@IdRes int viewId, @androidx.annotation.Nullable View.OnClickListener listener) {
+        if (null == mToolbar) {
+            Logger.e(getClass().getSimpleName() + "没有设置有效的Toolbar显示");
+            return;
+        }
+        mToolbar.findViewById(viewId).setOnClickListener(listener);
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //
+    ///////////////////////////////////////////////////////////////////////////
+
 
     protected View provideLoadServiceRootView() {
         return null;
@@ -231,6 +408,12 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
             progressDialog.dismiss();
             progressDialog = null;
         }
+    }
+
+
+    @Override
+    public void runOnUi(Runnable runnable) {
+        mHandler.post(runnable);
     }
 
     /**

@@ -244,7 +244,7 @@ public class ForgetPwdActivity extends BaseActivity<IForgetPwdView, ForgectPwdPr
                             map.put("code", code);
                             map.put("pwd", pwd);
                             map.put("repwd", repwd);
-                            mPresenter.getForgectPwd(map);
+                            getPresenter().getForgectPwd(map);
                         } else {
                             ToastUtil.showCenterToast("密码为6到12位");
                         }
@@ -272,7 +272,7 @@ public class ForgetPwdActivity extends BaseActivity<IForgetPwdView, ForgectPwdPr
 //                    countDownTimer.start();
                     HashMap<String, String> map = new HashMap<>();
                     map.put("mobile", mobile);
-                    mPresenter.getForgectSend(map);
+                    getPresenter().getForgectSend(map);
 //                    initTimer();
 //                    ToastUtil.showToast("手机号格式正确");
                 } else {

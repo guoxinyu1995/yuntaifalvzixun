@@ -14,12 +14,14 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.apis.HttpUtil;
@@ -52,6 +54,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * tl_global_toolbar
  * 律师聊天界面
  */
 public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, LawyerChatRoomPresenter>
@@ -120,7 +123,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
 
     @Override
     protected void initView() {
-        mPresenter.registerMessageListener();
+        getPresenter().registerMessageListener();
 
         //===Desc:设置Toolbar相关=================================================================
         toolbar.setTitle("");
@@ -177,8 +180,8 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
             selfAvatar = self.getPicurl();
         }
         adapter = new LawyerChatRoomAdapter(toUserAvatar, selfAvatar);
-        adapter.bindToRecyclerView(rv_room_content);
-        adapter.setEnableLoadMore(false);
+//        adapter.bindToRecyclerView(rv_room_content);
+        adapter.getLoadMoreModule().setEnableLoadMore(false);
         rv_room_content.setAdapter(adapter);
 
         rv_room_content.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
@@ -186,28 +189,27 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
                 rv_room_content.post(() -> rv_room_content.smoothScrollToPosition(adapter.getData().size()));
             }
         });
+        adapter.addChildClickViewIds(R.id.iv_chat_item_avatar);
         //律师端头像点击事件
-        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 int id = view.getId();
-                switch (id) {
-                    case R.id.iv_chat_item_avatar:
-                        String shengfen = SpUtil.getString(AppConstant.SHENFEN, "1");
-                        String uid = SpUtil.getString(AppConstant.UID, "");
-                        if ("2".equals(shengfen)) {
-                            HistoryChatItemMultiItem multiItem = LawyerChatRoomActivity.this.adapter.getData().get(position);
-                            Log.e("getItemType", "onItemChildClick: " + multiItem.getItemType());
-                            if (multiItem.getItemType() == HistoryChatItemMultiItem.TYPE_SEND_MSG
-                                    || multiItem.getItemType() == HistoryChatItemMultiItem.TYPE_SEND_FEE) {
-                                String toUserid = getBundleString(KEY_TO_USER_ID, "");
-                                Intent intent = new Intent(LawyerChatRoomActivity.this, LvShiDetailsActivity.class);
-                                intent.putExtra("lid", uid);
-                                startActivity(intent);
-                            }
-
+                if (id == R.id.iv_chat_item_avatar) {
+                    String shengfen = SpUtil.getString(AppConstant.SHENFEN, "1");
+                    String uid = SpUtil.getString(AppConstant.UID, "");
+                    if ("2".equals(shengfen)) {
+                        HistoryChatItemMultiItem multiItem = LawyerChatRoomActivity.this.adapter.getData().get(position);
+                        Log.e("getItemType", "onItemChildClick: " + multiItem.getItemType());
+                        if (multiItem.getItemType() == HistoryChatItemMultiItem.TYPE_SEND_MSG
+                                || multiItem.getItemType() == HistoryChatItemMultiItem.TYPE_SEND_FEE) {
+                            String toUserid = getBundleString(KEY_TO_USER_ID, "");
+                            Intent intent = new Intent(LawyerChatRoomActivity.this, LvShiDetailsActivity.class);
+                            intent.putExtra("lid", uid);
+                            startActivity(intent);
                         }
-                        break;
+
+                    }
                 }
             }
         });
@@ -223,7 +225,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
                 }
                 String selfId = SpUtil.getString(AppConstant.UID, "");
                 String toUserId = getBundleString(KEY_TO_USER_ID, "");
-                mPresenter.sendTextMessage(selfId, toUserId, input);
+                getPresenter().sendTextMessage(selfId, toUserId, input);
 
             }
         });
@@ -266,7 +268,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
 
     @Override
     protected void onDestroy() {
-        mPresenter.unregisterMessageListener();
+        getPresenter().unregisterMessageListener();
         super.onDestroy();
     }
 
@@ -301,7 +303,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
                 if (!TextUtils.isEmpty(edPrice)) {
                     String toUserId = getBundleString(KEY_TO_USER_ID, "");
                     String selfId = SpUtil.getString(AppConstant.UID, "");
-                    mPresenter.sendFeeMessage(toUserId, selfId, edPrice);
+                    getPresenter().sendFeeMessage(toUserId, selfId, edPrice);
                     alertDialog.dismiss();
                 } else {
                     showCenterToast("输入金额不能为空");
@@ -347,7 +349,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
 
                 //同步消息到服务器
                 String consultId = getBundleString(KEY_CONSULT_ID, "");
-                mPresenter.lawyerSyncMessageToService(consultId, toUserId, fromUserId, itemBean.getBody().getText());
+                getPresenter().lawyerSyncMessageToService(consultId, toUserId, fromUserId, itemBean.getBody().getText());
             }
         });
     }
@@ -369,7 +371,7 @@ public class LawyerChatRoomActivity extends BaseActivity<LawyerChatRoomView, Law
     public void onSendFeeSuccess(String toUserId, String fromUserId, HistoryChatItemBean itemBean) {
 //        String content = "收取服务费" + itemBean.getExt().getPrice() + "元";
 //        String consultId = getBundleString(KEY_CONSULT_ID, "");
-//        mPresenter.lawyerSyncMessageToService(consultId, toUserId, fromUserId, content);
+//        getPresenter().lawyerSyncMessageToService(consultId, toUserId, fromUserId, content);
     }
 
     @Override

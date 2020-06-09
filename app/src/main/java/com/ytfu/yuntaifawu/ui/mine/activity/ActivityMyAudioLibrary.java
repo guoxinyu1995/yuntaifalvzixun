@@ -130,7 +130,7 @@ public class ActivityMyAudioLibrary extends BaseActivity<IMyLibraryView, MyLibra
                 map.put("f_type", String.valueOf(1));
                 map.put("type", String.valueOf(1));
                 map.put("keyword", keyword);
-                mPresenter.myLibrary(map);
+                getPresenter().myLibrary(map);
             }
         });
 //        libraryAdaper = new MyAudioLibraryAdaper(this);
@@ -139,7 +139,7 @@ public class ActivityMyAudioLibrary extends BaseActivity<IMyLibraryView, MyLibra
         map.put("uid", uid);
         map.put("f_type", String.valueOf(1));
         map.put("type", String.valueOf(1));
-        mPresenter.myLibrary(map);
+        getPresenter().myLibrary(map);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class ActivityMyAudioLibrary extends BaseActivity<IMyLibraryView, MyLibra
         map.put("uid", uid);
         map.put("f_type", String.valueOf(1));
         map.put("type", String.valueOf(1));
-        mPresenter.myLibrary(map);
+        getPresenter().myLibrary(map);
 
     }
 
@@ -161,7 +161,7 @@ public class ActivityMyAudioLibrary extends BaseActivity<IMyLibraryView, MyLibra
             showEmpty();
         } else {
             myAudioLibraryAdaper1 = new MyAudioLibraryAdaper1(this,audioControl, libraryBean.getList());
-            myAudioLibraryAdaper1.bindToRecyclerView(recycleAudioLibrary);
+//            myAudioLibraryAdaper1.bindToRecyclerView(recycleAudioLibrary);
         }
     }
 

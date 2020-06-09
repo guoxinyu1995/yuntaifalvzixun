@@ -2,7 +2,10 @@ apply plugin: 'java-library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
 
+    implementation project(":mvp_base")
+
+
+}
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"

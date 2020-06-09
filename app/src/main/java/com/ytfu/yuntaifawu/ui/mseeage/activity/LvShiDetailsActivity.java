@@ -161,7 +161,7 @@ public class LvShiDetailsActivity extends BaseActivity<ILvShiDetailsView, LvShiD
         String lid = getIntent().getStringExtra("lid");
         HashMap<String, String> map = new HashMap<>();
         map.put("lid", lid);
-        mPresenter.getLvShiDetails(map);
+        getPresenter().getLvShiDetails(map);
         lvShiDetailsSuccessAnliAdaper = new LvShiDetailsSuccessAnliAdaper(this);
         lvShiDetailsPingJiaAdaper = new LvShiDetailsPingJiaAdaper(this);
         lvShiDetailsTaHuiDaAdaper = new LvShiDetailsTaHuiDaAdaper(this);

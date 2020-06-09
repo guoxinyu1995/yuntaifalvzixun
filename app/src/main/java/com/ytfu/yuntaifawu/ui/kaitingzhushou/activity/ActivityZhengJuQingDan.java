@@ -140,7 +140,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
         showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
-        mPresenter.setZjqd(map);
+        getPresenter().setZjqd(map);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
         });
         HashMap<String, String> map = new HashMap<>();
         map.put("id", id);
-        mPresenter.setZjqd(map);
+        getPresenter().setZjqd(map);
         zjqdAdaper.setItemClickListener(new ZjqdAdaper.RecyclerViewOnItemClickListener() {
             @Override
             public void onItemClickListener(int position, boolean check) {
@@ -321,7 +321,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
 //                    map.put("sid", id);
 //                    map.put("zhengju_weiyi", xqStr);
 //                    map.put("xitong", String.valueOf(1));
-//                    mPresenter.setZjqdPayWx(map);
+//                    getPresenter().setZjqdPayWx(map);
 //                }
 //                dialog.dismiss();
 //            }
@@ -339,7 +339,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
 //                    map.put("sid", id);
 //                    map.put("zhengju_weiyi", xqStr);
 //                    map.put("xitong", String.valueOf(1));
-//                    mPresenter.setZjqdPay(map);
+//                    getPresenter().setZjqdPay(map);
 //                }
 //                dialog.dismiss();
 //            }
@@ -387,7 +387,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
                             map.put("sid", id);
                             map.put("zhengju_weiyi", xqStr);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setZjqdPayWx(map);
+                            getPresenter().setZjqdPayWx(map);
 //                            }
                         } else if (payType == PAY_TYPE_ALIBABA) {
                             String zhengju_str = list2String(zjqdList);
@@ -401,7 +401,7 @@ public class ActivityZhengJuQingDan extends BaseActivity<IZjqdView, ZjqdPresente
                             map.put("sid", id);
                             map.put("zhengju_weiyi", xqStr);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setZjqdPay(map);
+                            getPresenter().setZjqdPay(map);
 //                            }
                         }
                         //重置

@@ -101,7 +101,7 @@ public class ActivitySetName extends BaseActivity<ISetNameView, SetNamePresenter
             HashMap<String,String> map = new HashMap<>();
             map.put("uid",uid);
             map.put("name",et_name);
-            mPresenter.setName(map);
+            getPresenter().setName(map);
         }
     }
 

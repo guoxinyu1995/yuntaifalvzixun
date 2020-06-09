@@ -93,7 +93,10 @@ android {
     //use legacy for android > 6.0
     useLibrary 'org.apache.http.legacy'
 }
-
+/*设置编译使用的编码*/
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 //UTC:世界统一时间，不属于任意时区beijing
 //def releaseTime() {
 //    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC"))
@@ -101,8 +104,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":mvp_base")
     implementation project(":mvp-annotation")
-    implementation project(":mvp-compiler")
+    annotationProcessor project(":mvp-compiler")
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -170,7 +174,8 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:29.1.1'
     //exoplayer音频播放
     implementation 'com.google.android.exoplayer:exoplayer:2.9.0'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
     //屏幕适配
     implementation 'me.jessyan:autosize:0.9.5'
     // 支付宝 SDK AAR 包所需的配置

@@ -69,7 +69,7 @@ public class LvShiWenTiFragment extends BaseFragment<IlvshiZiXunListView, LvShiZ
 
     @Override
     protected void initView(View rootView) {
-        tvTopTitle.setText("咨询问题");
+//        tvTopTitle.setText("咨询问题");
         ivFanhui.setVisibility(View.GONE);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -111,12 +111,12 @@ public class LvShiWenTiFragment extends BaseFragment<IlvshiZiXunListView, LvShiZ
 
     private void getData() {
         page = 1;
-        mPresenter.getLvShiZiXunList(page);
+        getPresenter().getLvShiZiXunList(page);
     }
 
     private void getDatas() {
         page++;
-        mPresenter.getLvShiZiXunList(page);
+        getPresenter().getLvShiZiXunList(page);
     }
 
     @Override

@@ -105,7 +105,7 @@ public class ActivityQszHistoryList extends BaseActivity<IQszHistoryView, QszHis
         super.onMyReload(v);
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setQszHistory(map);
+        getPresenter().setQszHistory(map);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class ActivityQszHistoryList extends BaseActivity<IQszHistoryView, QszHis
         });
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setQszHistory(map);
+        getPresenter().setQszHistory(map);
         listAdaper.setItemClickListener(new QszHistorytitleListAdaper.IQszTitleItemClickListener() {
             @Override
             public void onQszTitleItemClickListener(int position, String id) {
@@ -137,7 +137,7 @@ public class ActivityQszHistoryList extends BaseActivity<IQszHistoryView, QszHis
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("id", id);
-                        mPresenter.setQszDelete(map);
+                        getPresenter().setQszDelete(map);
                         dialog.dismiss();
                     }
 
@@ -192,7 +192,7 @@ public class ActivityQszHistoryList extends BaseActivity<IQszHistoryView, QszHis
                 showToast("删除成功");
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
-                mPresenter.setQszHistory(map);
+                getPresenter().setQszHistory(map);
             } else {
                 showToast("删除失败");
             }

@@ -425,7 +425,7 @@ public class ActivityLvShiRenZheng extends BaseActivity<ILvShiRenZhengCommitView
         map.put(parseImageMapKey("card1", commitBean.getIdCardFront().getName()), parseImageRequestBody(commitBean.getIdCardFront()));
         map.put(parseImageMapKey("card2", commitBean.getIdCardBack().getName()), parseImageRequestBody(commitBean.getIdCardBack()));
 
-        mPresenter.getLvShiRenZhengCommit(map);
+        getPresenter().getLvShiRenZhengCommit(map);
 
     }
 

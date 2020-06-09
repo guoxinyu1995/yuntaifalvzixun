@@ -164,7 +164,7 @@ public class ActivityUpDataPwd extends BaseActivity<IUpdataPwdView, UpDataPwdPre
                     map.put("pwd", pwd);
                     map.put("newpwd", new_pwd);
                     map.put("renewpwd", renew_pwd);
-                    mPresenter.setUpdataPwd(map);
+                    getPresenter().setUpdataPwd(map);
                 } else {
                     tvTishi.setVisibility(View.VISIBLE);
                     tvTishi.setText("密码格式不正确");

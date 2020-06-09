@@ -115,20 +115,20 @@ public class ActivityZjqdXq extends BaseActivity<IZjqdXqView, ZjqdXqPresenter> i
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhengju_weiyi", zhengju_weiyi);
-                mPresenter.setZjqdXqBuy(map);
+                getPresenter().setZjqdXqBuy(map);
                 break;
             case TYPE_ITEM:
 //                showToast("item");
                 HashMap<String, String> map1 = new HashMap<>();
                 map1.put("uid", uid);
                 map1.put("zhengjuid", zhengjuid);
-                mPresenter.setZjqdXq(map1);
+                getPresenter().setZjqdXq(map1);
                 break;
             case TYPE_JILU:
                 HashMap<String, String> map2 = new HashMap<>();
                 map2.put("uid", uid);
                 map2.put("zhengju_weiyi", zhengjuid);
-                mPresenter.setZjqdXqBuy(map2);
+                getPresenter().setZjqdXqBuy(map2);
                 break;
             default:
                 break;
@@ -157,20 +157,20 @@ public class ActivityZjqdXq extends BaseActivity<IZjqdXqView, ZjqdXqPresenter> i
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhengju_weiyi", zhengju_weiyi);
-                mPresenter.setZjqdXqBuy(map);
+                getPresenter().setZjqdXqBuy(map);
                 break;
             case TYPE_ITEM:
 //                showToast("item");
                 HashMap<String, String> map1 = new HashMap<>();
                 map1.put("uid", uid);
                 map1.put("zhengjuid", zhengjuid);
-                mPresenter.setZjqdXq(map1);
+                getPresenter().setZjqdXq(map1);
                 break;
             case TYPE_JILU:
                 HashMap<String, String> map2 = new HashMap<>();
                 map2.put("uid", uid);
                 map2.put("zhengju_weiyi", zhengjuid);
-                mPresenter.setZjqdXqBuy(map2);
+                getPresenter().setZjqdXqBuy(map2);
                 break;
             default:
                 break;
@@ -188,7 +188,7 @@ public class ActivityZjqdXq extends BaseActivity<IZjqdXqView, ZjqdXqPresenter> i
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("zhengjuid", id);
-                mPresenter.setZjqdXqSendEmail(map);
+                getPresenter().setZjqdXqSendEmail(map);
                 break;
             default:
                 break;
@@ -291,7 +291,7 @@ public class ActivityZjqdXq extends BaseActivity<IZjqdXqView, ZjqdXqPresenter> i
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setBdEmail(map);
+                        getPresenter().setBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

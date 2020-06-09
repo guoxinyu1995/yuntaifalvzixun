@@ -5,9 +5,6 @@ package com.ytfu.yuntaifawu.ui;
  *
  * */
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -23,12 +20,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.lee.annotation.InjectPresenter;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.github.lee.annotation.InjectLayout;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMClientListener;
 import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.orhanobut.logger.Logger;
 import com.yanzhenjie.permission.Permission;
@@ -37,24 +36,19 @@ import com.ytfu.yuntaifawu.apis.HttpUtil;
 import com.ytfu.yuntaifawu.app.App;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
-import com.ytfu.yuntaifawu.base.BasePresenter;
 import com.ytfu.yuntaifawu.helper.BaseRxObserver;
 import com.ytfu.yuntaifawu.helper.RxLifecycleUtil;
 import com.ytfu.yuntaifawu.im.EmChatManager;
 import com.ytfu.yuntaifawu.ui.chat.fragment.ChatListFragment;
-import com.ytfu.yuntaifawu.ui.home.fragment.HomeFragment;
 import com.ytfu.yuntaifawu.ui.home.fragment.ConsultFragment;
 import com.ytfu.yuntaifawu.ui.home.fragment.HomeFragment1;
-import com.ytfu.yuntaifawu.ui.home.fragment.OpenFragment;
 import com.ytfu.yuntaifawu.ui.home.fragment.IndictmentFragment;
+import com.ytfu.yuntaifawu.ui.home.fragment.OpenFragment;
 import com.ytfu.yuntaifawu.ui.mine.fragment.MineFragment;
-
 import com.ytfu.yuntaifawu.ui.mseeage.bean.HuanXinLoginBean;
-import com.ytfu.yuntaifawu.ui.mseeage.fragment.MessageFragment;
 import com.ytfu.yuntaifawu.ui.updatapk.UpDateApkBean;
 import com.ytfu.yuntaifawu.utils.AndPermissionUtil;
 import com.ytfu.yuntaifawu.utils.ApkUtil;
-
 import com.ytfu.yuntaifawu.utils.CommonUtil;
 import com.ytfu.yuntaifawu.utils.DemoHelper;
 import com.ytfu.yuntaifawu.utils.Eyes;
@@ -62,14 +56,10 @@ import com.ytfu.yuntaifawu.utils.SpUtil;
 import com.ytfu.yuntaifawu.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import constacne.UiType;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -79,17 +69,11 @@ import model.UiConfig;
 import model.UpdateConfig;
 import update.UpdateAppUtils;
 
-@InjectPresenter(clazz = MainActivity.class)
+
+@InjectLayout(value = R.layout.activity_main, loadingLayoutId = android.R.layout.preference_category)
 public class MainActivity extends BaseActivity implements View.OnClickListener, EMMessageListener {
 
-    //    private LinearLayout home;
-    //    private LinearLayout mine;
-    //    private ImageView ico_home;
-    //    private ImageView ico_mine;
-    //    private TextView text_home;
-    //    private TextView text_mine;
-    private HomeFragment homeFragment;
-    private FragmentTransaction beginTransaction;
+    //    private FragmentTransaction beginTransaction;
     /**
      * 是否强制更新
      */
@@ -126,16 +110,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         Intent starter = new Intent(context, MainActivity.class);
         starter.putExtras(bundle);
         context.startActivity(starter);
-    }
-
-    @Override
-    protected int provideContentViewId() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
     }
 
     @Override
@@ -195,6 +169,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //        mine.setOnClickListener(this);
 
         EmChatManager.getInstance().registerMessageListener(this);
+
     }
 
     @Override
@@ -257,60 +232,52 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void getHuanxinLogin(HashMap<String, String> map) {
-        HttpUtil.getInstance().getApiService().setHxLogin(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .as(RxLifecycleUtil.bindLifecycle(this))
-                .subscribe(new BaseRxObserver<HuanXinLoginBean>() {
-                    @Override
-                    public void onNextImpl(HuanXinLoginBean huanXinLoginBean) {
-                        if (huanXinLoginBean.getCode() == 200) {
-                            Log.e("success", "------" + huanXinLoginBean.getMsg());
-                            showToast("环信登录成功");
-                            EMClient.getInstance().chatManager().loadAllConversations();
-                        }
-                    }
+        HttpUtil.getInstance().getApiService().setHxLogin(map).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).as(RxLifecycleUtil.bindLifecycle(this)).subscribe(new BaseRxObserver<HuanXinLoginBean>() {
+            @Override
+            public void onNextImpl(HuanXinLoginBean huanXinLoginBean) {
+                if (huanXinLoginBean.getCode() == 200) {
+                    Log.e("success", "------" + huanXinLoginBean.getMsg());
+                    showToast("环信登录成功");
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                }
+            }
 
-                    @Override
-                    public void onErrorImpl(String errorMessage) {
-                        Logger.e(errorMessage);
-                    }
-                });
+            @Override
+            public void onErrorImpl(String errorMessage) {
+                Logger.e(errorMessage);
+            }
+        });
     }
 
     private void checkUpdate() {
-        HttpUtil.getInstance().getApiService().checkUpdate()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .as(RxLifecycleUtil.bindLifecycle(this))
-                .subscribe(new BaseRxObserver<UpDateApkBean>() {
-                    @Override
-                    public void onNextImpl(UpDateApkBean updateBean) {
-                        if (null != updateBean) {
-                            localVersionCode = ApkUtil.getVersionCode();
-                            int serverVersionCode = Integer.parseInt(null != updateBean.getCode() ? updateBean.getCode() : "0");
-                            allowCode = Integer.parseInt(null != updateBean.getAllow_code() ? updateBean.getAllow_code() : "0");
+        HttpUtil.getInstance().getApiService().checkUpdate().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).as(RxLifecycleUtil.bindLifecycle(this)).subscribe(new BaseRxObserver<UpDateApkBean>() {
+            @Override
+            public void onNextImpl(UpDateApkBean updateBean) {
+                if (null != updateBean) {
+                    localVersionCode = ApkUtil.getVersionCode();
+                    int serverVersionCode = Integer.parseInt(null != updateBean.getCode() ? updateBean.getCode() : "0");
+                    allowCode = Integer.parseInt(null != updateBean.getAllow_code() ? updateBean.getAllow_code() : "0");
 
-                            // 当前版本低于服务器最低版本，强制更新
-                            if (localVersionCode < allowCode) {
-                                force = true;
-                            }
-
-                            // 有新版本提示更新
-                            if (localVersionCode < serverVersionCode) {
-                                Message msg = new Message();
-                                msg.what = 0;
-                                msg.obj = updateBean;
-                                myHandler.sendMessage(msg);
-                            }
-                        }
+                    // 当前版本低于服务器最低版本，强制更新
+                    if (localVersionCode < allowCode) {
+                        force = true;
                     }
 
-                    @Override
-                    public void onErrorImpl(String errorMessage) {
-                        Logger.e(errorMessage);
+                    // 有新版本提示更新
+                    if (localVersionCode < serverVersionCode) {
+                        Message msg = new Message();
+                        msg.what = 0;
+                        msg.obj = updateBean;
+                        myHandler.sendMessage(msg);
                     }
-                });
+                }
+            }
+
+            @Override
+            public void onErrorImpl(String errorMessage) {
+                Logger.e(errorMessage);
+            }
+        });
     }
 
     private void initFragment() {
@@ -332,14 +299,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         EMClient.getInstance().groupManager().loadAllGroups();
         EMClient.getInstance().addClientListener(clientListener);
 
-        beginTransaction = getSupportFragmentManager().beginTransaction();
-        //        beginTransaction.replace(R.id.fram_layout, homeFragment, homeFragment.getTag());
-        beginTransaction.replace(R.id.fram_layout, homeFragment1, homeFragment1.getTag());//首页
-        beginTransaction.add(R.id.fram_layout, messageFragment, messageFragment.getTag());//消息
-        beginTransaction.add(R.id.fram_layout, consultFragment, consultFragment.getTag());//咨询
-        beginTransaction.add(R.id.fram_layout, indictmentFragment, indictmentFragment.getTag());//诉状
-        beginTransaction.add(R.id.fram_layout, mineFragment, mineFragment.getTag());//我的
-        beginTransaction.commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().add(R.id.fram_layout, homeFragment1)//首页
+                .add(R.id.fram_layout, messageFragment)//消息
+                .add(R.id.fram_layout, consultFragment)//咨询
+                .add(R.id.fram_layout, indictmentFragment)//诉状
+                .add(R.id.fram_layout, mineFragment).commitNowAllowingStateLoss();
+        //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        //        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        //        for (int index = 0; index < fragments.size(); index++) {
+        //            transaction.hide(fragments.get(index));
+        //        }
+        //        transaction.commitNowAllowingStateLoss();
+
         // 默认首页
         changeTagStatus(0);
     }
@@ -419,7 +390,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void changeFragment(int i) {
-        beginTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction beginTransaction = getSupportFragmentManager().beginTransaction();
         hideFragment(beginTransaction);
         switch (i) {
             case 0:
@@ -443,9 +414,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 beginTransaction.show(mineFragment);
                 break;
             default:
+                beginTransaction.show(homeFragment1);
                 break;
         }
-        beginTransaction.commitAllowingStateLoss();
+        beginTransaction.commitNowAllowingStateLoss();
     }
 
     private void hideFragment(FragmentTransaction beginTransaction) {
@@ -556,6 +528,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }
         }
+
     }
 
     private void showUpdate(UpDateApkBean apkBean) {
@@ -575,12 +548,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         if (force) {
             updateConfig.setForce(true);
         }
-        UpdateAppUtils.getInstance()
-                .apkUrl(apkBean.getUrl())
+        UpdateAppUtils.getInstance().apkUrl(apkBean.getUrl())
                 // title设置为版本号
-                .updateTitle("v" + apkBean.getCode_str())
-                .updateContent(apkBean.getMiaoshu())
-                .uiConfig(uiConfig)
+                .updateTitle("v" + apkBean.getCode_str()).updateContent(apkBean.getMiaoshu()).uiConfig(uiConfig)
                 // 自定义布局中控件内容填充
                 .setOnInitUiListener((view, updateConfig1, uiConfig1) -> {
                     // 是否强制更新，强制时无取消按钮
@@ -588,35 +558,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         // 隐藏分割线
                         view.findViewById(R.id.view_update_line).setVisibility(View.GONE);
                     }
-                })
-                .setCancelBtnClickListener(() -> {
-                    return false;
-                })
-                .setUpdateDownloadListener(new UpdateDownloadListener() {
-                    @Override
-                    public void onStart() {
-                        if (!force) {
-                            // 非强制更新
-                        }
-                    }
+                }).setCancelBtnClickListener(() -> {
+            return false;
+        }).setUpdateDownloadListener(new UpdateDownloadListener() {
+            @Override
+            public void onStart() {
+                if (!force) {
+                    // 非强制更新
+                }
+            }
 
-                    @Override
-                    public void onDownload(int i) {
+            @Override
+            public void onDownload(int i) {
 
-                    }
+            }
 
-                    @Override
-                    public void onFinish() {
+            @Override
+            public void onFinish() {
 
-                    }
+            }
 
-                    @Override
-                    public void onError(@NonNull Throwable throwable) {
-                        Logger.e("UpdateDownloadListener -> onError() :" + throwable.getMessage());
-                    }
-                })
-                .updateConfig(updateConfig)
-                .update();
+            @Override
+            public void onError(@NonNull Throwable throwable) {
+                Logger.e("UpdateDownloadListener -> onError() :" + throwable.getMessage());
+            }
+        }).updateConfig(updateConfig).update();
     }
 
     @Override
@@ -630,12 +596,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      */
     private void setUnreadCound(int count) {
         runOnUiThread(() -> {
-            Map<String, EMConversation> allConversations = EMClient.getInstance().chatManager().getAllConversations();
-            for (Map.Entry<String, EMConversation> next : allConversations.entrySet()) {
-                String key = next.getKey();
-                EMConversation value = next.getValue();
-                Logger.e("key = " + key + ";;value  = " + value.getUnreadMsgCount());
-            }
             TextView tvRed = findViewById(R.id.tv_main_red_point);
             if (count <= 0) {
                 tvRed.setVisibility(View.INVISIBLE);

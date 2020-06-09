@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        tools:context="com.ytfu.yuntaifawu.ui.lawyer.transaction.adapter.TransactionAdapter">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_white_to_gray"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    tools:context="com.ytfu.yuntaifawu.ui.lawyer.transaction.adapter.TransactionAdapter">
 
     <LinearLayout
-            android:layout_width="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_transaction_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:maxLines="1"
+            android:textColor="#FF424242"
+            android:textSize="14sp"
+            tools:text="云台1001-咨询费-收取" />
 
         <TextView
-                android:id="@+id/tv_transaction_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textColor="#FF424242"
-                android:textSize="14sp"
-                tools:text="云台1001-咨询费-收取" />
-
-        <TextView
-                android:id="@+id/tv_transaction_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:maxLines="1"
-                android:textColor="#ff797979"
-                android:textSize="10sp"
-                tools:ignore="SmallSp"
-                tools:text="2019-08-11 8:00" />
+            android:id="@+id/tv_transaction_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:textColor="#ff797979"
+            android:textSize="10sp"
+            tools:ignore="SmallSp"
+            tools:text="2019-08-11 8:00" />
     </LinearLayout>
 
     <TextView
-            android:id="@+id/tv_transaction_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textColor="#ff484848"
-            android:textSize="14sp"
-            tools:text="+100" />
+        android:id="@+id/tv_transaction_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textColor="#ff484848"
+        android:textSize="14sp"
+        tools:text="+100" />
 
 </LinearLayout>

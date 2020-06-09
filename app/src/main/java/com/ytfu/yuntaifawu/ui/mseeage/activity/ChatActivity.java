@@ -150,7 +150,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
         HashMap<String, String> mapPay = new HashMap<>();
         mapPay.put("user_id", uid);
         mapPay.put("lv_id", id);
-        mPresenter.getWhetherToPay(mapPay);
+        getPresenter().getWhetherToPay(mapPay);
         super.onResume();
     }
 
@@ -205,16 +205,16 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
         HashMap<String, String> mapNotice = new HashMap<>();
         mapNotice.put("userid", uid);
         mapNotice.put("lsid", id);
-        //        mPresenter.getNotice(mapNotice);
+        //        getPresenter().getNotice(mapNotice);
         //点击微信是否购买
         HashMap<String, String> mapPay = new HashMap<>();
         mapPay.put("user_id", uid);
         mapPay.put("lv_id", id);
-        mPresenter.getWhetherToPay(mapPay);
+        getPresenter().getWhetherToPay(mapPay);
         //律师卡片
         HashMap<String, String> map = new HashMap<>();
         map.put("lid", id);
-        //        mPresenter.getLvShiCard(map);
+        //        getPresenter().getLvShiCard(map);
         chatFragment.setIKuozhanPayClickListener(new ChatFragment.IKuozhanPayClickListener() {
             @Override
             public void kuoZhanPayClickListener(EMMessage message) {
@@ -234,9 +234,9 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                 //                    mapCheckWeixin.put("user_id", userid);
                 //                    mapCheckWeixin.put("lv_id", lvshiid);
                 //                    mapCheckWeixin.put("h_id", huashuid);
-                //                    mPresenter.getCheckWeiXin(mapCheckWeixin);
+                //                    getPresenter().getCheckWeiXin(mapCheckWeixin);
                 //                } else {
-                mPresenter.getToCheckPay(userid, lvshiid, huashuid);
+                getPresenter().getToCheckPay(userid, lvshiid, huashuid);
                 //                }
             }
 
@@ -305,7 +305,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("userid", uid);
                     map.put("lvshiid", id);
-                    mPresenter.getExChangeWx(map);
+                    getPresenter().getExChangeWx(map);
                 }
                 break;
             case R.id.tv_pingjia:
@@ -463,7 +463,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                                 map.put("uid", ex_userid);
                                 map.put("lv_id", ex_lvshiid);
                                 map.put("jilu_id", ex_jilu_id);
-                                mPresenter.setMessageWatchPay(map);
+                                getPresenter().setMessageWatchPay(map);
                             } else if (pay_type == 1) {
                                 HashMap<String, String> map = new HashMap<>();
                                 map.put("type", String.valueOf(12));
@@ -472,7 +472,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                                 map.put("uid", userid);
                                 map.put("lv_id", lvshiid);
                                 map.put("jilu_id", jiluid);
-                                mPresenter.setMessageWatchPay(map);
+                                getPresenter().setMessageWatchPay(map);
                             }
                         } else if (payType == PAY_TYPE_ALIBABA) {
                             // ToastUtil.showCenterToast("支付宝");
@@ -484,7 +484,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                                 map.put("uid", ex_userid);
                                 map.put("lv_id", ex_lvshiid);
                                 map.put("jilu_id", ex_jilu_id);
-                                mPresenter.setMessageAliPay(map);
+                                getPresenter().setMessageAliPay(map);
                             } else if (pay_type == 1) {
                                 HashMap<String, String> map = new HashMap<>();
                                 map.put("type", String.valueOf(12));
@@ -493,7 +493,7 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                                 map.put("uid", userid);
                                 map.put("lv_id", lvshiid);
                                 map.put("jilu_id", jiluid);
-                                mPresenter.setMessageAliPay(map);
+                                getPresenter().setMessageAliPay(map);
                             }
 
                         }
@@ -531,13 +531,13 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("userid", uid);
                     map.put("lvshiid", id);
-                    mPresenter.getExChangeWx(map);
+                    getPresenter().getExChangeWx(map);
                 } else {
                     showToast("支付成功");
                     HashMap<String, String> mapPay = new HashMap<>();
                     mapPay.put("user_id", uid);
                     mapPay.put("lv_id", id);
-                    mPresenter.getWhetherToPay(mapPay);
+                    getPresenter().getWhetherToPay(mapPay);
                 }
                 break;
             default:
@@ -675,13 +675,13 @@ public class ChatActivity extends BaseActivity<IChatView, ChatPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("userid", uid);
                     map.put("lvshiid", id);
-                    mPresenter.getExChangeWx(map);
+                    getPresenter().getExChangeWx(map);
                 } else {
                     showToast("支付成功");
                     HashMap<String, String> mapPay = new HashMap<>();
                     mapPay.put("user_id", uid);
                     mapPay.put("lv_id", id);
-                    mPresenter.getWhetherToPay(mapPay);
+                    getPresenter().getWhetherToPay(mapPay);
                 }
             }
 

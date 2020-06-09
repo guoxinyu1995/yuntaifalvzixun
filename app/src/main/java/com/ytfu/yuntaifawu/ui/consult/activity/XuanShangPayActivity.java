@@ -127,7 +127,7 @@ public class XuanShangPayActivity extends BaseActivity<IXuanShangPayView, XuanSh
                     map.put("price", String.valueOf(5));
                     map.put("consult_type", tvStr);
                     map.put("consult_content", edStr);
-                    mPresenter.getXuanShangWatch(map);
+                    getPresenter().getXuanShangWatch(map);
                 } else if (payType == PAY_TYPE_ALIBABA) {
                     //支付宝支付
                     showCenterToast("支付宝");
@@ -138,7 +138,7 @@ public class XuanShangPayActivity extends BaseActivity<IXuanShangPayView, XuanSh
                     map.put("price", String.valueOf(5));
                     map.put("consult_type", tvStr);
                     map.put("consult_content", edStr);
-                    mPresenter.getXuanShangAli(map);
+                    getPresenter().getXuanShangAli(map);
                 }
                 //重置
                 payType = PAY_TYPE_WECHAT;

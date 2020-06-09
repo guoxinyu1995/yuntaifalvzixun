@@ -9,7 +9,6 @@ import com.hyphenate.chat.EMClient;
 import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
-import com.ytfu.yuntaifawu.ui.MainActivity;
 import com.ytfu.yuntaifawu.ui.login.activity.LoginCodeActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -46,12 +45,13 @@ public class LoginHelper {
 
                 @Override
                 public void onError(int i, String s) {
+                    Logger.e("22code ---> " + i + ",,, msg ---> " + s);
                     Log.d("main", "登录聊天服务器失败！");
                 }
 
                 @Override
                 public void onProgress(int i, String s) {
-                    Log.d("main", s);
+
                 }
             });
         }
@@ -89,7 +89,6 @@ public class LoginHelper {
             });
         }
     }
-
 //    public <T extends BaseActivity> void loginSuccess(T activity, LoginBean bean) {
 //        if (null != activity) {
 //            SpUtil.putString(AppConstant.TOKEN, bean.getToken());

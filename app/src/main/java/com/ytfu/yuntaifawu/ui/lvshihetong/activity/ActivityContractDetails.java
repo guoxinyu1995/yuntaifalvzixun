@@ -213,7 +213,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.getContractDetails(map);
+        getPresenter().getContractDetails(map);
     }
 
     @Override
@@ -223,7 +223,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
         map.put("id", id);
-        mPresenter.getContractDetails(map);
+        getPresenter().getContractDetails(map);
     }
 
     @Override
@@ -395,7 +395,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setHtBdEmail(map);
+                        getPresenter().setHtBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);
@@ -443,7 +443,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("id", id);
-                mPresenter.getContractDetails(map);
+                getPresenter().getContractDetails(map);
                 btn_yulan.setVisibility(View.VISIBLE);
                 tv_ligm.setVisibility(View.GONE);
                 iv_download.setVisibility(View.VISIBLE);
@@ -495,7 +495,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
                 HashMap<String, String> map1 = new HashMap<>();
                 map1.put("uid", uid);
                 map1.put("url", contract_url);
-                mPresenter.setSendEmail(map1);
+                getPresenter().setSendEmail(map1);
                 break;
             default:
                 break;
@@ -516,7 +516,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
 //                map.put("type", String.valueOf(2));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setContractPayWx(map);
+//                getPresenter().setContractPayWx(map);
 //                dialog.dismiss();
 //            }
 //
@@ -527,7 +527,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
 //                map.put("type", String.valueOf(2));
 //                map.put("id", id);
 //                map.put("xitong", String.valueOf(1));
-//                mPresenter.setContractPay(map);
+//                getPresenter().setContractPay(map);
 //                dialog.dismiss();
 //            }
 //            @Override
@@ -567,14 +567,14 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
                             map.put("type", String.valueOf(2));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setContractPayWx(map);
+                            getPresenter().setContractPayWx(map);
                         }else if(payType == PAY_TYPE_ALIBABA){
                             HashMap<String, String> map = new HashMap<>();
                             map.put("uid", uid);
                             map.put("type", String.valueOf(2));
                             map.put("id", id);
                             map.put("xitong", String.valueOf(1));
-                            mPresenter.setContractPay(map);
+                            getPresenter().setContractPay(map);
                         }
                         //重置
                         payType = PAY_TYPE_WECHAT;
@@ -598,7 +598,7 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("uid", uid);
                 map.put("id", id);
-                mPresenter.getContractDetails(map);
+                getPresenter().getContractDetails(map);
                 break;
             default:
                 break;
@@ -611,14 +611,14 @@ public class ActivityContractDetails extends BaseActivity<IContractDetailsView, 
             map.put("id", id);
             map.put("type", String.valueOf(2));
             map.put("shoucang", String.valueOf(0));
-            mPresenter.contractShouCangDel(map);
+            getPresenter().contractShouCangDel(map);
         } else if (shoucang == 0) {
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("id", id);
             map.put("type", String.valueOf(2));
             map.put("shoucang", String.valueOf(1));
-            mPresenter.contractShouCang(map);
+            getPresenter().contractShouCang(map);
         }
     }
 

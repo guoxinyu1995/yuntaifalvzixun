@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.github.lee.annotation.InjectPresenter;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseFragment;
@@ -41,6 +42,7 @@ import butterknife.OnClick;
  * @Date 2019/12/27
  * @Des 我的
  */
+@InjectPresenter(MinePresenter.class)
 public class MineFragment extends BaseFragment<IMineView, MinePresenter> implements IMineView {
     @BindView(R.id.iv_header)
     ImageView ivHeader;
@@ -91,10 +93,10 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
         return R.layout.fragment_mine;
     }
 
-    @Override
-    protected MinePresenter createPresenter() {
-        return new MinePresenter(getContext());
-    }
+//    @Override
+//    protected MinePresenter createPresenter() {
+//        return new MinePresenter(getContext());
+//    }
 
     @Override
     public void onResume() {
@@ -102,7 +104,7 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
         uid = SpUtil.getString(AppConstant.UID, "");
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setMine(map);
+        getPresenter().setMine(map);
     }
 
     @Override
@@ -117,7 +119,7 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
     protected void initData() {
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setMine(map);
+        getPresenter().setMine(map);
     }
 
     @OnClick({R.id.cl_grzx, R.id.ll_qsz, R.id.ll_audio, R.id.ll_zixun, R.id.cl_lvshirenzheng, R.id.cl_gmjl, R.id.cl_yqjl, R.id.cl_sz})
@@ -143,10 +145,10 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
                 break;
             case R.id.cl_lvshirenzheng:
                 //律师认证
-                showWaitingDialog("加载中。。。",true);
-                HashMap<String,String> map = new HashMap<>();
-                map.put("uid",uid);
-                mPresenter.getShengHeJIndu(map);
+                showWaitingDialog("加载中。。。", true);
+                HashMap<String, String> map = new HashMap<>();
+                map.put("uid", uid);
+                getPresenter().getShengHeJIndu(map);
                 break;
             case R.id.cl_gmjl:
                 //购买记录
@@ -168,7 +170,7 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
         hideLoading();
         if (mineBean != null) {
             MineBean.FindBean find = mineBean.getFind();
-            LvShiDao.getInstance(getContext()).lvShiAdd(uid,find.getUser_login(),find.getAvatar(),null,null);
+            LvShiDao.getInstance(getContext()).lvShiAdd(uid, find.getUser_login(), find.getAvatar(), null, null);
             RequestOptions options = new RequestOptions()
                     .placeholder(R.drawable.touxiang)//图片加载出来前，显示的图片
                     .fallback(R.drawable.touxiang) //url为空的时候,显示的图片
@@ -187,17 +189,17 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
     @Override
     public void onShenHeJinSuccess(ShenHeJInduBean shenHeJInduBean) {
         hideWaitingDialog();
-        if(shenHeJInduBean!=null){
+        if (shenHeJInduBean != null) {
             int status = shenHeJInduBean.getStatus();
-            if(status == 0){
+            if (status == 0) {
                 startActivity(new Intent(getActivity(), ActivityLvShiRenZheng.class));
-            }else{
+            } else {
                 Intent intent = new Intent(getActivity(), ActivitySheHeJinDu.class);
-                intent.putExtra("status",status);
-                intent.putExtra("name",shenHeJInduBean.getName());
-                intent.putExtra("photo",shenHeJInduBean.getPhoto());
-                intent.putExtra("liyou",shenHeJInduBean.getLiyou());
-                intent.putExtra("yuanyin",shenHeJInduBean.getYuanyin());
+                intent.putExtra("status", status);
+                intent.putExtra("name", shenHeJInduBean.getName());
+                intent.putExtra("photo", shenHeJInduBean.getPhoto());
+                intent.putExtra("liyou", shenHeJInduBean.getLiyou());
+                intent.putExtra("yuanyin", shenHeJInduBean.getYuanyin());
                 startActivity(intent);
             }
         }

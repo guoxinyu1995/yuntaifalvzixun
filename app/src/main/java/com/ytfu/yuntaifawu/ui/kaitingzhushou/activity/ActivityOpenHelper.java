@@ -81,7 +81,7 @@ public class ActivityOpenHelper extends BaseActivity<IKtzsListView, KtzsListPres
         uid = SpUtil.getString(AppConstant.UID, "");
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setKtzsList(map);
+        getPresenter().setKtzsList(map);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class ActivityOpenHelper extends BaseActivity<IKtzsListView, KtzsListPres
         showLoading();
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setKtzsList(map);
+        getPresenter().setKtzsList(map);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class ActivityOpenHelper extends BaseActivity<IKtzsListView, KtzsListPres
         });
         HashMap<String, String> map = new HashMap<>();
         map.put("uid", uid);
-        mPresenter.setKtzsList(map);
+        getPresenter().setKtzsList(map);
     }
 
     @OnClick({R.id.iv_fanhui, R.id.btn_add_ktzs})

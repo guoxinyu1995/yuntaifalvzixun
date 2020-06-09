@@ -18,7 +18,6 @@ import com.orhanobut.logger.Logger;
 import com.ytfu.yuntaifawu.R;
 import com.ytfu.yuntaifawu.app.AppConstant;
 import com.ytfu.yuntaifawu.base.BaseActivity;
-import com.ytfu.yuntaifawu.base.BasePresenter;
 import com.ytfu.yuntaifawu.ui.LvShiMainActivity;
 import com.ytfu.yuntaifawu.ui.MainActivity;
 import com.ytfu.yuntaifawu.ui.login.bean.LoginPwdBean;
@@ -145,7 +144,7 @@ public class LoginPhonePwdActivity extends BaseActivity<INumPwdView, NumPwdPrese
                         HashMap<String,String> map = new HashMap<>();
                         map.put("mobile",mobile);
                         map.put("pwd",pwd);
-                        mPresenter.longinNumPwd(map);
+                        getPresenter().longinNumPwd(map);
                     }else{
                         ToastUtil.showToast("密码长度为6到12位数字字母下滑线");
                     }

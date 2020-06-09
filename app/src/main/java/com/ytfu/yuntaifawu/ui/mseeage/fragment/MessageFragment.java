@@ -70,14 +70,14 @@ public class MessageFragment extends BaseFragment<IConversationView, Conversatio
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.getConversationList();
+        getPresenter().getConversationList();
     }
 
     //    @Override
     //    public void onHiddenChanged(boolean hidden) {
     //        super.onHiddenChanged(hidden);
     //        if (!hidden) {
-    //            mPresenter.getConversationList();
+    //            getPresenter().getConversationList();
     //        }
     //    }
 
@@ -97,9 +97,9 @@ public class MessageFragment extends BaseFragment<IConversationView, Conversatio
 
     @Override
     protected void initData() {
-        ////                mPresenter.getConversationList();
+        ////                getPresenter().getConversationList();
         //        String uid = SpUtil.getString(AppConstant.UID, "");
-        //        mPresenter.getLawyerChatList(uid);
+        //        getPresenter().getLawyerChatList(uid);
         Log.e("TAG", "######################");
 
 

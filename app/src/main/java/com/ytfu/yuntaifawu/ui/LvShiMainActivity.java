@@ -291,7 +291,7 @@ public class LvShiMainActivity extends BaseActivity {
         lvShiWodeFragment = LvShiWodeFragment.newInstance();
 
         beginTransaction = getSupportFragmentManager().beginTransaction();
-        beginTransaction.replace(R.id.fram_layout, lvShiWenTiFragment, lvShiWenTiFragment.getTag());//问题
+        beginTransaction.add(R.id.fram_layout, lvShiWenTiFragment, lvShiWenTiFragment.getTag());//问题
         beginTransaction.add(R.id.fram_layout, chatListFragment, chatListFragment.getTag());//消息
         beginTransaction.add(R.id.fram_layout, lvShiHeTongFragment, lvShiHeTongFragment.getTag());//合同
         beginTransaction.add(R.id.fram_layout, lvShiWodeFragment, lvShiWodeFragment.getTag());//我的

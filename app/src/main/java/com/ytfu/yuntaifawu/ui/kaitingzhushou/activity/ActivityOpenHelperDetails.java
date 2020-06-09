@@ -180,7 +180,7 @@ public class ActivityOpenHelperDetails extends BaseActivity<IKtzsXqTitleView, Kt
 
     @Override
     protected void initData() {
-        mPresenter.setKtzsXqTitle(id);
+        getPresenter().setKtzsXqTitle(id);
     }
 
 

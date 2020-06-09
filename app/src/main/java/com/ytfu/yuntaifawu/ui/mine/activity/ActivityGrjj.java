@@ -159,7 +159,7 @@ public class ActivityGrjj extends BaseActivity<IGeQianView, GeQianPresenter> imp
             HashMap<String, String> map = new HashMap<>();
             map.put("uid", uid);
             map.put("geqian", grjj);
-            mPresenter.setGeQian(map);
+            getPresenter().setGeQian(map);
         }
     }
 

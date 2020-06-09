@@ -70,14 +70,14 @@ public class ActivityClassification extends BaseActivity<INavView, NavPresenter>
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.getNavTitle();
+        getPresenter().getNavTitle();
     }
 
     @Override
     protected void initData() {
         fenleiAdaper = new AudioFenleiAdaper(this);
         recycleFenlei.setAdapter(fenleiAdaper);
-        mPresenter.getNavTitle();
+        getPresenter().getNavTitle();
     }
     @OnClick(R.id.iv_fanhui)
     public void onViewClicked() {

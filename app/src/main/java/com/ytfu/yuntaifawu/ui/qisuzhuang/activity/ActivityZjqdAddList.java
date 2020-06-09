@@ -98,7 +98,7 @@ public class ActivityZjqdAddList extends BaseActivity<IAddZjqdView, AddZjqdPrese
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("szid",id);
-        mPresenter.setAddZjqd(map);
+        getPresenter().setAddZjqd(map);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ActivityZjqdAddList extends BaseActivity<IAddZjqdView, AddZjqdPrese
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("szid",id);
-        mPresenter.setAddZjqd(map);
+        getPresenter().setAddZjqd(map);
     }
 
 

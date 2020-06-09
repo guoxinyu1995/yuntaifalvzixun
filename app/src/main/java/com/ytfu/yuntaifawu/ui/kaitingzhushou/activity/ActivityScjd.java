@@ -88,14 +88,14 @@ public class ActivityScjd extends BaseActivity<IScjdView, ScjdPresenter> impleme
     protected void onMyReload(View v) {
         super.onMyReload(v);
         showLoading();
-        mPresenter.setScjd();
+        getPresenter().setScjd();
     }
 
     @Override
     protected void initData() {
         scjdAdaper = new ScjdAdaper(this);
         recycleScjd.setAdapter(scjdAdaper);
-        mPresenter.setScjd();
+        getPresenter().setScjd();
         scjdAdaper.setScjdItemClickListener(new ScjdAdaper.IScjdClickListener() {
             @Override
             public void onScjdItemClickListener(int position, String url) {
@@ -107,7 +107,7 @@ public class ActivityScjd extends BaseActivity<IScjdView, ScjdPresenter> impleme
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid", uid);
                     map.put("url", url);
-                    mPresenter.setSendEmail(map);
+                    getPresenter().setSendEmail(map);
                 }
             }
         });
@@ -194,7 +194,7 @@ public class ActivityScjd extends BaseActivity<IScjdView, ScjdPresenter> impleme
                         HashMap<String, String> map = new HashMap<>();
                         map.put("uid", uid);
                         map.put("mail", email);
-                        mPresenter.setScjdBdEmail(map);
+                        getPresenter().setScjdBdEmail(map);
                         alertDialog.dismiss();
                     } else {
                         tv_tishi.setVisibility(View.VISIBLE);

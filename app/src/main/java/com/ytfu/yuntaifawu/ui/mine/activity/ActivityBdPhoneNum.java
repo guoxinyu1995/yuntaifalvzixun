@@ -168,7 +168,7 @@ public class ActivityBdPhoneNum extends BaseActivity<IPhoneNumBdView, PhoneNumPr
                         map.put("uid", uid);
                         map.put("mobile", phoneNum);
                         map.put("code", code);
-                        mPresenter.setPhoneNum(map);
+                        getPresenter().setPhoneNum(map);
                     } else {
                         ToastUtil.showToast("验证码输入错误");
 //                        }
@@ -193,7 +193,7 @@ public class ActivityBdPhoneNum extends BaseActivity<IPhoneNumBdView, PhoneNumPr
                     HashMap<String, String> map = new HashMap<>();
                     map.put("uid",uid);
                     map.put("mobile", num);
-                    mPresenter.setSendCode(map);
+                    getPresenter().setSendCode(map);
 //                    initTimer();
 //                    ToastUtil.showToast("手机号格式正确");
                 } else {

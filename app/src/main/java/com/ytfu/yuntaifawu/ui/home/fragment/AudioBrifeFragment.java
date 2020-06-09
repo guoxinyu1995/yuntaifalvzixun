@@ -57,7 +57,7 @@ public class AudioBrifeFragment extends BaseFragment<IAudioDetailsView, AudioDet
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class AudioBrifeFragment extends BaseFragment<IAudioDetailsView, AudioDet
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class AudioBrifeFragment extends BaseFragment<IAudioDetailsView, AudioDet
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("id", id);
-        mPresenter.getAudioDetails(map);
+        getPresenter().getAudioDetails(map);
     }
 
     @Override

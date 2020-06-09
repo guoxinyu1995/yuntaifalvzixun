@@ -109,7 +109,7 @@ public class ActivitySetEmail extends BaseActivity<ISetEmailView, SetEmailPresen
                 HashMap<String,String> map = new HashMap<>();
                 map.put("uid",uid);
                 map.put("email",et_email);
-                mPresenter.setEmail(map);
+                getPresenter().setEmail(map);
             }else{
                 tvTishi.setVisibility(View.VISIBLE);
                 tvTishi.setText("请输入正确的邮箱");

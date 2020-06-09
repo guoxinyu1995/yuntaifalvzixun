@@ -78,7 +78,7 @@ public class ActivityQszXqClassify extends BaseActivity<IQszXqFlView, QszXqFlPre
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("szid",id);
-        mPresenter.setQszXqFl(map);
+        getPresenter().setQszXqFl(map);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class ActivityQszXqClassify extends BaseActivity<IQszXqFlView, QszXqFlPre
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("szid",id);
-        mPresenter.setQszXqFl(map);
+        getPresenter().setQszXqFl(map);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class ActivityQszXqClassify extends BaseActivity<IQszXqFlView, QszXqFlPre
         HashMap<String,String> map = new HashMap<>();
         map.put("uid",uid);
         map.put("szid",id);
-        mPresenter.setQszXqFl(map);
+        getPresenter().setQszXqFl(map);
     }
 
 
