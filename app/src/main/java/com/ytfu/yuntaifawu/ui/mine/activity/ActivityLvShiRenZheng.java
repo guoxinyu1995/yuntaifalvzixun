@@ -330,6 +330,8 @@ public class ActivityLvShiRenZheng extends BaseActivity<ILvShiRenZhengCommitView
                 showXueLiDialog();
                 lightoff();
                 break;
+            case R.id.cl_zhiyeyear:
+                break;
             case R.id.cl_zhiyejigou:
                 //职业机构
                 startActivity(new Intent(ActivityLvShiRenZheng.this, ActivityZhiYeJiGou.class));

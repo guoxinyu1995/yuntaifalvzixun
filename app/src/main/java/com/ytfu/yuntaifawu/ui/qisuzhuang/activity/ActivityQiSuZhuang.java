@@ -1,5 +1,6 @@
 package com.ytfu.yuntaifawu.ui.qisuzhuang.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,6 +51,12 @@ public class ActivityQiSuZhuang extends BaseActivity<IQszView, QszPresenter> imp
         return new QszPresenter(this);
     }
 
+    public static void start(Context context) {
+        Intent starter = new Intent(context, ActivityQiSuZhuang.class);
+//        starter.putExtra();
+        context.startActivity(starter);
+    }
+
     @Override
     public void init() {
         super.init();
@@ -92,7 +99,7 @@ public class ActivityQiSuZhuang extends BaseActivity<IQszView, QszPresenter> imp
         if (fenLeiBean.getList() == null || fenLeiBean.getList().isEmpty()) {
             showEmpty();
         } else {
-            tvTishi.setText("已免费代写"+fenLeiBean.getRand()+"份");
+            tvTishi.setText("已免费代写" + fenLeiBean.getRand() + "份");
             fenLeiAdaper.setmList(fenLeiBean.getList());
         }
     }

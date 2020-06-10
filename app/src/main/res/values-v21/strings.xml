@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_consulting">咨询</string>
+    <string name="home_courtassistant">开庭助手</string>
+    <string name="home_legaladviser">法律顾问</string>
+    <string name="home_recommended_lawyer">推荐律师</string>
+</resources>

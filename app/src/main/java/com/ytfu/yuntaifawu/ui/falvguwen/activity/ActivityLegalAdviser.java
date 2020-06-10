@@ -1,5 +1,7 @@
 package com.ytfu.yuntaifawu.ui.falvguwen.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
@@ -52,6 +54,12 @@ public class ActivityLegalAdviser extends BaseActivity {
         return null;
     }
 
+    public static void start(Context context) {
+        Intent starter = new Intent(context, ActivityLegalAdviser.class);
+//    starter.putExtra();
+        context.startActivity(starter);
+    }
+
     @Override
     public void init() {
         super.init();
@@ -86,6 +94,7 @@ public class ActivityLegalAdviser extends BaseActivity {
         //加载数据
         getData();
     }
+
     //加载数据
     private void getData() {
         HttpUtil.getInstance().getApiService().getFLGW()
@@ -96,12 +105,13 @@ public class ActivityLegalAdviser extends BaseActivity {
                     @Override
                     public void onNextImpl(LegalAdviserClassifyBean entity) {
                         if (AppConstant.STATUS_SUCCESS == entity.getStatus()) {
-                           onSuccess(entity);
-                        }else{
+                            onSuccess(entity);
+                        } else {
                             onSuccess(null);
                         }
 
                     }
+
                     @Override
                     public void onErrorImpl(String errorMessage) {
                         Logger.e("getNavTitle" + errorMessage);
@@ -118,10 +128,10 @@ public class ActivityLegalAdviser extends BaseActivity {
 
     private void onSuccess(LegalAdviserClassifyBean entity) {
         hideLoading();
-        if(entity.getList() == null || entity.getList().isEmpty()){
+        if (entity.getList() == null || entity.getList().isEmpty()) {
             showEmpty();
-        }else{
-            tvTishi.setText("已有"+entity.getSum()+"人购买");
+        } else {
+            tvTishi.setText("已有" + entity.getSum() + "人购买");
             legalAdviserClassifyAdaper.setmList(entity.getList());
         }
     }

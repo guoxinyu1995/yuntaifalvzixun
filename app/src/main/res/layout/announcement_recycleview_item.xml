@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="15dp"
+    >
+    <TextView
+        android:id="@+id/tv_top"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/textview_top_shape"
+        android:gravity="center"
+        android:text="置顶"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/tv_top"
+        android:text="2020云台法律咨询端午节放假通知"
+        android:textColor="@color/textColor_48"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2020-06-24"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/textview_88"
+        android:textSize="11sp" />
+</RelativeLayout>
+   <TextView
+       android:id="@+id/tv_connect"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="2020云台法律咨询端午节放假通知"
+       android:layout_marginLeft="15dp"
+       android:layout_marginTop="5dp"
+       android:maxEms="20"
+       android:textSize="12sp"
+       android:textColor="@color/textColor_66"
+       android:layout_marginBottom="15dp"
+       />
+
+</LinearLayout>

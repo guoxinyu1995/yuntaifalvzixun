@@ -117,6 +117,19 @@ public abstract class BaseRecyclerViewFragment
         fl_refresh_top_suspension.setVisibility(View.VISIBLE);
     }
 
+    /*
+     * 获取列表控件
+     * */
+    protected RecyclerView getRecycleView() {
+        return rv_refresh_content;
+    }
+    /*
+     * 获取列表控件
+     * */
+    protected SwipeRefreshLayout getSwipeRefreshLayout() {
+        return srl_refresh_refresh;
+    }
+
     /**
      * 隐藏顶部悬浮容器
      */

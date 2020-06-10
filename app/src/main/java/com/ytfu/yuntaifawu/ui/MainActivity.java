@@ -47,6 +47,7 @@ import com.ytfu.yuntaifawu.ui.home.fragment.OpenFragment;
 import com.ytfu.yuntaifawu.ui.mine.fragment.MineFragment;
 import com.ytfu.yuntaifawu.ui.mseeage.bean.HuanXinLoginBean;
 import com.ytfu.yuntaifawu.ui.updatapk.UpDateApkBean;
+import com.ytfu.yuntaifawu.ui.users.fragment.UserHomeFragment;
 import com.ytfu.yuntaifawu.utils.AndPermissionUtil;
 import com.ytfu.yuntaifawu.utils.ApkUtil;
 import com.ytfu.yuntaifawu.utils.CommonUtil;
@@ -91,7 +92,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private OpenFragment openFragment;
     private String uid;
     //首页
-    private HomeFragment1 homeFragment1;
+//    private HomeFragment1 homeFragment1;
+    private UserHomeFragment userHomeFragment;
     //消息
     //    private MessageFragment messageFragment;
     private ChatListFragment messageFragment;
@@ -103,6 +105,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private MineFragment mineFragment;
 
     private static final String KEY_CURRENT_POSITION = "frid";
+
+    //    private UserHomeFragment userHomeFragment;
 
     public static void start(Context context, int position) {
         Bundle bundle = new Bundle();
@@ -167,7 +171,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         iv_main_bottom_zixun.setOnClickListener(this);
         //        home.setOnClickListener(this);
         //        mine.setOnClickListener(this);
-
         EmChatManager.getInstance().registerMessageListener(this);
 
     }
@@ -230,7 +233,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         int position = getBundleInt(KEY_CURRENT_POSITION, 0);
         changeTagStatus(position);
     }
-
     private void getHuanxinLogin(HashMap<String, String> map) {
         HttpUtil.getInstance().getApiService().setHxLogin(map).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).as(RxLifecycleUtil.bindLifecycle(this)).subscribe(new BaseRxObserver<HuanXinLoginBean>() {
             @Override
@@ -283,7 +285,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initFragment() {
         //        homeFragment = new HomeFragment();
         //首页
-        homeFragment1 = HomeFragment1.newInstance();
+//        homeFragment1 = HomeFragment1.newInstance();
+        userHomeFragment = UserHomeFragment.newInstance();
         //消息
         //        messageFragment = new MessageFragment();
         messageFragment = ChatListFragment.newInstance();
@@ -299,7 +302,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         EMClient.getInstance().groupManager().loadAllGroups();
         EMClient.getInstance().addClientListener(clientListener);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fram_layout, homeFragment1)//首页
+        getSupportFragmentManager().beginTransaction().add(R.id.fram_layout, userHomeFragment)//首页
                 .add(R.id.fram_layout, messageFragment)//消息
                 .add(R.id.fram_layout, consultFragment)//咨询
                 .add(R.id.fram_layout, indictmentFragment)//诉状
@@ -395,7 +398,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         switch (i) {
             case 0:
                 //首页
-                beginTransaction.show(homeFragment1);
+                beginTransaction.show(userHomeFragment);
                 break;
             case 1:
                 //消息
@@ -414,7 +417,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 beginTransaction.show(mineFragment);
                 break;
             default:
-                beginTransaction.show(homeFragment1);
+                beginTransaction.show(userHomeFragment);
                 break;
         }
         beginTransaction.commitNowAllowingStateLoss();
@@ -422,8 +425,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void hideFragment(FragmentTransaction beginTransaction) {
         //首页
-        if (homeFragment1 != null) {
-            beginTransaction.hide(homeFragment1);
+        if (userHomeFragment != null) {
+            beginTransaction.hide(userHomeFragment);
         }
         //消息
         if (messageFragment != null) {

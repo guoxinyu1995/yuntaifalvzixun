@@ -145,34 +145,6 @@ public class ActivityLegalAdviserDetailsBuy extends BaseActivity<ILegalAdviserDe
     private ImageView mIvWeichatSelect;
     private ImageView mIvAliSelect;
     private void showPayDialor() {
-//        PayDialorUtil.getInstance().showPayDialog(this, new PayDialorUtil.OnButtonClickListener() {
-//            @Override
-//            public void onPayWeiXinButtonClick(AlertDialog dialog) {
-//                HashMap<String, String> map = new HashMap<>();
-//                map.put("uid", uid);
-//                map.put("type", String.valueOf(7));
-//                map.put("id", id);
-//                map.put("xitong", String.valueOf(1));
-//                getPresenter().setFlgwPayWx(map);
-//                dialog.dismiss();
-//            }
-//
-//            @Override
-//            public void onPayZhiFuBaoButtonClick(AlertDialog dialog) {
-//                HashMap<String, String> map = new HashMap<>();
-//                map.put("uid", uid);
-//                map.put("type", String.valueOf(7));
-//                map.put("id", id);
-//                map.put("xitong", String.valueOf(1));
-//                getPresenter().setFlgwPay(map);
-//                dialog.dismiss();
-//            }
-//
-//            @Override
-//            public void onGuanbiButtonClick(AlertDialog dialog) {
-//                dialog.dismiss();
-//            }
-//        });
         View dialogView = getLayoutInflater().inflate(R.layout.pay_view_alert_dialor1, null);
         //微信支付的选择
         mIvWeichatSelect = dialogView.findViewById(R.id.iv_buy_weichat_select);

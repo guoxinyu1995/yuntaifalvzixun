@@ -190,7 +190,36 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:orientation="vertical">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_zhiyeyear"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="执业年限"
+                        android:textColor="#484848"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_zhiyeyear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="22dp"
+                        android:drawableRight="@drawable/jianjiaohao_r"
+                        android:drawablePadding="10dp"
+                        android:text="未填写"
+                        android:textColor="#484848"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_zhiyejigou"
                     android:layout_width="match_parent"

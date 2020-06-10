@@ -28,4 +28,9 @@
     <color name="textColor_Details_Unselect">#9C9CA4</color>
     <color name="textColor_collect_audio_Select">#44A2F7</color>
     <color name="textColor_66">#666666</color>
+    <color name="textColor_33">#333333</color>
+    <color name="textColor_37">#373737</color>
+    <color name="textColor_b18647">#B18647</color>
+    <color name="textColor_48">#484848</color>
+    <color name="textview_88">#888888</color>
 </resources>

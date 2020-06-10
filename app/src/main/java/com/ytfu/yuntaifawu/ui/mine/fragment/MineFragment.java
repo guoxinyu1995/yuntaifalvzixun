@@ -30,6 +30,7 @@ import com.ytfu.yuntaifawu.ui.mine.bean.ShenHeJInduBean;
 import com.ytfu.yuntaifawu.ui.mine.present.MinePresenter;
 import com.ytfu.yuntaifawu.ui.mine.view.IMineView;
 import com.ytfu.yuntaifawu.ui.qisuzhuang.activity.ActivityQszHistoryList;
+import com.ytfu.yuntaifawu.ui.users.act.AnnouncementActivity;
 import com.ytfu.yuntaifawu.utils.SpUtil;
 
 import java.util.HashMap;
@@ -142,6 +143,7 @@ public class MineFragment extends BaseFragment<IMineView, MinePresenter> impleme
             case R.id.ll_zixun:
                 //我的咨询
                 startActivity(new Intent(getActivity(), ActivityMineZiXun.class));
+//                AnnouncementActivity.start(mContext);
                 break;
             case R.id.cl_lvshirenzheng:
                 //律师认证

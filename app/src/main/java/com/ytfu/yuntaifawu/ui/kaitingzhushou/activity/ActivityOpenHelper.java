@@ -1,5 +1,6 @@
 package com.ytfu.yuntaifawu.ui.kaitingzhushou.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,6 +63,12 @@ public class ActivityOpenHelper extends BaseActivity<IKtzsListView, KtzsListPres
     @Override
     protected KtzsListPresenter createPresenter() {
         return new KtzsListPresenter(this);
+    }
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, ActivityOpenHelper.class);
+//        starter.putExtra();
+        context.startActivity(starter);
     }
 
     @Override
@@ -128,7 +135,7 @@ public class ActivityOpenHelper extends BaseActivity<IKtzsListView, KtzsListPres
                 int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
                 if (lastVisibleItemPosition + 1 == titleListAdaper.getItemCount()) {
                     v1.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     v1.setVisibility(View.GONE);
                 }
             }
